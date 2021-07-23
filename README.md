@@ -4,7 +4,7 @@
 
 Example project using the [Serverless Framework](https://serverless.com), JavaScript, AWS Lambda, AWS API Gateway and GitLab Pages.
 
-----
+---
 
 ## Deployment
 
