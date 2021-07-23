@@ -1,0 +1,49 @@
+EPIC : Define the CD/CD pipeline of the system
+
+
+US - Description: Configure a Gitlab repository
+
+As a DevOps Engineer
+
+I want to configure a Gitlab Repository
+
+So That I can manage version of my workload
+------------------------------------------------
+
+Pre-Condition
+
+	-	Have a gitlab Account
+
+----------------- 
+
+Post Condition:
+
+	-	The Repository can be cloned with ssh
+		
+		Given an SSH public key
+		When I have the repository link and enter git clone ssh://john@example.com/path/to/my-project.git
+		Then I get get the repository localy downloaded
+		
+	- 	The Git workflow should be git flow
+		
+		Given a download repository
+		When I install the gitflow system and enter the command git flow init
+		Then The gitflow must have been initialised.
+		
+	-	The Master Branch is locked and can only be changed with pull/merge request
+		Given the repository
+		When I push to a master branch
+		I should have an errors telling, that I cannot push directly to the master branch
+		
+
+SCOPE:
+	- 	A Repository is created
+	- 	A PullRequest condition is created in the master Branch
+	- 	The Gitflow package is localy installed
+	
+Attachements
+	- 	Event-driven architecture for using third-party Git repositories as source for AWS CodePipeline
+		https://aws.amazon.com/de/blogs/devops/event-driven-architecture-for-using-third-party-git-repositories-as-source-for-aws-codepipeline/
+		
+	- Gitflow cheatsheet
+		https://danielkummer.github.io/git-flow-cheatsheet/
