@@ -6,7 +6,7 @@ module.exports.hello = async function(event) {
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
-    body: JSON.stringify(
+    body: JSON.stringify( 
       {
         message: 'Your function executed successfully!',
         params: event.queryStringParameters,
