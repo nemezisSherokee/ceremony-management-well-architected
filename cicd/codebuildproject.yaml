@@ -1,0 +1,107 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: |
+    Codebuild project to be triggered once a change is detected in a github source directory. 
+    Every difference source project in Github should have its own codeBuild peoject
+    We could event define anothe template that provide SSH key and so one as defined in the template https://github.com/aws-quickstart/quickstart-git2s3/blob/main/templates/git2s3.template.yaml
+    in the project https://github.com/aws-quickstart/quickstart-git2s3
+
+Parameters:
+  ProjectName:
+    AllowedPattern: '[a-zA-Z0-9.-]*'
+    ConstraintDescription: Project Name must contain only lowercase a-z, 0-9 and -
+      characters.
+    Default: CeremonyManagement-CodeBuild-GITHUB
+    Description: Define the Name of the Project such as test/data etc. (Value must
+      be comprised only of lowercase a-z, A-Z, 0-9, .-). Example my project
+    Type: String
+
+  PathToConsider:
+    AllowedPattern: '[(a-zA-Z0-9)*(\-)\/]*'
+    ConstraintDescription: Path must contain only lowercase a-z, 0-9 and -
+      characters.
+    Description: Define the Path whose change will trigger this project(Value must
+      be comprised only of lowercase a-z, A-Z, 0-9, .- / * ). Example backend
+    Type: String
+    Default: src
+
+  BranchToConsider:
+    AllowedPattern: '[a-zA-Z0-9.-/*]*'
+    ConstraintDescription: Branch Name must contain only lowercase a-z, 0-9 and -
+      characters.
+    Description: Define the Branch whose change will trigger this project(Value must
+      be comprised only of lowercase a-z, A-Z, 0-9, .- / * ). Example master
+    Type: String
+    Default: master
+
+  SourceLocation:
+    ConstraintDescription: Location of the Repository
+    Description: The URL which contains the project. Example  https://github.com/username/project.git
+    Type: String
+    Default: https://github.com/nemezisSherokee/ceremony-management-well-architected.git
+
+
+Resources:
+  CodeBuildServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub CodeBuildRole-${AWS::StackName}
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "codebuild.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: /service-role/
+      Policies:
+        -
+          PolicyName: "CodeBuildAccessPolicies"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Resource:
+                  - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/*
+
+  CodeBuildImageJob:
+ 
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Ref 'ProjectName'
+      ServiceRole: !GetAtt CodeBuildServiceRole.Arn
+      Artifacts:
+        Type: no_artifacts
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:5.0 
+      Source:
+        Auth:
+          Type: OAUTH
+        Location: !Ref 'SourceLocation'
+        Type: GITHUB
+        BuildSpec: !Sub ${PathToConsider}/buildspec.yml
+      Triggers:
+        Webhook: true
+        FilterGroups:
+        - - Type: EVENT
+            Pattern: PUSH,PULL_REQUEST_MERGED
+          - Type: FILE_PATH
+            Pattern: !Sub ${PathToConsider}/*
+            ExcludeMatchedPattern: false
+          - Type: HEAD_REF
+            Pattern: !Sub ^refs/heads/${BranchToConsider}$
+            ExcludeMatchedPattern: false
+          - Type: FILE_PATH
+            Pattern: !Sub ${PathToConsider}/README.*
+            ExcludeMatchedPattern: true
+
+      TimeoutInMinutes: 10

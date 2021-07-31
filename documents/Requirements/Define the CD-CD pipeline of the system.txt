@@ -1,5 +1,12 @@
 EPIC : Define the CD/CD pipeline of the system
 
+How to trigger AWS CodeBuild jobs for selective file changes in AWS CodeCommit
+https://aws.amazon.com/de/blogs/infrastructure-and-automation/how-to-trigger-aws-codebuild-jobs-for-selective-file-changes-in-aws-codecommit/
+
+Git webhooks with AWS services - Quick Start
+https://github.com/aws-quickstart/quickstart-git2s3
+https://aws-quickstart.github.io/quickstart-git2s3/#_parameter_reference
+
 
 US - Description: Configure a Gitlab repository
 
@@ -47,3 +54,96 @@ Attachements
 		
 	- Gitflow cheatsheet
 		https://danielkummer.github.io/git-flow-cheatsheet/
+		
+=================================================================
+
+
+US - Description: define the CI/CD pipeline on AWS
+
+As a DevOps Engineer
+
+I want to configure a CodePipeline Project
+
+So That I start building the project on any change on the master branch
+
+
+Pre-Condition
+
+	-	A gitlab repository has been configured
+
+----------------- 
+
+Post-Condition:
+
+	-	A Code pipeline project is created
+		
+		Given a gitlab repository
+		When A Pull request is accepted and and I know the adress of CI/CD pipeline
+		Then a webhook triggers the pipeline
+		
+	- 	The Pipeline Build is only triggered when changed are made to a specific directory
+		
+		Given Copepipeline
+		When somechanges are made to a specfic directory
+		Then a specific lambda function starts the CodeBuild project
+		 
+
+SCOPE:
+	- 	A Codepipeline project is created
+	- 	A Webhook is triggered from Gitlab
+	- 	A Lambda function is created 
+	
+Attachements
+	- 	Event-driven architecture for using third-party Git repositories as source for AWS CodePipeline
+		https://aws.amazon.com/de/blogs/devops/event-driven-architecture-for-using-third-party-git-repositories-as-source-for-aws-codepipeline/
+		
+	- Gitflow cheatsheet
+		https://danielkummer.github.io/git-flow-cheatsheet/
+		
+		
+
+=================================================================
+
+
+US - Description: Defined every AWS workload in Cloudformation
+
+As a DevOps Engineer
+
+I want to define my AWS workload in Cloudformation
+
+So That I can automate the creation of my aws workload a avoir human-errors
+
+
+Pre-Condition
+
+	-	A Example of CI/CD is created
+
+----------------- 
+
+Post-Condition:
+
+	- 	The Lambda function is packaged on S3
+		
+		Given a Lambda function that checks if a codeBuild project should be started
+		When When I run aws cloudformation package AND provide a s3 bucket
+		Then an output template is generated
+
+	-	A Cloudformation template is created
+		
+		Given necessary inputs for the CI/CD pipeline
+		When I run cloudmation deploy
+		Then my CI/CD codepipeline project on AWS is created
+				 
+
+SCOPE:
+	- 	A create a first cloudformation template
+	- 	A package lambda function
+	
+Attachements
+	- 	Event-driven architecture for using third-party Git repositories as source for AWS CodePipeline
+		https://aws.amazon.com/de/blogs/devops/event-driven-architecture-for-using-third-party-git-repositories-as-source-for-aws-codepipeline/
+		https://aws.amazon.com/de/blogs/infrastructure-and-automation/how-to-trigger-aws-codebuild-jobs-for-selective-file-changes-in-aws-codecommit/
+		
+	- Gitflow cheatsheet
+		https://danielkummer.github.io/git-flow-cheatsheet/
+		
