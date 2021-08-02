@@ -1,0 +1,145 @@
+EPIC : Blue prints for importants part of our systems and with differents programming languages
+
+US - Description: Define a Java Blue print for a Lambda function
+
+As a AWS Developper 
+
+I want to have ready to use Lambda Java blue print
+
+So That I can directly start writing adding a feature to my solution
+------------------------------------------------
+
+Pre-Condition
+
+	-	Have a CodeBuild Blue print ready to use
+
+----------------- 
+
+Post Condition:
+
+	-	The Java Blue Blue print muss be written in Java  and sould be deployed uppon any change
+		
+		Given an InteliJ IDE
+		When I open my blue print project 
+		Then I should se a well architected project that can be extended
+
+SCOPE:
+	- 	A Jaba project  is created
+	- 	An Helloword function is defined and TDD must be applied
+	- 	Unit Test must be passed
+	
+Attachements
+		
+=================================================================
+
+US - Description: Add Cucumber facility to our Java Blue Print 
+
+As a AWS Developper 
+
+I want  to be start making BDD with Cucumber to my Blue Print 
+
+So That I Be sure that the rigth functionality is alway developed
+------------------------------------------------
+
+Pre-Condition
+
+	-	Have a Ready to use Java Blue print
+
+----------------- 
+
+Post Condition:
+
+	- 	The Java Blue print has a cucumber enabled
+		
+		Given a Java Blue Print
+		When I Call maven package
+		Then The project must build and cucumber must start.
+		
+	- 	The Java Blue print has a SonarQube enabled
+		
+		Given a Java Blue print
+		When I call the solar runner
+		Then The project must build and SonarQube must give result of the check
+
+	-	The Blue Print must be deployed to the Lambda Service
+		Given a Java Blue Print
+		When change a code to the Java and push to the repository
+		Then an according CodeBuild project must start and the every part of the build (BDD, SonarQube) must passt and the Lambda function must be deployed
+		
+
+SCOPE:
+	- 	A Java project with Cucumber facilities is available
+	- 	An Helloword function is defined and TDD must be applied
+	- 	BDD Tests must be passed
+	
+Attachements
+
+=================================================================
+
+US - Description: Add SonarQube facilities to our Java Blue Print 
+
+As a AWS Developper 
+
+I want  to  start checking that my java code against SonarQube
+
+So That I Be sure that I have a well written code
+------------------------------------------------
+
+Pre-Condition
+
+	-	Have a Ready to use Java Blue print
+	- a SonarQube server is starter in Docker
+
+----------------- 
+
+Post Condition:
+
+		
+	- 	The Java Blue print has a SonarQube enabled
+		
+		Given a Java Blue print
+		When I call the solar runner
+		Then The project must build and SonarQube must give result of the check
+ 
+
+SCOPE:
+	- 	A Java project with Cucumber and SonarQube is available
+	- 	I can see SonarQube enabled and habe a SonarQube Server that delivert results
+	
+Attachements
+
+
+=================================================================
+
+US - Description: Make The Java Blue Print CI-CD enabled 
+
+As a Java DevOps Engineer 
+
+I want  to  add CI-CD Facilities to my Java Blue Prints 
+
+So That I can deploy the Lambda function on any verified changes
+------------------------------------------------
+
+Pre-Condition
+
+	-	Have a Ready to use Java Blue print
+	-	Have Cucumber enabled
+	- 	Have SonarQube enabled
+
+----------------- 
+
+Post Condition:
+
+		
+	-	The Blue Print must be deployed to the Lambda Service
+		Given a Java Blue Print
+		When change a code to the Java and push to the repository
+		Then an according CodeBuild project must start and the every part of the build (BDD, SonarQube) must passt and the Lambda function must be deployed
+		
+
+SCOPE:
+	- 	A Java project with Cucumber and SonarQube facilities is available
+	- 	A BluePrint Code Build Project is defined
+	- 	Lambda function must be deployed
+	
+Attachements
