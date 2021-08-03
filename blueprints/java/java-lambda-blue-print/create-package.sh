@@ -1,0 +1,1 @@
+mvn package -Dquarkus.native.container-build=true
