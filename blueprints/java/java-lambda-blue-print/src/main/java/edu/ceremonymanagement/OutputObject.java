@@ -1,18 +1,14 @@
 package edu.ceremonymanagement;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class OutputObject {
 
     private String result;
-
     private String requestId;
-
-    public String getResult() {
-        return result;
-    }
-
-    public String getRequestId() {
-        return requestId;
-    }
 
     public OutputObject setResult(String result) {
         this.result = result;
