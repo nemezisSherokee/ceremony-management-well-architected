@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 @QuarkusTest
 public class Test_Lambda_Handler {
 
-    //@Test
     @ParameterizedTest
     @ValueSource(strings = {"Stuart"})
     public void and_not_nick_name_throws_exceptions(String name) throws Exception {
