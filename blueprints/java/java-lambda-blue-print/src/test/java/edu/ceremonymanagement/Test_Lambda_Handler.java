@@ -1,5 +1,7 @@
 package edu.ceremonymanagement;
 
+import edu.ceremonymanagement.InputObject;
+import edu.ceremonymanagement.OutputObject;
 import io.quarkus.amazon.lambda.test.LambdaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
