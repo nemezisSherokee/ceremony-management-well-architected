@@ -1,5 +1,7 @@
-package edu.ceremonymanagement;
+package edu.ceremonymanagement.feature2;
 
+import edu.ceremonymanagement.InputObject;
+import edu.ceremonymanagement.ProcessingService;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,7 +15,7 @@ class IsItFriday {
     }
 }
 
-public class Stepdefs  {
+public class Feature_1_StepDefinition  {
     private String today;
     private String actualAnswer;
 
