@@ -3,8 +3,6 @@ package edu.ceremonymanagement.feature2;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
-import com.cucumber.listener.Reporter;
-import com.cucumber.listener.ExtentCucumberFormatter;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
