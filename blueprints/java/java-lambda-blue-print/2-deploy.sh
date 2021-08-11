@@ -24,15 +24,14 @@ do
     docker rm sonarqube9000 -f 2>/dev/null || :   # to ignore errors if any
     docker run -d --name sonarqube9000 -p 9009:9000 sonarqube:8.9.0-community 2>/dev/null || :   # to ignore errors if any
 	sleep 90
-	docker ps -a
-	SONAR_QUBE_IP_ADRESS=$(docker inspect sonarqube9000 | jq '.[].NetworkSettings.Networks.bridge.IPAddress' | sed "s/\"//g")
+	#docker ps -a
+	#SONAR_QUBE_IP_ADRESS=$(docker inspect sonarqube9000 | jq '.[].NetworkSettings.Networks.bridge.IPAddress' | sed "s/\"//g")
 	SONAR_QUBE_IP_ADRESS=localhost
 	SONAR_QUBE_PORT=9009
     bash sonarqube_token_generator.sh $STACK_NAME $SONAR_QUBE_IP_ADRESS $SONAR_QUBE_PORT
 	TOKEN=$(cat token.txt)
     #curl -u admin:admin -X POST "http://localhost:9005/api/projects/create?project=$STACK_NAME&name=$STACK_NAME"
     SONARQUBE=" sonar:sonar   -Dsonar.projectKey=$STACK_NAME  -Dsonar.host.url=http://$SONAR_QUBE_IP_ADRESS:$SONAR_QUBE_PORT  -Dsonar.login=$TOKEN -Dsonar.java.binaries="target/classes" -Dsonar.scm.disabled=true sonar-quality-gate:check"
-	
 	echo $SONARQUBE
   fi
 
@@ -53,7 +52,7 @@ done
 	  
 	  else
 	  echo "mvn clean install $SONARQUBE"
-	  #mvn clean install $SONARQUBE
+	  mvn clean install $SONARQUBE
     fi
 
   fi
