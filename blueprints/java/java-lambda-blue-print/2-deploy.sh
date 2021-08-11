@@ -16,9 +16,9 @@ then
 	export LAMBDA_ROLE_ARN=arn:aws:iam::467546108131:role/lambda-ex
 	echo "Role = $LAMBDA_ROLE_ARN"
     mvn clean package
-	bash target/manage.sh create && echo $? || exit(1)
-	bash target/manage.sh invoke && echo $? || exit(1)
-	bash target/manage.sh delete && echo $? || exit(1)
+	bash target/manage.sh create 
+	bash target/manage.sh invoke
+	bash target/manage.sh delete
 
     #mvn clean install -Pnative										  ## RUN LOCAL ON WINDOWS TO CREATE A NATIVE FUNCTION
 	#mvn clean install -Pnative -Dquarkus.native.container-build=true ## RUN LOCAL ON WINDOWS
