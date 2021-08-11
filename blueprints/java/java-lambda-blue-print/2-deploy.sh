@@ -23,7 +23,9 @@ do
   then
     docker run -d --name sonarqube9000 -p 9000:9000 sonarqube:8.9.0-community 2>/dev/null || :   # to ignore errors if any
 	sleep 25
+	docker ps -a
 	SONAR_QUBE_IP_ADRESS=$(docker inspect sonarqube9000 | jq '.[].NetworkSettings.Networks.bridge.IPAddress' | sed "s/\"//g")
+	SONAR_QUBE_IP_ADRESS=sonarqube9000
     bash sonarqube_token_generator.sh $STACK_NAME $SONAR_QUBE_IP_ADRESS 9000
 	TOKEN=$(cat token.txt)
     #curl -u admin:admin -X POST "http://localhost:9005/api/projects/create?project=$STACK_NAME&name=$STACK_NAME"
