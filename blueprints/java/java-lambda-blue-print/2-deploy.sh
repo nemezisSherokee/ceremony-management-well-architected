@@ -10,10 +10,10 @@ then
   then
     #TEMPLATE=target/sam.native.yaml
 	TEMPLATE=template-mvn.yml
+    mvn clean install -Pnative
+	#mvn clean install -Pnative -Dquarkus.native.container-build=true
 	mkdir -p persitentTarget
 	cp target/function.zip persitentTarget/function.zip  2>/dev/null || : # to ignore errors if any
-    #mvn package -Pnative
-	#mvn clean install -Pnative -Dquarkus.native.container-build=true
   fi
 # else
   # gradle build -i
