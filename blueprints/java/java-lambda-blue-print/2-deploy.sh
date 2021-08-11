@@ -22,6 +22,7 @@ do
   if [ $1 = sonarqube ]
   then
     docker run -d --name sonarqube9000 -p 9000:9000 sonarqube:8.9.0-community 2>/dev/null || :   # to ignore errors if any
+	sleep 25
 	SONAR_QUBE_IP_ADRESS=$(docker inspect sonarqube9000 | jq '.[].NetworkSettings.Networks.bridge.IPAddress' | sed "s/\"//g")
     bash sonarqube_token_generator.sh $STACK_NAME $SONAR_QUBE_IP_ADRESS 9000
 	TOKEN=$(cat token.txt)
