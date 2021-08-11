@@ -11,14 +11,14 @@ then
     #TEMPLATE=target/sam.native.yaml
 	TEMPLATE=template-mvn.yml
 	
-	#aws iam create-role --role-name lambda-ex --assume-role-policy-document '{"Version": "2012-10-17","Statement": [{ "Effect": "Allow", "Principal": {"Service": "lambda.amazonaws.com"}, "Action": "sts:AssumeRole"}]}' 2>/dev/null
+	aws iam create-role --role-name lambda-ex --assume-role-policy-document '{"Version": "2012-10-17","Statement": [{ "Effect": "Allow", "Principal": {"Service": "lambda.amazonaws.com"}, "Action": "sts:AssumeRole"}]}' 2>/dev/null
 	LAMBDA_ROLE_ARN=$(aws iam get-role --role-name lambda-ex --query "Role.Arn")
 	export LAMBDA_ROLE_ARN=arn:aws:iam::467546108131:role/lambda-ex
 	echo "Role = $LAMBDA_ROLE_ARN"
     mvn clean package
-	bash target/manage.sh create
-	bash target/manage.sh invoke
-	bash target/manage.sh delete
+	bash target/manage.sh create && echo $? || exit(1)
+	bash target/manage.sh invoke && echo $? || exit(1)
+	bash target/manage.sh delete && echo $? || exit(1)
 
     #mvn clean install -Pnative										  ## RUN LOCAL ON WINDOWS TO CREATE A NATIVE FUNCTION
 	#mvn clean install -Pnative -Dquarkus.native.container-build=true ## RUN LOCAL ON WINDOWS
