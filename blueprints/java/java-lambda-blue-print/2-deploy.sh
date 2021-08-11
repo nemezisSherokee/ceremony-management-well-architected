@@ -11,7 +11,7 @@ then
     #TEMPLATE=target/sam.native.yaml
 	TEMPLATE=template-mvn.yml
 	mkdir -p persitentTarget
-	cp target/function.zip persitentTarget/function.zip 
+	cp target/function.zip persitentTarget/function.zip  2>/dev/null || : # to ignore errors if any
     #mvn package -Pnative
 	#mvn clean install -Pnative -Dquarkus.native.container-build=true
   fi
