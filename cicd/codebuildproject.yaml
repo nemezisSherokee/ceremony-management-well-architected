@@ -130,6 +130,8 @@ Resources:
                   - "lambda:*"
                 Resource:
                   - !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${ProjectName}*
+                  - !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:JavaLambdaBluePrint*
+                   
         -
           PolicyName: "CodeBuildAccessPoliciesIAM"
           PolicyDocument:
