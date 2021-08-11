@@ -14,6 +14,6 @@ public class UnusedLambda implements RequestHandler<InputObject, OutputObject> {
 
     @Override
     public OutputObject handleRequest(InputObject input, Context context) {
-        throw new RuntimeException("Should be unused");
+        throw new UnsupportedOperationException("Should be unused");
     }
 }
