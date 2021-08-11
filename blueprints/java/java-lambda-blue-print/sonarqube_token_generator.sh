@@ -2,7 +2,7 @@
 
 TOKEN_NAME="nemezis"
 LOGIN_NAME="admin"
-LOGIN_PASSWD="admin2"
+LOGIN_PASSWD="admin"
 PROJECT_NAME=$1
 x=1
 
