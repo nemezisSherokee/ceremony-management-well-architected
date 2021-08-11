@@ -9,7 +9,7 @@ SONAR_QUBE_PORT=$3
 x=1
 
 echo "1- CREATE a PROJECT..."
-curl -u $LOGIN_NAME:$LOGIN_PASSWD -X POST "http://localhost:9005/api/projects/create?project=$PROJECT_NAME&name=$PROJECT_NAME"
+curl -u $LOGIN_NAME:$LOGIN_PASSWD -X POST "http://$SONAR_QUBE_HOST:$SONAR_QUBE_PORT/api/projects/create?project=$PROJECT_NAME&name=$PROJECT_NAME"
 
 while [ $x -le 5 ]
 do
