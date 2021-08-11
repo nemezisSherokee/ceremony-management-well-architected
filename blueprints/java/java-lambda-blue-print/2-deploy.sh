@@ -21,11 +21,12 @@ do
   
   if [ $1 = sonarqube ]
   then
-    docker run -d --name sonarqube -p 9005:9000 sonarqube:8.9.0-community
-    bash sonarqube_token_generator.sh $STACK_NAME
+    docker run -d --name sonarqube9000 -p 9000:9000 sonarqube:8.9.0-community 2>/dev/null || :   # to ignore errors if any
+	SONAR_QUBE_IP_ADRESS=$(docker inspect sonarqube9000 | jq '.[].NetworkSettings.Networks.bridge.IPAddress' | sed "s/\"//g")
+    bash sonarqube_token_generator.sh $STACK_NAME $SONAR_QUBE_IP_ADRESS 9000
 	TOKEN=$(cat token.txt)
     #curl -u admin:admin -X POST "http://localhost:9005/api/projects/create?project=$STACK_NAME&name=$STACK_NAME"
-    SONARQUBE=" sonar:sonar   -Dsonar.projectKey=$STACK_NAME  -Dsonar.host.url=http://localhost:9005  -Dsonar.login=$TOKEN -Dsonar.java.binaries="target/classes" -Dsonar.scm.disabled=true sonar-quality-gate:check"
+    SONARQUBE=" sonar:sonar   -Dsonar.projectKey=$STACK_NAME  -Dsonar.host.url=http://$SONAR_QUBE_IP_ADRESS:9000  -Dsonar.login=$TOKEN -Dsonar.java.binaries="target/classes" -Dsonar.scm.disabled=true sonar-quality-gate:check"
 	
 	echo $SONARQUBE
   fi
@@ -47,7 +48,7 @@ done
 	  
 	  else
 	  echo "mvn clean install $SONARQUBE"
-	  mvn clean install $SONARQUBE
+	  #mvn clean install $SONARQUBE
     fi
 
   fi
