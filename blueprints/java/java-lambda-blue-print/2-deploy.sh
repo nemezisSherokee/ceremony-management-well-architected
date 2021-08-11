@@ -12,9 +12,9 @@ then
 	TEMPLATE=template-mvn.yml
 	
     mvn clean package
-	sh target/manage.sh create
-	sh target/manage.sh invoke
-	sh target/manage.sh delete
+	bash target/manage.sh create
+	bash target/manage.sh invoke
+	bash target/manage.sh delete
 
     #mvn clean install -Pnative										  ## RUN LOCAL ON WINDOWS TO CREATE A NATIVE FUNCTION
 	#mvn clean install -Pnative -Dquarkus.native.container-build=true ## RUN LOCAL ON WINDOWS
