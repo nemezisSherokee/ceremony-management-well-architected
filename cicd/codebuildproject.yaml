@@ -117,7 +117,8 @@ Resources:
                 Resource:
                   - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:application:${ProjectName}*
                   - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentgroup:${ProjectName}*
-
+                  - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentgroup:*
+                  - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentconfig:*
         -
           PolicyName: "CodeBuildAccessPoliciesLAMBDA"
           PolicyDocument:
@@ -153,6 +154,7 @@ Resources:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
         Image: aws/codebuild/standard:5.0 
+        PrivilegedMode: true # Required to build Docker images
       SourceVersion: master
       Source:
         Auth:

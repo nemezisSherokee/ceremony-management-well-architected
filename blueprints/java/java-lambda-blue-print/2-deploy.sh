@@ -10,10 +10,17 @@ then
   then
     #TEMPLATE=target/sam.native.yaml
 	TEMPLATE=template-mvn.yml
-    mvn clean install -Pnative
-	#mvn clean install -Pnative -Dquarkus.native.container-build=true
-	mkdir -p persitentTarget
-	cp target/function.zip persitentTarget/function.zip  2>/dev/null || : # to ignore errors if any
+	
+    mvn clean package
+	sh target/manage.sh
+	sh target/manage.sh create
+	sh target/manage.sh invoke
+	sh target/manage.sh delete
+
+    #mvn clean install -Pnative										  ## RUN LOCAL ON WINDOWS TO CREATE A NATIVE FUNCTION
+	#mvn clean install -Pnative -Dquarkus.native.container-build=true ## RUN LOCAL ON WINDOWS
+	#mkdir -p persitentTarget
+	#cp target/function.zip persitentTarget/function.zip  2>/dev/null || : # to ignore errors if any
   fi
 # else
   # gradle build -i
