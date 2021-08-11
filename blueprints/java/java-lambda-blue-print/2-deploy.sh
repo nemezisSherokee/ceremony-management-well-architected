@@ -12,7 +12,6 @@ then
 	TEMPLATE=template-mvn.yml
 	
     mvn clean package
-	sh target/manage.sh
 	sh target/manage.sh create
 	sh target/manage.sh invoke
 	sh target/manage.sh delete
