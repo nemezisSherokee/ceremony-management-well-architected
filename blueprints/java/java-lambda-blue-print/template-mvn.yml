@@ -1,0 +1,90 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Lambda application that calls the Lambda API.
+Resources:
+
+  functionLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+        RetentionInDays: 3
+        LogGroupName: !Sub "/aws/lambda/${function}"
+
+  beforeAllowTrafficLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+        RetentionInDays: 1
+        LogGroupName: !Sub "/aws/lambda/${beforeAllowTraffic}"
+
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: persitentTarget/function.zip
+      Handler: not.used.in.provided.runtime
+      Runtime: provided
+      Description: Java function
+      MemorySize: 128
+      Timeout: 15
+      
+      # Function's execution role
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AWSLambda_ReadOnlyAccess
+        #- AWSXrayWriteOnlyAccess
+        - AWSLambdaVPCAccessExecutionRole
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Action: 
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:DeleteItem
+                - dynamodb:UpdateItem
+                - dynamodb:Query
+                - dynamodb:Scan
+                - dynamodb:BatchGetItem
+                - dynamodb:BatchWriteItem
+              Resource: "arn:aws:dynamodb:*"
+      #Tracing: Active
+      Environment:
+        Variables:
+          DISABLE_SIGNAL_HANDLERS: true
+      AutoPublishAlias: live
+      DeploymentPreference:
+# Specifies the deployment configuration      
+          # Type: AllAtOnce
+          Type: Linear10PercentEvery1Minute
+# Specifies Lambda functions for deployment lifecycle hooks
+          Hooks:
+            PreTraffic: !Ref beforeAllowTraffic
+            # PostTraffic: !Ref afterAllowTraffic
+
+  beforeAllowTraffic:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: beforeAllowTraffic.handler
+      Policies:
+        - Version: "2012-10-17"
+# Grants this function permission to call codedeploy:PutLifecycleEventHookExecutionStatus        
+          Statement: 
+          - Effect: "Allow"
+            Action: 
+              - "codedeploy:PutLifecycleEventHookExecutionStatus"
+            Resource:
+              !Sub 'arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentgroup:${ServerlessDeploymentApplication}/*'
+        - Version: "2012-10-17"
+# Grants this function permission to call lambda:InvokeFunction        
+          Statement: 
+          - Effect: "Allow"
+            Action: 
+              - "lambda:InvokeFunction"
+            Resource: !Ref function.Version
+      Runtime: nodejs10.x
+# Specifies the name of the Lambda hook function      
+      #FunctionName: 'CodeDeployHook_beforeAllowTraffic'
+      DeploymentPreference:
+        Enabled: false
+      Timeout: 5
+      Environment:
+        Variables:
+          NewVersion: !Ref function.Version
+

@@ -11,3 +11,6 @@ logs
 target/
 .idea/
 /target/
+bucket-name.txt
+out.yml
+out.json
