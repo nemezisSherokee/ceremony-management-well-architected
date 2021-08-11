@@ -10,6 +10,7 @@ then
   then
     #TEMPLATE=target/sam.native.yaml
 	TEMPLATE=template-mvn.yml
+
 	
 	# aws iam create-role --role-name lambda-ex --assume-role-policy-document '{"Version": "2012-10-17","Statement": [{ "Effect": "Allow", "Principal": {"Service": "lambda.amazonaws.com"}, "Action": "sts:AssumeRole"}]}' 2>/dev/null
 	# LAMBDA_ROLE_ARN=$(aws iam get-role --role-name lambda-ex --query "Role.Arn")
@@ -23,7 +24,7 @@ then
     # mvn clean install -Pnative										  ## RUN LOCAL ON WINDOWS TO CREATE A NATIVE FUNCTION
 	# mvn clean install -Pnative -Dquarkus.native.container-build=true ## RUN LOCAL ON WINDOWS
 	mkdir -p persitentTarget
-	# cp target/function.zip persitentTarget/function.zip  2>/dev/null || : # to ignore errors if any
+	cp target/function.zip persitentTarget/function.zip  2>/dev/null || : # to ignore errors if any
   fi
 # else
   # gradle build -i
