@@ -6,6 +6,8 @@ env:
      KEY_VAR: DOCKER_LOGIN_INFORMATION_TEXT
   secrets-manager:
      DOCKER_LOGIN_INFORMATION_SEC: $DOCKER_LOGIN_INFORMATION_TEXT
+     # DOCKER_LOGIN_INFORMATION_SEC_PASSWORD: $DOCKER_LOGIN_INFORMATION_TEXT:password
+     # DOCKER_LOGIN_INFORMATION_SEC_USERNAME: $DOCKER_LOGIN_INFORMATION_TEXT:username
 
 phases:
   install:
@@ -13,6 +15,7 @@ phases:
       java: corretto11
   pre_build:
     commands:
+      # - docker login -u="$DOCKER_LOGIN_INFORMATION_SEC_USERNAME" -p="$DOCKER_LOGIN_INFORMATION_SEC_PASSWORD" # must be saved in secrets
       # - echo $DOCKER_LOGIN_INFORMATION_TEXT
       # - echo $DOCKER_LOGIN_INFORMATION_SEC
       # - echo $DOCKER_LOGIN_INFORMATION_SEC | jq -r '.password'
