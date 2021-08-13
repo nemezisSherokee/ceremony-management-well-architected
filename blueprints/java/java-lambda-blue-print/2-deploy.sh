@@ -4,6 +4,8 @@ set -eo pipefail
 ARTIFACT_BUCKET=$(cat bucket-name.txt)
 STACK_NAME=$(cat bucket-name.txt)
 TEMPLATE=template-mvn.yml
+#TEMPLATE=target/sam.native.yaml
+
 NATIVE=false
 MVN=false
 SONARQUBE=""
