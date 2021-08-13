@@ -119,6 +119,8 @@ Resources:
                   - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentgroup:${ProjectName}*
                   - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentgroup:*
                   - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentconfig:*
+                  - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentconfig:CodeDeployDefault.LambdaLinear10PercentEvery1Minute
+                  
         -
           PolicyName: "CodeBuildAccessPoliciesLAMBDA"
           PolicyDocument:

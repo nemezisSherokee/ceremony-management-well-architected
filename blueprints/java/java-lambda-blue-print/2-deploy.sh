@@ -1,4 +1,5 @@
 #!/bin/bash
+# example of calling : 2-deploy.sh mvn sonarqube
 set -eo pipefail
 ARTIFACT_BUCKET=$(cat bucket-name.txt)
 STACK_NAME=$(cat bucket-name.txt)
@@ -20,12 +21,14 @@ do
   
   if [ $1 = sonarqube ]
   then
-    docker rm sonarqube9000 -f 2>/dev/null || :   # to ignore errors if any
-    docker run -d --name sonarqube9000 -p 9009:9000 sonarqube:8.9.0-community 2>/dev/null || :   # to ignore errors if any
-	sleep 90 # wait the sonar server to start
-	#SONAR_QUBE_IP_ADRESS=$(docker inspect sonarqube9000 | jq '.[].NetworkSettings.Networks.bridge.IPAddress' | sed "s/\"//g")
 	SONAR_QUBE_IP_ADRESS=localhost
 	SONAR_QUBE_PORT=9009
+
+    docker rm sonarqube -f 2>/dev/null || :   # to ignore errors if any
+    docker run -d --name sonarqube -p $SONAR_QUBE_PORT:9000 sonarqube:8.9.0-community 2>/dev/null || :   # to ignore errors if any
+	bash wait_container_up.sh  $SONAR_QUBE_IP_ADRESS $SONAR_QUBE_PORT
+	sleep 50 # wait the sonar server to start
+	#SONAR_QUBE_IP_ADRESS=$(docker inspect sonarqube9000 | jq '.[].NetworkSettings.Networks.bridge.IPAddress' | sed "s/\"//g")
     bash sonarqube_token_generator.sh $STACK_NAME $SONAR_QUBE_IP_ADRESS $SONAR_QUBE_PORT
 	TOKEN=$(cat token.txt)
     SONARQUBE=" sonar:sonar   -Dsonar.projectKey=$STACK_NAME  -Dsonar.host.url=http://$SONAR_QUBE_IP_ADRESS:$SONAR_QUBE_PORT  -Dsonar.login=$TOKEN -Dsonar.java.binaries="target/classes" -Dsonar.scm.disabled=true sonar-quality-gate:check"
