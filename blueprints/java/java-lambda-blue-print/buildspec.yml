@@ -2,14 +2,9 @@ version: 0.2
 
 env:
   shell: bash
-  secrets-manager:
-    SECRET_NAME: $DOCKER_LOGIN_INFORMATION_TEXT
-    # DOCKER_LOGIN: $DOCKER_LOGIN_INFORMATION:username
-    # DOCKER_PASSWORD_LOCAL_2: $DOCKER_LOGIN_INFORMATION
-    # DOCKER_PASSWORD_LOCAL_3: $DOCKER_PASSWORD_ARN:$DOCKER_PASSWORD
-    #DOCKER_LOGIN: $DOCKER_LOGIN
-
-
+    variables:
+      SECRET_NAME: $DOCKER_LOGIN_INFORMATION_TEXT
+  
 phases:
   install:
     runtime-versions:
@@ -17,10 +12,9 @@ phases:
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
-      - echo "SECRET_NAME =$SECRET_NAME"
-      - echo "DOCKER_LOGIN_INFORMATION =$DOCKER_LOGIN_INFORMATION:username"
-      - echo "DOCKER_LOGIN_INFORMATION_TEXT =$DOCKER_LOGIN_INFORMATION_TEXT"
-      # - echo "DOCKER_PASSWORD_LOCAL_3 =$DOCKER_PASSWORD_LOCAL_3"
+      - echo "SECRET_NAME =$SECRET_NAME"2>/dev/null || :
+      - echo "DOCKER_LOGIN_INFORMATION =$DOCKER_LOGIN_INFORMATION:username"2>/dev/null || :
+      - echo "DOCKER_LOGIN_INFORMATION_TEXT =$DOCKER_LOGIN_INFORMATION_TEXT"2>/dev/null || :
       - SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id $SECRET_NAME) 2>/dev/null || :
       - SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id $DOCKER_LOGIN_INFORMATION_TEXT) 2>/dev/null || :
       - DOCKER_PASSWORD=$(echo $SECRET_JSON | jq -r '.SecretString' | jq -r '.password')
