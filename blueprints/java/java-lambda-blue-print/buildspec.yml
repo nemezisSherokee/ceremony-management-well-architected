@@ -4,7 +4,7 @@ env:
   shell: bash
   secrets-manager:
     DOCKER_PASSWORD_LOCAL: $DOCKER_PASSWORD
-    #DOCKER_LOGIN: $DOCKER_PASSWORD
+    #DOCKER_LOGIN: $DOCKER_LOGIN
 
 
 phases:
@@ -14,7 +14,7 @@ phases:
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
-      - echo "docker password = "$DOCKER_PASSWORD_LOCAL and $DOCKER_PASSWORD"
+      - echo "docker password = $DOCKER_PASSWORD_LOCAL and $DOCKER_PASSWORD and Login = $DOCKER_LOGIN"
   build:
     commands:
       - echo Build started on `date`
