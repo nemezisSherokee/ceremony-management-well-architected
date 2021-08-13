@@ -146,6 +146,11 @@ Resources:
                 Resource:
                   - !Sub arn:aws:iam::${AWS::AccountId}:role/${ProjectName}*
                   - !Sub arn:aws:iam::${AWS::AccountId}:*
+  CodeBuildImageJobLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+        RetentionInDays: 1
+        LogGroupName: !Sub "/aws/codebuild/${ProjectName}"
 
   CodeBuildImageJob:
  
