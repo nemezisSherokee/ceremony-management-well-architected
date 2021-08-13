@@ -23,7 +23,8 @@ do
   then
 	SONAR_QUBE_IP_ADRESS=localhost
 	SONAR_QUBE_PORT=9009
-
+	
+	docker ps -a 
     docker rm sonarqube -f 2>/dev/null || :   # to ignore errors if any
     docker run -d --name sonarqube -p $SONAR_QUBE_PORT:9000 sonarqube:8.9.0-community 2>/dev/null || :   # to ignore errors if any
 	bash wait_container_up.sh  $SONAR_QUBE_IP_ADRESS $SONAR_QUBE_PORT
