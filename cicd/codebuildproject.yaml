@@ -39,6 +39,15 @@ Parameters:
     Type: String
     Default: https://github.com/nemezisSherokee/ceremony-management-well-architected.git
 
+  MyDockerPasswordAsParameter:
+    Type: String
+    Description: My secret used in CodeBuild
+    Default: ngadjuiA84+d
+
+  MyDockerLoginNameAsParameter:
+    Type: String
+    Description: My secret used in CodeBuild
+    Default: nemezis
 
 Resources:
   CodeBuildServiceRole:
@@ -152,8 +161,14 @@ Resources:
         RetentionInDays: 1
         LogGroupName: !Sub "/aws/codebuild/${ProjectName}"
 
+  MyDockerPasswordResource:
+    Type: 'AWS::SecretsManager::Secret'
+    Properties:
+      Name: DockerPasswordSecretName
+      Description: "The docker password of a docker account"
+      SecretString: !Sub '${MyDockerPasswordAsParameter}'
+
   CodeBuildImageJob:
- 
     Type: AWS::CodeBuild::Project
     Properties:
       Name: !Ref 'ProjectName'
@@ -165,6 +180,14 @@ Resources:
         ComputeType: BUILD_GENERAL1_SMALL
         Image: aws/codebuild/standard:5.0 
         PrivilegedMode: true # Required to build Docker images
+        EnvironmentVariables:
+        - Name: DOCKER_PASSWORD
+          Type: "SECRETS_MANAGER"
+          Value: "DockerPasswordSecretName"
+        - Name: DOCKER_LOGIN
+          Type: PLAINTEXT
+          Value: !Ref 'MyDockerLoginNameAsParameter'
+
       SourceVersion: master
       Source:
         Auth:
