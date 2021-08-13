@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   shell: bash
-    variables:
-      SECRET_NAME: $DOCKER_LOGIN_INFORMATION_TEXT
+  variables:
+    SECRET_NAME: $DOCKER_LOGIN_INFORMATION_TEXT
   
 phases:
   install:
