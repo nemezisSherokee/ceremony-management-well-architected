@@ -17,7 +17,8 @@ phases:
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
-      # - echo "DOCKER_PASSWORD_ARN =$DOCKER_PASSWORD_ARN"
+      - echo "SECRET_NAME =$SECRET_NAME"
+      - echo "DOCKER_LOGIN_INFORMATION =$DOCKER_LOGIN_INFORMATION"
       # - echo "DOCKER_PASSWORD_LOCAL_2 =$DOCKER_PASSWORD_LOCAL_2"
       # - echo "DOCKER_PASSWORD_LOCAL_3 =$DOCKER_PASSWORD_LOCAL_3"
       - SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id $SECRET_NAME)
