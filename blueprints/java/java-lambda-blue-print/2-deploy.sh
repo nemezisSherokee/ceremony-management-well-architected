@@ -24,7 +24,7 @@ do
 	SONAR_QUBE_IP_ADRESS=localhost
 	SONAR_QUBE_PORT=9009
 	
-	docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD_LOCAL" # must be saved in secrets
+	docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD" # must be saved in secrets
 
 	docker ps -a 
     docker rm sonarqube -f 2>/dev/null || :   # to ignore errors if any
