@@ -4,13 +4,8 @@ env:
   shell: bash
   variables:
      KEY_VAR: DOCKER_LOGIN_INFORMATION_TEXT
-     # key: "value"
-  #parameter-store:
-     # key: "value"
-     # key: "value"
   secrets-manager:
-      #DOCKER_LOGIN_INFORMATION_SEC: DockerPasswordSecretName
-      DOCKER_LOGIN_INFORMATION_SEC: $DOCKER_LOGIN_INFORMATION_TEXT
+     DOCKER_LOGIN_INFORMATION_SEC: $DOCKER_LOGIN_INFORMATION_TEXT
 
 phases:
   install:
@@ -18,20 +13,20 @@ phases:
       java: corretto11
   pre_build:
     commands:
-      - echo $DOCKER_LOGIN_INFORMATION_TEXT
-      - echo $DOCKER_LOGIN_INFORMATION_SEC
-      - echo $DOCKER_LOGIN_INFORMATION_SEC | jq -r '.password'
+      # - echo $DOCKER_LOGIN_INFORMATION_TEXT
+      # - echo $DOCKER_LOGIN_INFORMATION_SEC
+      # - echo $DOCKER_LOGIN_INFORMATION_SEC | jq -r '.password'
       - DOCKER_PASSWORD=$(echo $DOCKER_LOGIN_INFORMATION_SEC | jq -r '.password')
       - DOCKER_LOGIN=$(echo $DOCKER_LOGIN_INFORMATION_SEC | jq -r '.username')
-      - docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD" # must be saved in secrets
+      # - docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD" # must be saved in secrets
 
         # using aws cli
-      - aws secretsmanager get-secret-value --secret-id $DOCKER_LOGIN_INFORMATION_TEXT
-      - SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id DockerPasswordSecretName)
-      - DOCKER_PASSWORD=$(echo $SECRET_JSON | jq -r '.SecretString' | jq -r '.password')
-      - DOCKER_LOGIN=$(echo $SECRET_JSON | jq -r '.SecretString' | jq -r '.username')
-      - echo "docker password = $DOCKER_PASSWORD and Login = $DOCKER_LOGIN"
-      - docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD" # must be saved in secrets
+      # - aws secretsmanager get-secret-value --secret-id $DOCKER_LOGIN_INFORMATION_TEXT
+      # - SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id DockerPasswordSecretName)
+      # - DOCKER_PASSWORD=$(echo $SECRET_JSON | jq -r '.SecretString' | jq -r '.password')
+      # - DOCKER_LOGIN=$(echo $SECRET_JSON | jq -r '.SecretString' | jq -r '.username')
+      # - echo "docker password = $DOCKER_PASSWORD and Login = $DOCKER_LOGIN"
+      # - docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD" # must be saved in secrets
 
   build:
     commands:

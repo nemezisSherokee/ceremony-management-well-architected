@@ -194,9 +194,9 @@ Resources:
         Image: aws/codebuild/standard:5.0 
         PrivilegedMode: true # Required to build Docker images
         EnvironmentVariables:
-        - Name: DOCKER_LOGIN_INFORMATION
-          Type: "SECRETS_MANAGER"
-          Value: "DockerPasswordSecretName"
+        # - Name: DOCKER_LOGIN_INFORMATION
+          # Type: "SECRETS_MANAGER"
+          # Value: "DockerPasswordSecretName"
         - Name: DOCKER_LOGIN_INFORMATION_TEXT
           Type: "PLAINTEXT"
           Value: "DockerPasswordSecretName"
