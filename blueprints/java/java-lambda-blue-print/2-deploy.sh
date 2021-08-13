@@ -46,13 +46,13 @@ done
     if [ "$NATIVE" == true ]
     then
       #mvn clean install -Pnative										      ## RUN LOCAL ON WINDOWS TO CREATE A NATIVE FUNCTION
-	  mvn clean install -Pnative -Dquarkus.native.container-build=true        ## RUN LOCAL ON WINDOWS
+	  mvn --no-transfer-progress -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn clean install -Pnative -Dquarkus.native.container-build=true        ## RUN LOCAL ON WINDOWS
 	  mkdir -p persitentTarget
 	  cp target/function.zip persitentTarget/function.zip  2>/dev/null || :   # to ignore errors if any
 	  
 	  else
 	  echo "mvn clean install $SONARQUBE"
-	  mvn clean install $SONARQUBE
+	  mvn --no-transfer-progress -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn clean install $SONARQUBE
     fi
 
   fi
