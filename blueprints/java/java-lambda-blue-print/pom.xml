@@ -88,7 +88,6 @@
 
     </dependencies>
     <build>
-<!--        <finalName>${artifactId}</finalName>-->
         <plugins>
             <plugin>
                 <groupId>io.github.r0bb3n</groupId>
