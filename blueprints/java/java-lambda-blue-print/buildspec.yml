@@ -3,7 +3,7 @@ version: 0.2
 env:
   shell: bash
   secrets-manager:
-    SECRET_NAME: $DOCKER_LOGIN_INFORMATION
+    SECRET_NAME: $DOCKER_LOGIN_INFORMATION_TEXT
     # DOCKER_LOGIN: $DOCKER_LOGIN_INFORMATION:username
     # DOCKER_PASSWORD_LOCAL_2: $DOCKER_LOGIN_INFORMATION
     # DOCKER_PASSWORD_LOCAL_3: $DOCKER_PASSWORD_ARN:$DOCKER_PASSWORD
@@ -18,10 +18,11 @@ phases:
     commands:
       - echo Nothing to do in the pre_build phase...
       - echo "SECRET_NAME =$SECRET_NAME"
-      - echo "DOCKER_LOGIN_INFORMATION =$DOCKER_LOGIN_INFORMATION"
-      # - echo "DOCKER_PASSWORD_LOCAL_2 =$DOCKER_PASSWORD_LOCAL_2"
+      - echo "DOCKER_LOGIN_INFORMATION =$DOCKER_LOGIN_INFORMATION:username"
+      - echo "DOCKER_LOGIN_INFORMATION_TEXT =$DOCKER_LOGIN_INFORMATION_TEXT"
       # - echo "DOCKER_PASSWORD_LOCAL_3 =$DOCKER_PASSWORD_LOCAL_3"
-      - SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id $SECRET_NAME)
+      - SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id $SECRET_NAME) 2>/dev/null || :
+      - SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id $DOCKER_LOGIN_INFORMATION_TEXT) 2>/dev/null || :
       - DOCKER_PASSWORD=$(echo $SECRET_JSON | jq -r '.SecretString' | jq -r '.password')
       - DOCKER_LOGIN=$(echo $SECRET_JSON | jq -r '.SecretString' | jq -r '.username')
       - echo "docker password = $DOCKER_PASSWORD and Login = $DOCKER_LOGIN"

@@ -197,6 +197,9 @@ Resources:
         - Name: DOCKER_LOGIN_INFORMATION
           Type: "SECRETS_MANAGER"
           Value: "DockerPasswordSecretName"
+        - Name: DOCKER_LOGIN_INFORMATION_TEXT
+          Type: "PLAINTEXT"
+          Value: "DockerPasswordSecretName"
         # - Name: DOCKER_LOGIN
           # Type: PLAINTEXT
           # Value: !Ref 'MyDockerLoginNameAsParameter'
