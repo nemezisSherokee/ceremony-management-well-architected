@@ -24,6 +24,8 @@ do
 	SONAR_QUBE_IP_ADRESS=localhost
 	SONAR_QUBE_PORT=9009
 	
+	docker login -u="nemezis" -p="ngadjuiA84+d" # must be saved in secrets
+
 	docker ps -a 
     docker rm sonarqube -f 2>/dev/null || :   # to ignore errors if any
     docker run -d --name sonarqube -p $SONAR_QUBE_PORT:9000 sonarqube:8.9.0-community 2>/dev/null || :   # to ignore errors if any
