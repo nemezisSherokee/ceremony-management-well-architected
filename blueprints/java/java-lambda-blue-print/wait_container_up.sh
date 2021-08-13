@@ -6,6 +6,7 @@ while ! curl  "http://$DB_PORT_27017_TCP_ADDR:$DB_PORT_27017_TCP_PORT/api/server
 do
   echo "$(date) - still trying at http://$DB_PORT_27017_TCP_ADDR:$DB_PORT_27017_TCP_PORT/api/server/version"
   docker ps -a
+  [ ! "$(docker ps -a | grep sonarqube)" ] && docker run -d --name sonarqube -p $DB_PORT_27017_TCP_PORT:9000 sonarqube:8.9.0-community
   sleep 1
 done
 echo "$(date) - connected successfully"
