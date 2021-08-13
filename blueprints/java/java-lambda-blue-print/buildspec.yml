@@ -3,7 +3,10 @@ version: 0.2
 env:
   shell: bash
   secrets-manager:
-    DOCKER_PASSWORD_LOCAL: $DOCKER_PASSWORD
+    DOCKER_PASSWORD: $DOCKER_LOGIN_INFORMATION:password
+    DOCKER_LOGIN: $DOCKER_LOGIN_INFORMATION:username
+    DOCKER_PASSWORD_LOCAL_2: $DOCKER_LOGIN_INFORMATION
+    # DOCKER_PASSWORD_LOCAL_3: $DOCKER_PASSWORD_ARN:$DOCKER_PASSWORD
     #DOCKER_LOGIN: $DOCKER_LOGIN
 
 
@@ -14,7 +17,10 @@ phases:
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
-      - echo "docker password = $DOCKER_PASSWORD_LOCAL and $DOCKER_PASSWORD and Login = $DOCKER_LOGIN"
+      # - echo "DOCKER_PASSWORD_ARN =$DOCKER_PASSWORD_ARN"
+      # - echo "DOCKER_PASSWORD_LOCAL_2 =$DOCKER_PASSWORD_LOCAL_2"
+      # - echo "DOCKER_PASSWORD_LOCAL_3 =$DOCKER_PASSWORD_LOCAL_3"
+      - echo "docker password = $DOCKER_PASSWORD_LOCAL_2 and $DOCKER_PASSWORD and Login = $DOCKER_LOGIN"
   build:
     commands:
       - echo Build started on `date`
