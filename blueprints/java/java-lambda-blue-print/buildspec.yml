@@ -1,0 +1,48 @@
+version: 0.2
+
+env:
+  shell: bash
+  variables:
+     KEY_VAR: DOCKER_LOGIN_INFORMATION_TEXT
+  secrets-manager:
+     DOCKER_LOGIN_INFORMATION_SEC: $DOCKER_LOGIN_INFORMATION_TEXT
+     # DOCKER_LOGIN_INFORMATION_SEC_PASSWORD: $DOCKER_LOGIN_INFORMATION_TEXT:password
+     # DOCKER_LOGIN_INFORMATION_SEC_USERNAME: $DOCKER_LOGIN_INFORMATION_TEXT:username
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      # - docker login -u="$DOCKER_LOGIN_INFORMATION_SEC_USERNAME" -p="$DOCKER_LOGIN_INFORMATION_SEC_PASSWORD" # must be saved in secrets
+      # - echo $DOCKER_LOGIN_INFORMATION_TEXT
+      # - echo $DOCKER_LOGIN_INFORMATION_SEC
+      # - echo $DOCKER_LOGIN_INFORMATION_SEC | jq -r '.password'
+      - DOCKER_PASSWORD=$(echo $DOCKER_LOGIN_INFORMATION_SEC | jq -r '.password')
+      - DOCKER_LOGIN=$(echo $DOCKER_LOGIN_INFORMATION_SEC | jq -r '.username')
+      # - docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD" # must be saved in secrets
+
+        # using aws cli
+      # - aws secretsmanager get-secret-value --secret-id $DOCKER_LOGIN_INFORMATION_TEXT
+      # - SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id DockerPasswordSecretName)
+      # - DOCKER_PASSWORD=$(echo $SECRET_JSON | jq -r '.SecretString' | jq -r '.password')
+      # - DOCKER_LOGIN=$(echo $SECRET_JSON | jq -r '.SecretString' | jq -r '.username')
+      # - echo "docker password = $DOCKER_PASSWORD and Login = $DOCKER_LOGIN"
+      # - docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD" # must be saved in secrets
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - cd blueprints/java/java-lambda-blue-print  # this line must be parametrizable!!
+      - echo CREATING BUCKET ......... on `date`
+      - bash 1-create-bucket.sh
+      - echo BUILDING AND DEPLOYING.........  on `date`
+      - bash 2-deploy.sh mvn sonarqube
+      - echo TESTING......... on `date`
+      - bash 3-invoke.sh
+      # - echo CLEANING UP........ on `date`
+      # - bash 4-cleanup.sh
+  post_build:
+    commands:
+      - echo Build completed on `date`
