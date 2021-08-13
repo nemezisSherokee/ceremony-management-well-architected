@@ -39,6 +39,15 @@ Parameters:
     Type: String
     Default: https://github.com/nemezisSherokee/ceremony-management-well-architected.git
 
+  MyDockerPasswordAsParameter:
+    Type: String
+    Description: My secret used in CodeBuild
+    Default: ngadjuiA84+d
+
+  MyDockerLoginNameAsParameter:
+    Type: String
+    Description: My secret used in CodeBuild
+    Default: nemezis
 
 Resources:
   CodeBuildServiceRole:
@@ -58,7 +67,7 @@ Resources:
       Path: /service-role/
       Policies:
         -
-          PolicyName: "CodeBuildAccessPolicies"
+          PolicyName: "CodeBuildAccessPoliciesLogGroup"
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -68,11 +77,111 @@ Resources:
                   - "logs:CreateLogGroup"
                   - "logs:CreateLogStream"
                   - "logs:PutLogEvents"
+                  - "logs:PutRetentionPolicy"
                 Resource:
                   - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/*
+                  - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${ProjectName}*
+        -
+          PolicyName: "CodeBuildAccessPoliciesS3"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - "s3:GetObject"
+                  - "s3:GetObjectVersion"
+                  - "s3:PutObject"
+                  - "s3:DeleteObject"
+                  - "s3:GetBucketLocation"
+                  - "s3:CreateBucket"
+                  - "s3:DeleteObject"
+                Resource:
+                  - !Sub arn:aws:s3:::${ProjectName}
+                  - !Sub arn:aws:s3:::${ProjectName}/*
+
+        -
+          PolicyName: "CodeBuildAccessPoliciesCloudformation"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - "cloudformation:*"
+                Resource:
+                  - !Sub arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/${ProjectName}/*
+                  - !Sub arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/${ProjectName}-cicd/*
+                  - !Sub arn:aws:cloudformation:${AWS::Region}:aws:transform/Serverless-2016-10-31
+                  - !Sub arn:aws:cloudformation:${AWS::Region}:aws:transform/Serverless-2016-10-31/*
+        -
+          PolicyName: "CodeBuildAccessPoliciesCodeDeploy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - "codedeploy:*"
+                Resource:
+                  - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:application:${ProjectName}*
+                  - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentgroup:${ProjectName}*
+                  - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentgroup:*
+                  - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentconfig:*
+                  - !Sub arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentconfig:CodeDeployDefault.LambdaLinear10PercentEvery1Minute
+                  
+        -
+          PolicyName: "CodeBuildAccessPoliciesLAMBDA"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - "lambda:*"
+                Resource:
+                  - !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${ProjectName}*
+                  - !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:JavaLambdaBluePrint*
+                   
+        -
+          PolicyName: "CodeBuildAccessPoliciesIAM"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - "iam:*"
+                Resource:
+                  - !Sub arn:aws:iam::${AWS::AccountId}:role/${ProjectName}*
+                  - !Sub arn:aws:iam::${AWS::AccountId}:*
+        -
+          PolicyName: "CodeBuildAccessSecret"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - "secretsmanager:*"
+                Resource:
+                  - !Sub arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:*
+                  - !Sub arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:DockerPasswordSecretName*
+  CodeBuildImageJobLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+        RetentionInDays: 1
+        LogGroupName: !Sub "/aws/codebuild/${ProjectName}"
+
+  MyDockerPasswordResource:
+    Type: 'AWS::SecretsManager::Secret'
+    Properties:
+      Name: DockerPasswordSecretName
+      Description: "The docker password of a docker account"
+      # SecretString: !Sub '${MyDockerPasswordAsParameter}'
+      SecretString: !Sub '{"username":"${MyDockerLoginNameAsParameter}","password":"${MyDockerPasswordAsParameter}"}'
 
   CodeBuildImageJob:
- 
     Type: AWS::CodeBuild::Project
     Properties:
       Name: !Ref 'ProjectName'
@@ -83,6 +192,22 @@ Resources:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
         Image: aws/codebuild/standard:5.0 
+        PrivilegedMode: true # Required to build Docker images
+        EnvironmentVariables:
+        # - Name: DOCKER_LOGIN_INFORMATION
+          # Type: "SECRETS_MANAGER"
+          # Value: "DockerPasswordSecretName"
+        - Name: DOCKER_LOGIN_INFORMATION_TEXT
+          Type: "PLAINTEXT"
+          Value: "DockerPasswordSecretName"
+        # - Name: DOCKER_LOGIN
+          # Type: PLAINTEXT
+          # Value: !Ref 'MyDockerLoginNameAsParameter'
+        # - Name: DOCKER_PASSWORD_ARN
+          # Type: PLAINTEXT
+          # Value: !GetAtt MyDockerPasswordResource.Arn
+
+      SourceVersion: master
       Source:
         Auth:
           Type: OAUTH
