@@ -178,7 +178,8 @@ Resources:
     Properties:
       Name: DockerPasswordSecretName
       Description: "The docker password of a docker account"
-      SecretString: !Sub '${MyDockerPasswordAsParameter}'
+      # SecretString: !Sub '${MyDockerPasswordAsParameter}'
+      SecretString: !Sub '{"username":"${MyDockerLoginNameAsParameter}","password":"${MyDockerPasswordAsParameter}"}'
 
   CodeBuildImageJob:
     Type: AWS::CodeBuild::Project
@@ -193,12 +194,15 @@ Resources:
         Image: aws/codebuild/standard:5.0 
         PrivilegedMode: true # Required to build Docker images
         EnvironmentVariables:
-        - Name: DOCKER_PASSWORD
+        - Name: DOCKER_LOGIN_INFORMATION
           Type: "SECRETS_MANAGER"
           Value: "DockerPasswordSecretName"
-        - Name: DOCKER_LOGIN
-          Type: PLAINTEXT
-          Value: !Ref 'MyDockerLoginNameAsParameter'
+        # - Name: DOCKER_LOGIN
+          # Type: PLAINTEXT
+          # Value: !Ref 'MyDockerLoginNameAsParameter'
+        # - Name: DOCKER_PASSWORD_ARN
+          # Type: PLAINTEXT
+          # Value: !GetAtt MyDockerPasswordResource.Arn
 
       SourceVersion: master
       Source:
