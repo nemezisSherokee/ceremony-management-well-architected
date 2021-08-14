@@ -1,0 +1,100 @@
+curl -u admin:admin -X POST "http://localhost:9005/api/projects/create?project=STACK_NAME&name=STACK_NAME"
+
+curl -u admin:admin -X POST "http://localhost:9005/api/user_tokens/generate?name=lary"
+api/user_tokens/generate
+
+
+curl -u admin:admin2  -d "name=papa&login=admin" -X POST "http://localhost:9005/api/user_tokens/generate"
+
+curl -u admin:admin2  -d "name=papa&login=admin" -X POST "http://localhost:9005/api/user_tokens/revoke"
+
+
+curl -u admin:admin2  "http://localhost:9005/api/user_tokens/search"
+
+
+{"login":"admin","name":"papa","token":"8101cc413156c73eadbef507e50d98b3f690baa9","createdAt":"2021-08-11T15:58:27+0000"}
+
+
+curl -u admin:admin2  "http://localhost:9005/api/user_tokens/search" | jq '.userTokens[].name'
+
+$ curl -u admin:admin2  -d "name=papa&login=admin" -X POST "http://localhost:9005/api/user_tokens/generate" | jq '.errors[0].msg'
+
+
+
+$ Result=$(curl -u admin:admin2  -d "name=papa&login=admin" -X POST "http://localhost:9005/api/user_tokens/generate")
+
+x=1
+while [ $x -le 5 ]
+do
+	Result=$(curl -u admin:admin2  -d "name=nemezis&login=admin" -X POST "http://localhost:9005/api/user_tokens/generate")
+	TOKEN=echo $Result| jq '.token'
+	ERROR=echo $Result| jq '.errors[0].msg'
+	if [ -z "$ERROR" ] 								# if error is null, then the token creation succeded and the variable token has the token value
+	then
+		  echo "\$my_var is NULL"
+	else											# we muss create a new token
+		  1- revoke the token
+		  curl -u admin:admin2  -d "name=papa&login=admin" -X POST "http://localhost:9005/api/user_tokens/revoke"
+		  2- create a new one
+		  #RESULT=$(curl -u admin:admin2  "http://localhost:9005/api/user_tokens/search" | jq '.userTokens[].name')
+	fi
+	x=$(( $x + 1 ))
+done
+
+
+
+      - /opt/sonar-scanner/bin/sonar-scanner -Dsonar.sources=. -Dproject.settings=sonar-project.properties -Dsonar.host.url=$SonarQube_URL -Dsonar.login=$SonarQube_Access_Token > sonarqube_scanreport.json
+http://localhost:9005/api/measures/component?component=java-blue-print&metricKeys=new_reliability_rating
+
+
+{
+   "projectStatus":{
+      "status":"OK",
+      "conditions":[
+         {
+            "status":"OK",
+            "metricKey":"new_reliability_rating",
+            "comparator":"GT",
+            "periodIndex":1,
+            "errorThreshold":"1",
+            "actualValue":"1"
+         },
+         {
+            "status":"OK",
+            "metricKey":"new_security_rating",
+            "comparator":"GT",
+            "periodIndex":1,
+            "errorThreshold":"1",
+            "actualValue":"1"
+         },
+         {
+            "status":"OK",
+            "metricKey":"new_maintainability_rating",
+            "comparator":"GT",
+            "periodIndex":1,
+            "errorThreshold":"1",
+            "actualValue":"1"
+         },
+         {
+            "status":"OK",
+            "metricKey":"new_duplicated_lines_density",
+            "comparator":"GT",
+            "periodIndex":1,
+            "errorThreshold":"3",
+            "actualValue":"0.0"
+         }
+      ],
+      "periods":[
+         {
+            "index":1,
+            "mode":"PREVIOUS_VERSION",
+            "date":"2021-08-05T17:00:59+0000"
+         }
+      ],
+      "ignoredConditions":false,
+      "period":{
+         "mode":"PREVIOUS_VERSION",
+         "date":"2021-08-05T17:00:59+0000"
+      }
+   }
+}
