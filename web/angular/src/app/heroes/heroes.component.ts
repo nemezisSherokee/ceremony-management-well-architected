@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Hero } from '../core';
-import { HeroService } from './hero.service';
+import { HerogqlService } from './herogql.service';
+import {  BehaviorSubject, merge, Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-heroes',
@@ -9,21 +9,32 @@ import { HeroService } from './hero.service';
 })
 export class HeroesComponent implements OnInit {
   selected: Hero;
-  heroes$: Observable<Hero[]>;
+  //heroes$: Observable<Hero[]>;
   message = '?';
   heroToDelete: Hero;
   showModal = false;
+  private readonly _heroSource = new BehaviorSubject<Hero[]>([]);
+  heroes$ = this._heroSource.asObservable();
 
-  constructor(private heroService: HeroService) {
-    this.heroes$ = heroService.entities$;
+  constructor(private heroService: HerogqlService) {
+  }
+
+
+  private _setHeros(heros: Hero[]): void {
+    this._heroSource.next(heros);
+    // this.heroes$ = this._heroSource.asObservable();
   }
 
   ngOnInit() {
-    this.getHeroes();
+    this.heroService.getAll().subscribe(t => (this.heroes$ = of<Hero[]>(t)));
+    //this.heroes$ = this.heroService.getAll();
   }
 
   add(hero: Hero) {
     this.heroService.add(hero);
+    const heros = [...this._heroSource.getValue(), hero];
+    this._setHeros(heros);
+    this.heroes$ = merge(this.heroes$, of(heros));
   }
 
   askToDelete(hero: Hero) {
@@ -74,6 +85,6 @@ export class HeroesComponent implements OnInit {
   }
 
   update(hero: Hero) {
-    this.heroService.update(hero);
+    // this.heroService.update(hero);
   }
 }
