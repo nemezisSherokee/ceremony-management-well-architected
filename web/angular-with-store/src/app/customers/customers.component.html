@@ -1,0 +1,8 @@
+<h1>{{ title }}</h1>
+<br />
+<div *ngIf="customers$ | async as customers">
+    <app-customers-list [customers]="customers" (onDeleteCustomer)="deleteCustomer($event[0])"></app-customers-list>
+</div>
+
+<br/>
+<button (click)="addCustomer()">Add Customer</button>
