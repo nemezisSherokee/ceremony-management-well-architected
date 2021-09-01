@@ -18,7 +18,7 @@ export class HerogqlService {
 
 	getAll(): Observable<Hero[]> {
 		const heroes = [
-			{ id: 'Hero 1', name: 'Hero 1 Name', description:'Hero 1 Description'},
+			{ id: 'Hero 1s', name: 'Hero 1 Name', description:'Hero 1 Description'},
 			{ id: 'Hero 2', name: 'Hero 2 Name', description:'Hero 2 Description'},
 			{ id: 'Hero 3', name: 'Hero 3 Name', description:'Hero 3 Description'},
 		];
