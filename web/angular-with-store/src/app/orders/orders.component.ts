@@ -19,7 +19,8 @@ export class OrdersComponent implements OnInit {
    }
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = String(this.route.snapshot.paramMap.get('id'));
+    alert(id)
     this.orders$ = this.ordersService.get(id);
   }
 
