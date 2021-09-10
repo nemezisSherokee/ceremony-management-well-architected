@@ -12,19 +12,6 @@
       "AmplifyAppId": "dyl7ydt9ikt70"
     }
   },
-  "remote": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-angularwithstore-remote-142405-authRole",
-      "UnauthRoleArn": "arn:aws:iam::467546108131:role/amplify-angularwithstore-remote-142405-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::467546108131:role/amplify-angularwithstore-remote-142405-authRole",
-      "Region": "eu-central-1",
-      "DeploymentBucketName": "amplify-angularwithstore-remote-142405-deployment",
-      "UnauthRoleName": "amplify-angularwithstore-remote-142405-unauthRole",
-      "StackName": "amplify-angularwithstore-remote-142405",
-      "StackId": "arn:aws:cloudformation:eu-central-1:467546108131:stack/amplify-angularwithstore-remote-142405/ff52b2b0-1231-11ec-86a6-0ad1fb9d7ee6",
-      "AmplifyAppId": "dmyvb5u113309"
-    }
-  },
   "apiupdate": {
     "awscloudformation": {
       "AuthRoleName": "amplify-angularwithstore-apiupdate-145428-authRole",
