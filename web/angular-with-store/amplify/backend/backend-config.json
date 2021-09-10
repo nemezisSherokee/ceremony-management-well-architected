@@ -1,6 +1,8 @@
 {
   "api": {
-    "cmwaapp": {
+    "cmwaapi": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
       "output": {
         "authConfig": {
           "defaultAuthentication": {

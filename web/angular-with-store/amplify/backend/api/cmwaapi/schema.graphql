@@ -2,6 +2,7 @@ type Customer @model {
   id: ID!
   name: String!
   city: String!  
+  information: String
   ceremonys: [Ceremony] @connection(keyName: "byCustomer", fields: ["id"])
 }
  
