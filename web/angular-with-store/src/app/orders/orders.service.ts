@@ -43,7 +43,7 @@ export class OrdersService extends ObservableStore<StoreState> {
         }
     }
 
-    get(id: number) {
+    get(id: any) {
         let state = this.getState();
         // pull from store cache
         if (state && state.orders) {
@@ -60,7 +60,7 @@ export class OrdersService extends ObservableStore<StoreState> {
         }
     }
 
-    filterOrders(id: number, orders : Order[]) {
+    filterOrders(id: any, orders : Order[]) {
        return orders.filter(order => +order.customerId === id);
     }
     

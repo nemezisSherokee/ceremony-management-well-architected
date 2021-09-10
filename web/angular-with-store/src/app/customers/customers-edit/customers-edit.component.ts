@@ -28,14 +28,27 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
       private formBuilder: FormBuilder,
       private route: ActivatedRoute) { }
 
-  ngOnInit() {
-      const id = Number(this.route.snapshot.paramMap.get('id'));
-      this.subsink.sink = this.customersService.get(id).subscribe(customer => {
-        if (customer) {
-          this.customer = customer;
-          this.customerForm.patchValue(this.customer);
-        }
-      });
+  async ngOnInit() {
+      const id = String(this.route.snapshot.paramMap.get('id'));
+      let blog = (await this.customersService.get(id)).subscribe(customer => {
+          if (customer) {
+            //  alert(JSON.stringify((customer as any).data.getBlog))
+            this.customer = {id: 0, name:"", city:"", orderTotal:0};
+            this.customer.id = (customer as any).data.getBlog.id;
+            this.customer.name = (customer as any).data.getBlog.name;
+            this.customer.city = (customer as any).data.getBlog.name
+            this.customerForm.patchValue(this.customer);
+          }
+        });
+    
+      
+      // alert(JSON.stringify(blog))
+      // this.subsink.sink = this.customersService.get(id).subscribe(customer => {
+      //   if (customer) {
+      //     this.customer = customer;
+      //     this.customerForm.patchValue(this.customer);
+      //   }
+      // });
   }
   addCustomer() {
     const customer: Customer = {
@@ -60,8 +73,8 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  add(customer: Customer) {
-    this.customersService.add(customer).subscribe(() => {
+  async add(customer: Customer) {
+     (await this.customersService.add(customer)).subscribe(() => {
       this.navigateHome();
     });
   }

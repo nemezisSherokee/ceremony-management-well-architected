@@ -1,0 +1,30 @@
+create our amplify backend:
+
+1 - init amplify
+amplify init
+
+2- Adding a backend api (appsync for graphQL)
+amplify add api
+"amplify push" will build all your local backend resources and provision it in the cloud
+"amplify publish" will build all your local backend and frontend resources (if you have hosting category added) and provision it in the cloud
+
+3- Mocking locally to test if everything works
+amplify mock api
+
+
+mocking amplify locally:
+
+ - First start the mocking process with the following command : amplify mock api
+	
+   this will start a graphiQl server at http://192.168.8.1:20002 and a local dynamodb 
+ - to view the tables of the local dynamodb instance, follow the steps:
+
+	run the following command with gitbatch to open the dynamodb-admin locally on url : http://localhost:8001/
+	AWS_SECRET_ACCESS_KEY=fake AWS_ACCESS_KEY_ID=fake AWS_REGION=us-fake-1 DYNAMO_ENDPOINT=http://localhost:62224 dynamodb-admin
+
+	NOTE: of course you first need to install dynamodb-admin with : npm install -g dynamodb-admin
+
+
+	https://github.com/aaronshaf/dynamodb-admin/issues/52
+	https://github.com/aaronshaf/dynamodb-admin
+	https://www.gravitywell.co.uk/insights/how-to-use-your-mocked-dynamodb-with-appsync-and-lambda/
