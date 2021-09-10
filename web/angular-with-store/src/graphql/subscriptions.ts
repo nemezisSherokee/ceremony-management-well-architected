@@ -2,12 +2,13 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateBlog = /* GraphQL */ `
-  subscription OnCreateBlog {
-    onCreateBlog {
+export const onCreateCustomer = /* GraphQL */ `
+  subscription OnCreateCustomer {
+    onCreateCustomer {
       id
       name
-      posts {
+      city
+      ceremonys {
         nextToken
       }
       createdAt
@@ -15,12 +16,13 @@ export const onCreateBlog = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateBlog = /* GraphQL */ `
-  subscription OnUpdateBlog {
-    onUpdateBlog {
+export const onUpdateCustomer = /* GraphQL */ `
+  subscription OnUpdateCustomer {
+    onUpdateCustomer {
       id
       name
-      posts {
+      city
+      ceremonys {
         nextToken
       }
       createdAt
@@ -28,12 +30,13 @@ export const onUpdateBlog = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteBlog = /* GraphQL */ `
-  subscription OnDeleteBlog {
-    onDeleteBlog {
+export const onDeleteCustomer = /* GraphQL */ `
+  subscription OnDeleteCustomer {
+    onDeleteCustomer {
       id
       name
-      posts {
+      city
+      ceremonys {
         nextToken
       }
       createdAt
@@ -41,19 +44,21 @@ export const onDeleteBlog = /* GraphQL */ `
     }
   }
 `;
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost {
-    onCreatePost {
+export const onCreateCeremony = /* GraphQL */ `
+  subscription OnCreateCeremony {
+    onCreateCeremony {
       id
       title
-      blogID
-      blog {
+      customerID
+      city
+      customer {
         id
         name
+        city
         createdAt
         updatedAt
       }
-      comments {
+      guests {
         nextToken
       }
       createdAt
@@ -61,19 +66,21 @@ export const onCreatePost = /* GraphQL */ `
     }
   }
 `;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost {
-    onUpdatePost {
+export const onUpdateCeremony = /* GraphQL */ `
+  subscription OnUpdateCeremony {
+    onUpdateCeremony {
       id
       title
-      blogID
-      blog {
+      customerID
+      city
+      customer {
         id
         name
+        city
         createdAt
         updatedAt
       }
-      comments {
+      guests {
         nextToken
       }
       createdAt
@@ -81,19 +88,21 @@ export const onUpdatePost = /* GraphQL */ `
     }
   }
 `;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost {
-    onDeletePost {
+export const onDeleteCeremony = /* GraphQL */ `
+  subscription OnDeleteCeremony {
+    onDeleteCeremony {
       id
       title
-      blogID
-      blog {
+      customerID
+      city
+      customer {
         id
         name
+        city
         createdAt
         updatedAt
       }
-      comments {
+      guests {
         nextToken
       }
       createdAt
@@ -101,15 +110,17 @@ export const onDeletePost = /* GraphQL */ `
     }
   }
 `;
-export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment {
-    onCreateComment {
+export const onCreateGuest = /* GraphQL */ `
+  subscription OnCreateGuest {
+    onCreateGuest {
       id
-      postID
-      post {
+      ceremonyID
+      contact
+      ceremony {
         id
         title
-        blogID
+        customerID
+        city
         createdAt
         updatedAt
       }
@@ -119,15 +130,17 @@ export const onCreateComment = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment {
-    onUpdateComment {
+export const onUpdateGuest = /* GraphQL */ `
+  subscription OnUpdateGuest {
+    onUpdateGuest {
       id
-      postID
-      post {
+      ceremonyID
+      contact
+      ceremony {
         id
         title
-        blogID
+        customerID
+        city
         createdAt
         updatedAt
       }
@@ -137,15 +150,17 @@ export const onUpdateComment = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment {
-    onDeleteComment {
+export const onDeleteGuest = /* GraphQL */ `
+  subscription OnDeleteGuest {
+    onDeleteGuest {
       id
-      postID
-      post {
+      ceremonyID
+      contact
+      ceremony {
         id
         title
-        blogID
+        customerID
+        city
         createdAt
         updatedAt
       }

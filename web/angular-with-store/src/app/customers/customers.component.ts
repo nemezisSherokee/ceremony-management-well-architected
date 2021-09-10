@@ -18,8 +18,6 @@ export class CustomersComponent implements OnInit {
         ) {}
 
     async ngOnInit() {
-        // this.customers$ = this.customersService.getAll();
-
         // Could do this to get initial customers plus 
         // listen for any changes
         this.customers$ = merge(
@@ -29,7 +27,6 @@ export class CustomersComponent implements OnInit {
             this.customersService.stateChanged.pipe(
                 map(state => {
                     if (state) {
-                        //  alert("changed"+JSON.stringify(state.customers))
                         return state.customers;
                     }else{
                         return []
@@ -38,24 +35,22 @@ export class CustomersComponent implements OnInit {
             ));
     }
     
-    deleteCustomer(id: number) {
+    async deleteCustomer(id: number) {
         if (id) {
-          this.customersService.delete(id).subscribe(() => {
+          (await this.customersService.delete(id)).subscribe(() => {
           });
         }
       }
 
       async addCustomer() {
          
-        const customer: Customer = {
+        const customer: any = {
             id: Date.now(),
             name: 'John' +Date.now(),
-            city: 'Doe'+ Date.now(),
-            orderTotal: Math.random() * 10
-          };
+            city: 'City of '+ Date.now()
+        };
 
          (await  this.customersService.add(customer)).subscribe(() => {
-            //   alert("is OK")
         });
         
       }

@@ -2,12 +2,13 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getBlog = /* GraphQL */ `
-  query GetBlog($id: ID!) {
-    getBlog(id: $id) {
+export const getCustomer = /* GraphQL */ `
+  query GetCustomer($id: ID!) {
+    getCustomer(id: $id) {
       id
       name
-      posts {
+      city
+      ceremonys {
         nextToken
       }
       createdAt
@@ -15,16 +16,17 @@ export const getBlog = /* GraphQL */ `
     }
   }
 `;
-export const listBlogs = /* GraphQL */ `
-  query ListBlogs(
-    $filter: ModelBlogFilterInput
+export const listCustomers = /* GraphQL */ `
+  query ListCustomers(
+    $filter: ModelCustomerFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listBlogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listCustomers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
+        city
         createdAt
         updatedAt
       }
@@ -32,19 +34,21 @@ export const listBlogs = /* GraphQL */ `
     }
   }
 `;
-export const getPost = /* GraphQL */ `
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
+export const getCeremony = /* GraphQL */ `
+  query GetCeremony($id: ID!) {
+    getCeremony(id: $id) {
       id
       title
-      blogID
-      blog {
+      customerID
+      city
+      customer {
         id
         name
+        city
         createdAt
         updatedAt
       }
-      comments {
+      guests {
         nextToken
       }
       createdAt
@@ -52,17 +56,18 @@ export const getPost = /* GraphQL */ `
     }
   }
 `;
-export const listPosts = /* GraphQL */ `
-  query ListPosts(
-    $filter: ModelPostFilterInput
+export const listCeremonys = /* GraphQL */ `
+  query ListCeremonys(
+    $filter: ModelCeremonyFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listCeremonys(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         title
-        blogID
+        customerID
+        city
         createdAt
         updatedAt
       }
@@ -70,15 +75,17 @@ export const listPosts = /* GraphQL */ `
     }
   }
 `;
-export const getComment = /* GraphQL */ `
-  query GetComment($id: ID!) {
-    getComment(id: $id) {
+export const getGuest = /* GraphQL */ `
+  query GetGuest($id: ID!) {
+    getGuest(id: $id) {
       id
-      postID
-      post {
+      ceremonyID
+      contact
+      ceremony {
         id
         title
-        blogID
+        customerID
+        city
         createdAt
         updatedAt
       }
@@ -88,16 +95,17 @@ export const getComment = /* GraphQL */ `
     }
   }
 `;
-export const listComments = /* GraphQL */ `
-  query ListComments(
-    $filter: ModelCommentFilterInput
+export const listGuests = /* GraphQL */ `
+  query ListGuests(
+    $filter: ModelGuestFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listGuests(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        postID
+        ceremonyID
+        contact
         content
         createdAt
         updatedAt

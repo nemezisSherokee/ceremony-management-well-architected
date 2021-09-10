@@ -2,16 +2,18 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateBlogInput = {
+export type CreateCustomerInput = {
   id?: string | null,
   name: string,
+  city: string,
 };
 
-export type ModelBlogConditionInput = {
+export type ModelCustomerConditionInput = {
   name?: ModelStringInput | null,
-  and?: Array< ModelBlogConditionInput | null > | null,
-  or?: Array< ModelBlogConditionInput | null > | null,
-  not?: ModelBlogConditionInput | null,
+  city?: ModelStringInput | null,
+  and?: Array< ModelCustomerConditionInput | null > | null,
+  or?: Array< ModelCustomerConditionInput | null > | null,
+  not?: ModelCustomerConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -54,69 +56,75 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type Blog = {
-  __typename: "Blog",
+export type Customer = {
+  __typename: "Customer",
   id: string,
   name: string,
-  posts?: ModelPostConnection | null,
+  city: string,
+  ceremonys?: ModelCeremonyConnection | null,
   createdAt: string,
   updatedAt: string,
 };
 
-export type ModelPostConnection = {
-  __typename: "ModelPostConnection",
-  items?:  Array<Post | null > | null,
+export type ModelCeremonyConnection = {
+  __typename: "ModelCeremonyConnection",
+  items?:  Array<Ceremony | null > | null,
   nextToken?: string | null,
 };
 
-export type Post = {
-  __typename: "Post",
+export type Ceremony = {
+  __typename: "Ceremony",
   id: string,
   title: string,
-  blogID: string,
-  blog?: Blog | null,
-  comments?: ModelCommentConnection | null,
+  customerID: string,
+  city: string,
+  customer?: Customer | null,
+  guests?: ModelGuestConnection | null,
   createdAt: string,
   updatedAt: string,
 };
 
-export type ModelCommentConnection = {
-  __typename: "ModelCommentConnection",
-  items?:  Array<Comment | null > | null,
+export type ModelGuestConnection = {
+  __typename: "ModelGuestConnection",
+  items?:  Array<Guest | null > | null,
   nextToken?: string | null,
 };
 
-export type Comment = {
-  __typename: "Comment",
+export type Guest = {
+  __typename: "Guest",
   id: string,
-  postID: string,
-  post?: Post | null,
+  ceremonyID: string,
+  contact: string,
+  ceremony?: Ceremony | null,
   content: string,
   createdAt: string,
   updatedAt: string,
 };
 
-export type UpdateBlogInput = {
+export type UpdateCustomerInput = {
   id: string,
   name?: string | null,
+  city?: string | null,
 };
 
-export type DeleteBlogInput = {
+export type DeleteCustomerInput = {
   id: string,
 };
 
-export type CreatePostInput = {
+export type CreateCeremonyInput = {
   id?: string | null,
   title: string,
-  blogID: string,
+  customerID: string,
+  city: string,
 };
 
-export type ModelPostConditionInput = {
+export type ModelCeremonyConditionInput = {
   title?: ModelStringInput | null,
-  blogID?: ModelIDInput | null,
-  and?: Array< ModelPostConditionInput | null > | null,
-  or?: Array< ModelPostConditionInput | null > | null,
-  not?: ModelPostConditionInput | null,
+  customerID?: ModelIDInput | null,
+  city?: ModelStringInput | null,
+  and?: Array< ModelCeremonyConditionInput | null > | null,
+  or?: Array< ModelCeremonyConditionInput | null > | null,
+  not?: ModelCeremonyConditionInput | null,
 };
 
 export type ModelIDInput = {
@@ -135,84 +143,92 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type UpdatePostInput = {
+export type UpdateCeremonyInput = {
   id: string,
   title?: string | null,
-  blogID?: string | null,
+  customerID?: string | null,
+  city?: string | null,
 };
 
-export type DeletePostInput = {
+export type DeleteCeremonyInput = {
   id: string,
 };
 
-export type CreateCommentInput = {
+export type CreateGuestInput = {
   id?: string | null,
-  postID: string,
+  ceremonyID: string,
+  contact: string,
   content: string,
 };
 
-export type ModelCommentConditionInput = {
-  postID?: ModelIDInput | null,
+export type ModelGuestConditionInput = {
+  ceremonyID?: ModelIDInput | null,
+  contact?: ModelStringInput | null,
   content?: ModelStringInput | null,
-  and?: Array< ModelCommentConditionInput | null > | null,
-  or?: Array< ModelCommentConditionInput | null > | null,
-  not?: ModelCommentConditionInput | null,
+  and?: Array< ModelGuestConditionInput | null > | null,
+  or?: Array< ModelGuestConditionInput | null > | null,
+  not?: ModelGuestConditionInput | null,
 };
 
-export type UpdateCommentInput = {
+export type UpdateGuestInput = {
   id: string,
-  postID?: string | null,
+  ceremonyID?: string | null,
+  contact?: string | null,
   content?: string | null,
 };
 
-export type DeleteCommentInput = {
+export type DeleteGuestInput = {
   id: string,
 };
 
-export type ModelBlogFilterInput = {
+export type ModelCustomerFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
-  and?: Array< ModelBlogFilterInput | null > | null,
-  or?: Array< ModelBlogFilterInput | null > | null,
-  not?: ModelBlogFilterInput | null,
+  city?: ModelStringInput | null,
+  and?: Array< ModelCustomerFilterInput | null > | null,
+  or?: Array< ModelCustomerFilterInput | null > | null,
+  not?: ModelCustomerFilterInput | null,
 };
 
-export type ModelBlogConnection = {
-  __typename: "ModelBlogConnection",
-  items?:  Array<Blog | null > | null,
+export type ModelCustomerConnection = {
+  __typename: "ModelCustomerConnection",
+  items?:  Array<Customer | null > | null,
   nextToken?: string | null,
 };
 
-export type ModelPostFilterInput = {
+export type ModelCeremonyFilterInput = {
   id?: ModelIDInput | null,
   title?: ModelStringInput | null,
-  blogID?: ModelIDInput | null,
-  and?: Array< ModelPostFilterInput | null > | null,
-  or?: Array< ModelPostFilterInput | null > | null,
-  not?: ModelPostFilterInput | null,
+  customerID?: ModelIDInput | null,
+  city?: ModelStringInput | null,
+  and?: Array< ModelCeremonyFilterInput | null > | null,
+  or?: Array< ModelCeremonyFilterInput | null > | null,
+  not?: ModelCeremonyFilterInput | null,
 };
 
-export type ModelCommentFilterInput = {
+export type ModelGuestFilterInput = {
   id?: ModelIDInput | null,
-  postID?: ModelIDInput | null,
+  ceremonyID?: ModelIDInput | null,
+  contact?: ModelStringInput | null,
   content?: ModelStringInput | null,
-  and?: Array< ModelCommentFilterInput | null > | null,
-  or?: Array< ModelCommentFilterInput | null > | null,
-  not?: ModelCommentFilterInput | null,
+  and?: Array< ModelGuestFilterInput | null > | null,
+  or?: Array< ModelGuestFilterInput | null > | null,
+  not?: ModelGuestFilterInput | null,
 };
 
-export type CreateBlogMutationVariables = {
-  input: CreateBlogInput,
-  condition?: ModelBlogConditionInput | null,
+export type CreateCustomerMutationVariables = {
+  input: CreateCustomerInput,
+  condition?: ModelCustomerConditionInput | null,
 };
 
-export type CreateBlogMutation = {
-  createBlog?:  {
-    __typename: "Blog",
+export type CreateCustomerMutation = {
+  createCustomer?:  {
+    __typename: "Customer",
     id: string,
     name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
+    city: string,
+    ceremonys?:  {
+      __typename: "ModelCeremonyConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -220,18 +236,19 @@ export type CreateBlogMutation = {
   } | null,
 };
 
-export type UpdateBlogMutationVariables = {
-  input: UpdateBlogInput,
-  condition?: ModelBlogConditionInput | null,
+export type UpdateCustomerMutationVariables = {
+  input: UpdateCustomerInput,
+  condition?: ModelCustomerConditionInput | null,
 };
 
-export type UpdateBlogMutation = {
-  updateBlog?:  {
-    __typename: "Blog",
+export type UpdateCustomerMutation = {
+  updateCustomer?:  {
+    __typename: "Customer",
     id: string,
     name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
+    city: string,
+    ceremonys?:  {
+      __typename: "ModelCeremonyConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -239,18 +256,19 @@ export type UpdateBlogMutation = {
   } | null,
 };
 
-export type DeleteBlogMutationVariables = {
-  input: DeleteBlogInput,
-  condition?: ModelBlogConditionInput | null,
+export type DeleteCustomerMutationVariables = {
+  input: DeleteCustomerInput,
+  condition?: ModelCustomerConditionInput | null,
 };
 
-export type DeleteBlogMutation = {
-  deleteBlog?:  {
-    __typename: "Blog",
+export type DeleteCustomerMutation = {
+  deleteCustomer?:  {
+    __typename: "Customer",
     id: string,
     name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
+    city: string,
+    ceremonys?:  {
+      __typename: "ModelCeremonyConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -258,26 +276,28 @@ export type DeleteBlogMutation = {
   } | null,
 };
 
-export type CreatePostMutationVariables = {
-  input: CreatePostInput,
-  condition?: ModelPostConditionInput | null,
+export type CreateCeremonyMutationVariables = {
+  input: CreateCeremonyInput,
+  condition?: ModelCeremonyConditionInput | null,
 };
 
-export type CreatePostMutation = {
-  createPost?:  {
-    __typename: "Post",
+export type CreateCeremonyMutation = {
+  createCeremony?:  {
+    __typename: "Ceremony",
     id: string,
     title: string,
-    blogID: string,
-    blog?:  {
-      __typename: "Blog",
+    customerID: string,
+    city: string,
+    customer?:  {
+      __typename: "Customer",
       id: string,
       name: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    guests?:  {
+      __typename: "ModelGuestConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -285,26 +305,28 @@ export type CreatePostMutation = {
   } | null,
 };
 
-export type UpdatePostMutationVariables = {
-  input: UpdatePostInput,
-  condition?: ModelPostConditionInput | null,
+export type UpdateCeremonyMutationVariables = {
+  input: UpdateCeremonyInput,
+  condition?: ModelCeremonyConditionInput | null,
 };
 
-export type UpdatePostMutation = {
-  updatePost?:  {
-    __typename: "Post",
+export type UpdateCeremonyMutation = {
+  updateCeremony?:  {
+    __typename: "Ceremony",
     id: string,
     title: string,
-    blogID: string,
-    blog?:  {
-      __typename: "Blog",
+    customerID: string,
+    city: string,
+    customer?:  {
+      __typename: "Customer",
       id: string,
       name: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    guests?:  {
+      __typename: "ModelGuestConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -312,26 +334,28 @@ export type UpdatePostMutation = {
   } | null,
 };
 
-export type DeletePostMutationVariables = {
-  input: DeletePostInput,
-  condition?: ModelPostConditionInput | null,
+export type DeleteCeremonyMutationVariables = {
+  input: DeleteCeremonyInput,
+  condition?: ModelCeremonyConditionInput | null,
 };
 
-export type DeletePostMutation = {
-  deletePost?:  {
-    __typename: "Post",
+export type DeleteCeremonyMutation = {
+  deleteCeremony?:  {
+    __typename: "Ceremony",
     id: string,
     title: string,
-    blogID: string,
-    blog?:  {
-      __typename: "Blog",
+    customerID: string,
+    city: string,
+    customer?:  {
+      __typename: "Customer",
       id: string,
       name: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    guests?:  {
+      __typename: "ModelGuestConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -339,21 +363,23 @@ export type DeletePostMutation = {
   } | null,
 };
 
-export type CreateCommentMutationVariables = {
-  input: CreateCommentInput,
-  condition?: ModelCommentConditionInput | null,
+export type CreateGuestMutationVariables = {
+  input: CreateGuestInput,
+  condition?: ModelGuestConditionInput | null,
 };
 
-export type CreateCommentMutation = {
-  createComment?:  {
-    __typename: "Comment",
+export type CreateGuestMutation = {
+  createGuest?:  {
+    __typename: "Guest",
     id: string,
-    postID: string,
-    post?:  {
-      __typename: "Post",
+    ceremonyID: string,
+    contact: string,
+    ceremony?:  {
+      __typename: "Ceremony",
       id: string,
       title: string,
-      blogID: string,
+      customerID: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -363,21 +389,23 @@ export type CreateCommentMutation = {
   } | null,
 };
 
-export type UpdateCommentMutationVariables = {
-  input: UpdateCommentInput,
-  condition?: ModelCommentConditionInput | null,
+export type UpdateGuestMutationVariables = {
+  input: UpdateGuestInput,
+  condition?: ModelGuestConditionInput | null,
 };
 
-export type UpdateCommentMutation = {
-  updateComment?:  {
-    __typename: "Comment",
+export type UpdateGuestMutation = {
+  updateGuest?:  {
+    __typename: "Guest",
     id: string,
-    postID: string,
-    post?:  {
-      __typename: "Post",
+    ceremonyID: string,
+    contact: string,
+    ceremony?:  {
+      __typename: "Ceremony",
       id: string,
       title: string,
-      blogID: string,
+      customerID: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -387,21 +415,23 @@ export type UpdateCommentMutation = {
   } | null,
 };
 
-export type DeleteCommentMutationVariables = {
-  input: DeleteCommentInput,
-  condition?: ModelCommentConditionInput | null,
+export type DeleteGuestMutationVariables = {
+  input: DeleteGuestInput,
+  condition?: ModelGuestConditionInput | null,
 };
 
-export type DeleteCommentMutation = {
-  deleteComment?:  {
-    __typename: "Comment",
+export type DeleteGuestMutation = {
+  deleteGuest?:  {
+    __typename: "Guest",
     id: string,
-    postID: string,
-    post?:  {
-      __typename: "Post",
+    ceremonyID: string,
+    contact: string,
+    ceremony?:  {
+      __typename: "Ceremony",
       id: string,
       title: string,
-      blogID: string,
+      customerID: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -411,17 +441,18 @@ export type DeleteCommentMutation = {
   } | null,
 };
 
-export type GetBlogQueryVariables = {
+export type GetCustomerQueryVariables = {
   id: string,
 };
 
-export type GetBlogQuery = {
-  getBlog?:  {
-    __typename: "Blog",
+export type GetCustomerQuery = {
+  getCustomer?:  {
+    __typename: "Customer",
     id: string,
     name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
+    city: string,
+    ceremonys?:  {
+      __typename: "ModelCeremonyConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -429,19 +460,20 @@ export type GetBlogQuery = {
   } | null,
 };
 
-export type ListBlogsQueryVariables = {
-  filter?: ModelBlogFilterInput | null,
+export type ListCustomersQueryVariables = {
+  filter?: ModelCustomerFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListBlogsQuery = {
-  listBlogs?:  {
-    __typename: "ModelBlogConnection",
+export type ListCustomersQuery = {
+  listCustomers?:  {
+    __typename: "ModelCustomerConnection",
     items?:  Array< {
-      __typename: "Blog",
+      __typename: "Customer",
       id: string,
       name: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -449,25 +481,27 @@ export type ListBlogsQuery = {
   } | null,
 };
 
-export type GetPostQueryVariables = {
+export type GetCeremonyQueryVariables = {
   id: string,
 };
 
-export type GetPostQuery = {
-  getPost?:  {
-    __typename: "Post",
+export type GetCeremonyQuery = {
+  getCeremony?:  {
+    __typename: "Ceremony",
     id: string,
     title: string,
-    blogID: string,
-    blog?:  {
-      __typename: "Blog",
+    customerID: string,
+    city: string,
+    customer?:  {
+      __typename: "Customer",
       id: string,
       name: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    guests?:  {
+      __typename: "ModelGuestConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -475,20 +509,21 @@ export type GetPostQuery = {
   } | null,
 };
 
-export type ListPostsQueryVariables = {
-  filter?: ModelPostFilterInput | null,
+export type ListCeremonysQueryVariables = {
+  filter?: ModelCeremonyFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListPostsQuery = {
-  listPosts?:  {
-    __typename: "ModelPostConnection",
+export type ListCeremonysQuery = {
+  listCeremonys?:  {
+    __typename: "ModelCeremonyConnection",
     items?:  Array< {
-      __typename: "Post",
+      __typename: "Ceremony",
       id: string,
       title: string,
-      blogID: string,
+      customerID: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -496,20 +531,22 @@ export type ListPostsQuery = {
   } | null,
 };
 
-export type GetCommentQueryVariables = {
+export type GetGuestQueryVariables = {
   id: string,
 };
 
-export type GetCommentQuery = {
-  getComment?:  {
-    __typename: "Comment",
+export type GetGuestQuery = {
+  getGuest?:  {
+    __typename: "Guest",
     id: string,
-    postID: string,
-    post?:  {
-      __typename: "Post",
+    ceremonyID: string,
+    contact: string,
+    ceremony?:  {
+      __typename: "Ceremony",
       id: string,
       title: string,
-      blogID: string,
+      customerID: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -519,19 +556,20 @@ export type GetCommentQuery = {
   } | null,
 };
 
-export type ListCommentsQueryVariables = {
-  filter?: ModelCommentFilterInput | null,
+export type ListGuestsQueryVariables = {
+  filter?: ModelGuestFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListCommentsQuery = {
-  listComments?:  {
-    __typename: "ModelCommentConnection",
+export type ListGuestsQuery = {
+  listGuests?:  {
+    __typename: "ModelGuestConnection",
     items?:  Array< {
-      __typename: "Comment",
+      __typename: "Guest",
       id: string,
-      postID: string,
+      ceremonyID: string,
+      contact: string,
       content: string,
       createdAt: string,
       updatedAt: string,
@@ -540,13 +578,14 @@ export type ListCommentsQuery = {
   } | null,
 };
 
-export type OnCreateBlogSubscription = {
-  onCreateBlog?:  {
-    __typename: "Blog",
+export type OnCreateCustomerSubscription = {
+  onCreateCustomer?:  {
+    __typename: "Customer",
     id: string,
     name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
+    city: string,
+    ceremonys?:  {
+      __typename: "ModelCeremonyConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -554,13 +593,14 @@ export type OnCreateBlogSubscription = {
   } | null,
 };
 
-export type OnUpdateBlogSubscription = {
-  onUpdateBlog?:  {
-    __typename: "Blog",
+export type OnUpdateCustomerSubscription = {
+  onUpdateCustomer?:  {
+    __typename: "Customer",
     id: string,
     name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
+    city: string,
+    ceremonys?:  {
+      __typename: "ModelCeremonyConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -568,13 +608,14 @@ export type OnUpdateBlogSubscription = {
   } | null,
 };
 
-export type OnDeleteBlogSubscription = {
-  onDeleteBlog?:  {
-    __typename: "Blog",
+export type OnDeleteCustomerSubscription = {
+  onDeleteCustomer?:  {
+    __typename: "Customer",
     id: string,
     name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
+    city: string,
+    ceremonys?:  {
+      __typename: "ModelCeremonyConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -582,21 +623,23 @@ export type OnDeleteBlogSubscription = {
   } | null,
 };
 
-export type OnCreatePostSubscription = {
-  onCreatePost?:  {
-    __typename: "Post",
+export type OnCreateCeremonySubscription = {
+  onCreateCeremony?:  {
+    __typename: "Ceremony",
     id: string,
     title: string,
-    blogID: string,
-    blog?:  {
-      __typename: "Blog",
+    customerID: string,
+    city: string,
+    customer?:  {
+      __typename: "Customer",
       id: string,
       name: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    guests?:  {
+      __typename: "ModelGuestConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -604,21 +647,23 @@ export type OnCreatePostSubscription = {
   } | null,
 };
 
-export type OnUpdatePostSubscription = {
-  onUpdatePost?:  {
-    __typename: "Post",
+export type OnUpdateCeremonySubscription = {
+  onUpdateCeremony?:  {
+    __typename: "Ceremony",
     id: string,
     title: string,
-    blogID: string,
-    blog?:  {
-      __typename: "Blog",
+    customerID: string,
+    city: string,
+    customer?:  {
+      __typename: "Customer",
       id: string,
       name: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    guests?:  {
+      __typename: "ModelGuestConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -626,21 +671,23 @@ export type OnUpdatePostSubscription = {
   } | null,
 };
 
-export type OnDeletePostSubscription = {
-  onDeletePost?:  {
-    __typename: "Post",
+export type OnDeleteCeremonySubscription = {
+  onDeleteCeremony?:  {
+    __typename: "Ceremony",
     id: string,
     title: string,
-    blogID: string,
-    blog?:  {
-      __typename: "Blog",
+    customerID: string,
+    city: string,
+    customer?:  {
+      __typename: "Customer",
       id: string,
       name: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    guests?:  {
+      __typename: "ModelGuestConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -648,16 +695,18 @@ export type OnDeletePostSubscription = {
   } | null,
 };
 
-export type OnCreateCommentSubscription = {
-  onCreateComment?:  {
-    __typename: "Comment",
+export type OnCreateGuestSubscription = {
+  onCreateGuest?:  {
+    __typename: "Guest",
     id: string,
-    postID: string,
-    post?:  {
-      __typename: "Post",
+    ceremonyID: string,
+    contact: string,
+    ceremony?:  {
+      __typename: "Ceremony",
       id: string,
       title: string,
-      blogID: string,
+      customerID: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -667,16 +716,18 @@ export type OnCreateCommentSubscription = {
   } | null,
 };
 
-export type OnUpdateCommentSubscription = {
-  onUpdateComment?:  {
-    __typename: "Comment",
+export type OnUpdateGuestSubscription = {
+  onUpdateGuest?:  {
+    __typename: "Guest",
     id: string,
-    postID: string,
-    post?:  {
-      __typename: "Post",
+    ceremonyID: string,
+    contact: string,
+    ceremony?:  {
+      __typename: "Ceremony",
       id: string,
       title: string,
-      blogID: string,
+      customerID: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -686,16 +737,18 @@ export type OnUpdateCommentSubscription = {
   } | null,
 };
 
-export type OnDeleteCommentSubscription = {
-  onDeleteComment?:  {
-    __typename: "Comment",
+export type OnDeleteGuestSubscription = {
+  onDeleteGuest?:  {
+    __typename: "Guest",
     id: string,
-    postID: string,
-    post?:  {
-      __typename: "Post",
+    ceremonyID: string,
+    contact: string,
+    ceremony?:  {
+      __typename: "Ceremony",
       id: string,
       title: string,
-      blogID: string,
+      customerID: string,
+      city: string,
       createdAt: string,
       updatedAt: string,
     } | null,

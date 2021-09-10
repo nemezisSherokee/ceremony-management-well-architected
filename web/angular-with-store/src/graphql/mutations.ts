@@ -2,15 +2,16 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createBlog = /* GraphQL */ `
-  mutation CreateBlog(
-    $input: CreateBlogInput!
-    $condition: ModelBlogConditionInput
+export const createCustomer = /* GraphQL */ `
+  mutation CreateCustomer(
+    $input: CreateCustomerInput!
+    $condition: ModelCustomerConditionInput
   ) {
-    createBlog(input: $input, condition: $condition) {
+    createCustomer(input: $input, condition: $condition) {
       id
       name
-      posts {
+      city
+      ceremonys {
         nextToken
       }
       createdAt
@@ -18,15 +19,16 @@ export const createBlog = /* GraphQL */ `
     }
   }
 `;
-export const updateBlog = /* GraphQL */ `
-  mutation UpdateBlog(
-    $input: UpdateBlogInput!
-    $condition: ModelBlogConditionInput
+export const updateCustomer = /* GraphQL */ `
+  mutation UpdateCustomer(
+    $input: UpdateCustomerInput!
+    $condition: ModelCustomerConditionInput
   ) {
-    updateBlog(input: $input, condition: $condition) {
+    updateCustomer(input: $input, condition: $condition) {
       id
       name
-      posts {
+      city
+      ceremonys {
         nextToken
       }
       createdAt
@@ -34,15 +36,16 @@ export const updateBlog = /* GraphQL */ `
     }
   }
 `;
-export const deleteBlog = /* GraphQL */ `
-  mutation DeleteBlog(
-    $input: DeleteBlogInput!
-    $condition: ModelBlogConditionInput
+export const deleteCustomer = /* GraphQL */ `
+  mutation DeleteCustomer(
+    $input: DeleteCustomerInput!
+    $condition: ModelCustomerConditionInput
   ) {
-    deleteBlog(input: $input, condition: $condition) {
+    deleteCustomer(input: $input, condition: $condition) {
       id
       name
-      posts {
+      city
+      ceremonys {
         nextToken
       }
       createdAt
@@ -50,22 +53,24 @@ export const deleteBlog = /* GraphQL */ `
     }
   }
 `;
-export const createPost = /* GraphQL */ `
-  mutation CreatePost(
-    $input: CreatePostInput!
-    $condition: ModelPostConditionInput
+export const createCeremony = /* GraphQL */ `
+  mutation CreateCeremony(
+    $input: CreateCeremonyInput!
+    $condition: ModelCeremonyConditionInput
   ) {
-    createPost(input: $input, condition: $condition) {
+    createCeremony(input: $input, condition: $condition) {
       id
       title
-      blogID
-      blog {
+      customerID
+      city
+      customer {
         id
         name
+        city
         createdAt
         updatedAt
       }
-      comments {
+      guests {
         nextToken
       }
       createdAt
@@ -73,22 +78,24 @@ export const createPost = /* GraphQL */ `
     }
   }
 `;
-export const updatePost = /* GraphQL */ `
-  mutation UpdatePost(
-    $input: UpdatePostInput!
-    $condition: ModelPostConditionInput
+export const updateCeremony = /* GraphQL */ `
+  mutation UpdateCeremony(
+    $input: UpdateCeremonyInput!
+    $condition: ModelCeremonyConditionInput
   ) {
-    updatePost(input: $input, condition: $condition) {
+    updateCeremony(input: $input, condition: $condition) {
       id
       title
-      blogID
-      blog {
+      customerID
+      city
+      customer {
         id
         name
+        city
         createdAt
         updatedAt
       }
-      comments {
+      guests {
         nextToken
       }
       createdAt
@@ -96,22 +103,24 @@ export const updatePost = /* GraphQL */ `
     }
   }
 `;
-export const deletePost = /* GraphQL */ `
-  mutation DeletePost(
-    $input: DeletePostInput!
-    $condition: ModelPostConditionInput
+export const deleteCeremony = /* GraphQL */ `
+  mutation DeleteCeremony(
+    $input: DeleteCeremonyInput!
+    $condition: ModelCeremonyConditionInput
   ) {
-    deletePost(input: $input, condition: $condition) {
+    deleteCeremony(input: $input, condition: $condition) {
       id
       title
-      blogID
-      blog {
+      customerID
+      city
+      customer {
         id
         name
+        city
         createdAt
         updatedAt
       }
-      comments {
+      guests {
         nextToken
       }
       createdAt
@@ -119,18 +128,20 @@ export const deletePost = /* GraphQL */ `
     }
   }
 `;
-export const createComment = /* GraphQL */ `
-  mutation CreateComment(
-    $input: CreateCommentInput!
-    $condition: ModelCommentConditionInput
+export const createGuest = /* GraphQL */ `
+  mutation CreateGuest(
+    $input: CreateGuestInput!
+    $condition: ModelGuestConditionInput
   ) {
-    createComment(input: $input, condition: $condition) {
+    createGuest(input: $input, condition: $condition) {
       id
-      postID
-      post {
+      ceremonyID
+      contact
+      ceremony {
         id
         title
-        blogID
+        customerID
+        city
         createdAt
         updatedAt
       }
@@ -140,18 +151,20 @@ export const createComment = /* GraphQL */ `
     }
   }
 `;
-export const updateComment = /* GraphQL */ `
-  mutation UpdateComment(
-    $input: UpdateCommentInput!
-    $condition: ModelCommentConditionInput
+export const updateGuest = /* GraphQL */ `
+  mutation UpdateGuest(
+    $input: UpdateGuestInput!
+    $condition: ModelGuestConditionInput
   ) {
-    updateComment(input: $input, condition: $condition) {
+    updateGuest(input: $input, condition: $condition) {
       id
-      postID
-      post {
+      ceremonyID
+      contact
+      ceremony {
         id
         title
-        blogID
+        customerID
+        city
         createdAt
         updatedAt
       }
@@ -161,18 +174,20 @@ export const updateComment = /* GraphQL */ `
     }
   }
 `;
-export const deleteComment = /* GraphQL */ `
-  mutation DeleteComment(
-    $input: DeleteCommentInput!
-    $condition: ModelCommentConditionInput
+export const deleteGuest = /* GraphQL */ `
+  mutation DeleteGuest(
+    $input: DeleteGuestInput!
+    $condition: ModelGuestConditionInput
   ) {
-    deleteComment(input: $input, condition: $condition) {
+    deleteGuest(input: $input, condition: $condition) {
       id
-      postID
-      post {
+      ceremonyID
+      contact
+      ceremony {
         id
         title
-        blogID
+        customerID
+        city
         createdAt
         updatedAt
       }
