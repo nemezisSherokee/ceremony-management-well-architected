@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Customer } from '../core/model/customer';
-import { Observable, of, merge } from 'rxjs';
+import { Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CustomersService } from './customers.service';
-import { Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-customers',
@@ -17,14 +17,12 @@ export class CustomersComponent implements OnInit {
     constructor(private customersService: CustomersService
         ) {}
 
-    ngOnInit() {
-        // this.customers$ = this.customersService.getAll();
-
+    async ngOnInit() {
         // Could do this to get initial customers plus 
         // listen for any changes
         this.customers$ = merge(
             // Get initial
-            this.customersService.getAll(),
+            await this.customersService.getAll(),
             // Capture any changes to the store
             this.customersService.stateChanged.pipe(
                 map(state => {
@@ -37,23 +35,22 @@ export class CustomersComponent implements OnInit {
             ));
     }
     
-    deleteCustomer(id: number) {
+    async deleteCustomer(id: number) {
         if (id) {
-          this.customersService.delete(id).subscribe(() => {
+          (await this.customersService.delete(id)).subscribe(() => {
           });
         }
       }
 
-    addCustomer() {
+      async addCustomer() {
          
-        const customer: Customer = {
+        const customer: any = {
             id: Date.now(),
             name: 'John' +Date.now(),
-            city: 'Doe'+ Date.now(),
-            orderTotal: Math.random() * 10
-          };
+            city: 'City of '+ Date.now()
+        };
 
-          this.customersService.add(customer).subscribe(() => {
+         (await  this.customersService.add(customer)).subscribe(() => {
         });
         
       }

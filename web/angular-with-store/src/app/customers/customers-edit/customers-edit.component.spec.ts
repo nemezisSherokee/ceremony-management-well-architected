@@ -1,3 +1,4 @@
+// import { Customer } from './../../API.service';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, ParamMap, Router } from '@angular/router';
@@ -16,7 +17,7 @@ describe('Customer Edit component', () => {
     let snapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot();
     
 	beforeEach(() => {
-    service = new CustomersService(http);
+    service = new CustomersService();
 		component = new CustomersEditComponent(service, router, formBuilder, route);
 	});
 
@@ -27,19 +28,22 @@ describe('Customer Edit component', () => {
 			{ id: 3, name: 'c', city:'ce', orderTotal:45},
 		];
 
-        let customer = { id: 1, name: 'a', city:'ae', orderTotal:45 }
+        let customer = {
+            data:{getCustomer:
+            { id: 1, name: 'a', city:'ae', orderTotal:45 }}}
       
 		spyOn(service, 'getAll').and.callFake(() => {
 			return of<Customer[]>(customers);
 		});
 
-        spyOn(service,'get').and.callFake(function(arg) {
-            if (arg === 10){
-                return of(customer);
-            } else {
-                return of(customer);
-            }
-        });
+        // spyOn(service,'get').and.callFake(function(arg) {
+        //     if (arg === 10){
+        //         return of(customer);
+        //     } else {
+        //         return of(customer);
+        //     }
+        // });
+        spyOn(service,'get').and.returnValue(Promise.resolve(of(customer)));
 
         route.snapshot = snapshot;
 		component.ngOnInit(); 
@@ -48,8 +52,16 @@ describe('Customer Edit component', () => {
     //     expect(data).toEqual(heroes);
     //   }
     // )
+    // expect(service.get).toHaveBeenCalledWith('null');
 
-    expect(component.customer).toBe(customer);
+    // expect(component.customer).toBe((customer as any).data.getCustomer);
+    // expect(component.customer).toEqual((customer as any).data.getCustomer);
+    component.ngOnInit().then((result) => {
+        // expect(service.get).toHaveBeenCalledWith('null');
+        expect(component.customer).toEqual((customer as any).data.getCustomer);
+        // expect(result).toEqual(promisedData);
+        // done();
+      });
 });
 
   
