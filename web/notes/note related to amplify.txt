@@ -40,6 +40,16 @@ every resolver need a datasource to communicate with. Adding function to Project
 4 - Create Request and Response Resolver in Path :  amplify\backend\api\cmwaapi\resolvers\Query.echo.req.vtl and Query.echo.res.vtl 
 5 - Create a Role Resource giving Appsync the right to access and call the referenced Lambda function in 1. amplify\backend\api\cmwaapi\stacks\CustomResources.json
 
+Important links to this topic:
+https://medium.com/@joshua.a.kahn/building-aws-appsync-pipeline-resolvers-with-aws-cloudformation-d57d648ecd34
+https://amplify-sns.workshop.aws/en/80_e2e_test/00_-cypress.html
+https://docs.amplify.aws/cli/graphql-transformer/resolvers/#add-a-custom-resolver-that-targets-a-dynamodb-table-from-model
+
 our Amplify project curently has 3 function: NodeJs function and java function
 
 create a new env to test the function remote
+
+- git checkout -b test_function_remote
+- amplify add env test_function_remote
+- amplify push 
+

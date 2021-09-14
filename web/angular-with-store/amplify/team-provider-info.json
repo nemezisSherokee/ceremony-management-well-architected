@@ -15,9 +15,6 @@
       "function": {
         "getGuestCount": {
           "larySherokee": "85"
-        },
-        "quarkusjavafunction": {
-          "nemezis": "SHEROKEE"
         }
       }
     }
@@ -33,6 +30,32 @@
       "StackName": "amplify-angularwithstore-apiupdate-145428",
       "StackId": "arn:aws:cloudformation:eu-central-1:467546108131:stack/amplify-angularwithstore-apiupdate-145428/3c6d1b00-1236-11ec-a6e5-020d8ca88a26",
       "AmplifyAppId": "dmyvb5u113309"
+    }
+  },
+  "remotefx": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-angularwithstore-remotefx-154417-authRole",
+      "UnauthRoleArn": "arn:aws:iam::467546108131:role/amplify-angularwithstore-remotefx-154417-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::467546108131:role/amplify-angularwithstore-remotefx-154417-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-angularwithstore-remotefx-154417-deployment",
+      "UnauthRoleName": "amplify-angularwithstore-remotefx-154417-unauthRole",
+      "StackName": "amplify-angularwithstore-remotefx-154417",
+      "StackId": "arn:aws:cloudformation:eu-central-1:467546108131:stack/amplify-angularwithstore-remotefx-154417/dad9ca80-1561-11ec-a5d4-0ab7cbfcdcf0",
+      "AmplifyAppId": "dmyvb5u113309"
+    },
+    "categories": {
+      "function": {
+        "getGuestCount": {
+          "larySherokee": "85",
+          "deploymentBucketName": "amplify-angularwithstore-remotefx-154417-deployment",
+          "s3Key": "amplify-builds/getGuestCount-3576316a376734715749-build.zip"
+        },
+        "javatestfunction": {
+          "deploymentBucketName": "amplify-angularwithstore-remotefx-154417-deployment",
+          "s3Key": "amplify-builds/javatestfunction-3075354352544f496341-build.zip"
+        }
+      }
     }
   }
 }

@@ -67,7 +67,7 @@
                   "Resource": [
                     {
                       "Fn::Sub": [
-                        "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:echofunction-${env}",
+                        "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:javatestfunction-${env}",
                         { "env": { "Ref": "env" } }
                       ]
                     }
