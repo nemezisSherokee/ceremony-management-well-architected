@@ -44,6 +44,7 @@ Important links to this topic:
 https://medium.com/@joshua.a.kahn/building-aws-appsync-pipeline-resolvers-with-aws-cloudformation-d57d648ecd34
 https://amplify-sns.workshop.aws/en/80_e2e_test/00_-cypress.html
 https://docs.amplify.aws/cli/graphql-transformer/resolvers/#add-a-custom-resolver-that-targets-a-dynamodb-table-from-model
+https://medium.com/@jan.hesters/testing-lambda-functions-feat-amplify-c03696cd436
 
 our Amplify project curently has 3 function: NodeJs function and java function
 
