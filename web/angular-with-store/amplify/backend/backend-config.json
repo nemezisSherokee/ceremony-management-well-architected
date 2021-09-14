@@ -16,5 +16,17 @@
         }
       }
     }
+  },
+  "function": {
+    "getGuestCount": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "javatestfunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
   }
 }
