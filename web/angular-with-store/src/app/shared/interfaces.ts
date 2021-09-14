@@ -10,7 +10,7 @@ export interface UserSettings {
 
 export interface StoreState {
     customers: Customer[];
-    customer: Customer | null;
+    customer: any | null; //Customer | null;
     orders: Order[];
     userSettings: UserSettings;
 }

@@ -19,7 +19,7 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
     city: [ '', Validators.required ]
   });
 
-  customer: Customer | null = null;
+  customer: any | null = null;
   subsink = new SubSink();
 
   constructor(
@@ -27,22 +27,25 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
       private router: Router,
       private formBuilder: FormBuilder,
       private route: ActivatedRoute) { }
-
-  ngOnInit() {
-      const id = Number(this.route.snapshot.paramMap.get('id'));
-      this.subsink.sink = this.customersService.get(id).subscribe(customer => {
-        if (customer) {
-          this.customer = customer;
-          this.customerForm.patchValue(this.customer);
-        }
-      });
+ 
+  async ngOnInit() {
+      const id = String(this.route.snapshot.paramMap.get('id'));
+      (await this.customersService.get(id)).subscribe(customerAsync => {
+          if (customerAsync) {
+            this.customer = (customerAsync as any).data.getCustomer;//{}
+            // this.customer.id = (customer as any).data.getCustomer.id;
+            // this.customer.name = (customer as any).data.getCustomer.name;
+            // this.customer.city = (customer as any).data.getCustomer.city
+            this.customerForm.patchValue(this.customer);
+          }
+        });
   }
+
   addCustomer() {
-    const customer: Customer = {
+    const customer: any = {
       id: Date.now(),
       name: 'John' +Date.now(),
-      city: 'Doe'+ Date.now(),
-      orderTotal: Math.random() * 10
+      city: 'City of '+ Date.now()
     };
 
     this.add(customer);
@@ -60,25 +63,24 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  add(customer: Customer) {
-    this.customersService.add(customer).subscribe(() => {
+  async add(customer: any) {
+     (await this.customersService.add(customer)).subscribe(() => {
       this.navigateHome();
     });
   }
 
-  delete() {
+  async delete() {
     if (this.customer?.id) {
-      this.subsink.sink = this.customersService.delete(this.customer.id).subscribe(() => {
+      this.subsink.sink = (await this.customersService.delete(this.customer.id)).subscribe(() => {
         this.navigateHome();
       });
     }
   }
 
-  update(customer: Customer) {
-    this.subsink.sink = this.customersService.update(customer).subscribe(() => {
+  async update(customer: Customer) {
+    (await this.customersService.update(customer)).subscribe(() => {
       this.navigateHome();
     });
-
   }
 
   navigateHome() {

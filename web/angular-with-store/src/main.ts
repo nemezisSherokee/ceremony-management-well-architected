@@ -8,6 +8,10 @@ import { AppDevModule } from './app/app-dev.module';
 import { ObservableStore } from '@codewithdan/observable-store';
 import { ReduxDevToolsExtension } from '@codewithdan/observable-store-extensions';
 
+import Amplify from 'aws-amplify';
+import aws_exports from "./aws-exports";
+Amplify.configure(aws_exports);
+
 if (environment.production) {
   enableProdMode();
 }

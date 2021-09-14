@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o",
+    "start": "ng serve -o --port 4401  ",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~12.1.1",
     "@angular/platform-browser-dynamic": "~12.1.1",
     "@angular/router": "~12.1.1",
+    "@aws-amplify/api-graphql": "^2.2.0",
     "@codewithdan/observable-store": "^2.2.12",
     "@codewithdan/observable-store-extensions": "^2.2.9",
     "angular-in-memory-web-api": "^0.11.0",
@@ -34,6 +35,7 @@
     "rxjs": "~6.6.0",
     "subsink": "^1.0.2",
     "tslib": "^2.1.0",
+    "zen-observable-ts": "^1.1.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
