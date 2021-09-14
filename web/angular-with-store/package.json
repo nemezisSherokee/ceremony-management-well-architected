@@ -23,6 +23,8 @@
     "@codewithdan/observable-store": "^2.2.12",
     "@codewithdan/observable-store-extensions": "^2.2.9",
     "angular-in-memory-web-api": "^0.11.0",
+    "aws-amplify": "^4.2.9",
+    "aws-sdk": "^2.988.0",
     "bulma": "^0.9.3",
     "jasmine": "^3.9.0",
     "karma": "^6.3.4",
@@ -35,6 +37,7 @@
     "rxjs": "~6.6.0",
     "subsink": "^1.0.2",
     "tslib": "^2.1.0",
+    "uuid": "^8.3.2",
     "zen-observable-ts": "^1.1.0",
     "zone.js": "~0.11.4"
   },

@@ -28,3 +28,18 @@ mocking amplify locally:
 	https://github.com/aaronshaf/dynamodb-admin/issues/52
 	https://github.com/aaronshaf/dynamodb-admin
 	https://www.gravitywell.co.uk/insights/how-to-use-your-mocked-dynamodb-with-appsync-and-lambda/
+
+----------------
+Adding function to Amplify Project
+
+every resolver need a datasource to communicate with. Adding function to Project is as followed:
+
+1 - create the function or its get is ARN in the form  "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:echofunction-${env}" OR "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:echofunction-${env}"
+2 - create a DataSource Resource in Cloudformation template  in amplify\backend\api\cmwaapi\stacks\CustomResources.json
+3 - Create a Resolver Resource in the Cloudformation in amplify\backend\api\cmwaapi\stacks\CustomResources.json
+4 - Create Request and Response Resolver in Path :  amplify\backend\api\cmwaapi\resolvers\Query.echo.req.vtl and Query.echo.res.vtl 
+5 - Create a Role Resource giving Appsync the right to access and call the referenced Lambda function in 1. amplify\backend\api\cmwaapi\stacks\CustomResources.json
+
+our Amplify project curently has 3 function: NodeJs function and java function
+
+create a new env to test the function remote

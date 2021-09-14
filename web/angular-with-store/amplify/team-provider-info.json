@@ -10,6 +10,16 @@
       "StackName": "amplify-angularwithstore-dev-190207",
       "StackId": "arn:aws:cloudformation:eu-central-1:467546108131:stack/amplify-angularwithstore-dev-190207/83a90e20-0c0f-11ec-bad4-06453a1f0218",
       "AmplifyAppId": "dyl7ydt9ikt70"
+    },
+    "categories": {
+      "function": {
+        "getGuestCount": {
+          "larySherokee": "85"
+        },
+        "quarkusjavafunction": {
+          "nemezis": "SHEROKEE"
+        }
+      }
     }
   },
   "apiupdate": {

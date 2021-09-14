@@ -1,0 +1,20 @@
+{
+  "Resources": {
+    "LambdaFunction": {
+      "Properties": {
+        "Environment": {
+          "Variables": {
+            "NEMEZIS": {
+              "Ref": "nemezis"
+            }
+          }
+        }
+      }
+    } 
+  },
+  "Parameters": {
+    "nemezis": {
+      "Type": "String"
+    }
+  }
+}

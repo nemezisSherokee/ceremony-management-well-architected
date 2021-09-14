@@ -22,3 +22,8 @@ type Guest @model @key(name: "byCeremony", fields: ["ceremonyID", "content"]) {
   ceremony: Ceremony @connection(fields: ["ceremonyID"])
   content: String!
 }
+
+type Query {
+  getGuestcount: String @function(name: "getGuestCount-${env}")
+  echo(msg: String): String
+}

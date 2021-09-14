@@ -1,0 +1,8 @@
+{
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "nemezis",
+      "environmentVariableName": "NEMEZIS"
+    }
+  ]
+}
