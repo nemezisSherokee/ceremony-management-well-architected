@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 
+import { AmplifyUIAngularModule  } from '@aws-amplify/ui-angular';
 
 @NgModule({
   imports: [
@@ -17,7 +18,10 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    SelectButtonModule
+    SelectButtonModule,
+        /* configure app with AmplifyUIAngularModule */
+    AmplifyUIAngularModule
+
   ],
   declarations: [AppComponent, UserSettingsComponent],
   bootstrap: [AppComponent]

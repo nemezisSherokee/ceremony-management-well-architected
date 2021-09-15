@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 
 import { Customer } from '../core/model/customer';
 import { Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CustomersService } from './customers.service';
+import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
+import { Storage } from 'aws-amplify';
 
 
 @Component({
@@ -13,27 +15,48 @@ import { CustomersService } from './customers.service';
 export class CustomersComponent implements OnInit {
     title = 'Customers';
     customers$: Observable<Customer[] | undefined> = new Observable<Customer[]>();
-
-    constructor(private customersService: CustomersService
+    user: CognitoUserInterface | undefined;
+    authState!: AuthState;
+  
+    constructor(private customersService: CustomersService,
+        // private ref: ChangeDetectorRef
         ) {}
 
-    async ngOnInit() {
-        // Could do this to get initial customers plus 
-        // listen for any changes
-        this.customers$ = merge(
-            // Get initial
-            await this.customersService.getAll(),
-            // Capture any changes to the store
-            this.customersService.stateChanged.pipe(
-                map(state => {
-                    if (state) {
-                        return state.customers;
-                    }else{
-                        return []
-                    }
-                })
-            ));
+        async ngOnInit() {
+           
+           onAuthUIStateChange(  async (authState, authData) => {
+                this.authState = authState;
+                this.user = authData as CognitoUserInterface;
+                // this.ref.detectChanges();
+
+                if(authState !== 'signedin')
+                  return 
+                  this.customers$ = 
+                  merge(
+                     // Get initial
+                       await (await this.customersService.getAll())
+                     .pipe(           
+                          map(customers => {
+                           return customers;
+                       })),
+                     // Capture any changes to the store
+                     this.customersService.stateChanged.pipe(
+                         map(state => {
+                             if (state) {
+                                 return state.customers;
+                             }else{
+                                 return []
+                             }
+                         })
+                     )) 
+
+            })
+          
     }
+
+    ngOnDestroy() {
+        return onAuthUIStateChange;
+      }
     
     async deleteCustomer(id: number) {
         if (id) {
@@ -44,6 +67,13 @@ export class CustomersComponent implements OnInit {
 
       async addCustomer() {
          
+         Storage.put('test-private-mocked.txt', 'Private Content', {
+          level: 'private',
+          contentType: 'text/plain'
+         })
+        .then (result => alert(JSON.stringify(result)))
+        .catch(err => alert(err));
+
         const customer: any = {
             id: Date.now(),
             name: 'John' +Date.now(),
@@ -54,6 +84,4 @@ export class CustomersComponent implements OnInit {
         });
         
       }
-    
-
 }
