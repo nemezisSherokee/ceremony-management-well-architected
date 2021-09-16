@@ -17,39 +17,36 @@ export class CustomersComponent implements OnInit {
     customers$: Observable<Customer[] | undefined> = new Observable<Customer[]>();
     user: CognitoUserInterface | undefined;
     authState!: AuthState;
-  
+ 
     constructor(private customersService: CustomersService,
-        // private ref: ChangeDetectorRef
+         private ref: ChangeDetectorRef
         ) {}
 
         async ngOnInit() {
-           
-           onAuthUIStateChange(  async (authState, authData) => {
+          
+             onAuthUIStateChange(    async (authState, authData) => {
                 this.authState = authState;
                 this.user = authData as CognitoUserInterface;
-                // this.ref.detectChanges();
 
-                if(authState !== 'signedin')
-                  return 
-                  this.customers$ = 
-                  merge(
-                     // Get initial
-                       await (await this.customersService.getAll())
-                     .pipe(           
-                          map(customers => {
-                           return customers;
-                       })),
-                     // Capture any changes to the store
-                     this.customersService.stateChanged.pipe(
-                         map(state => {
-                             if (state) {
-                                 return state.customers;
-                             }else{
-                                 return []
-                             }
-                         })
-                     )) 
-
+                this.customers$ = 
+                merge(
+                   // Get initial
+                    await (await this.customersService.getAll())
+                    .pipe(           
+                         map(customers => {
+                          return customers;
+                      })),
+                   // Capture any changes to the store
+                   this.customersService.stateChanged.pipe(
+                       map(state => {
+                           if (state) {
+                               return state.customers;
+                           }else{
+                               return []
+                           }
+                       })
+                   )) ;
+                this.ref.detectChanges();
             })
           
     }
@@ -80,7 +77,8 @@ export class CustomersComponent implements OnInit {
             city: 'City of '+ Date.now()
         };
 
-         (await  this.customersService.add(customer)).subscribe(() => {
+         (await  this.customersService.add(customer)).subscribe((t) => {
+          // alert(JSON.stringify(t))
         });
         
       }
