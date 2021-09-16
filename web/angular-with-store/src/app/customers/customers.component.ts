@@ -67,12 +67,12 @@ export class CustomersComponent implements OnInit {
 
       async addCustomer() {
          
-         Storage.put('test-private-mocked.txt', 'Private Content', {
-          level: 'private',
-          contentType: 'text/plain'
-         })
-        .then (result => alert(JSON.stringify(result)))
-        .catch(err => alert(err));
+        //  Storage.put('test-private-mocked.txt', 'Private Content', {
+        //   level: 'private',
+        //   contentType: 'text/plain'
+        //  })
+        // .then (result => alert(JSON.stringify(result)))
+        // .catch(err => alert(err));
 
         const customer: any = {
             id: Date.now(),
