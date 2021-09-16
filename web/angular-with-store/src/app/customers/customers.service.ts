@@ -14,6 +14,7 @@ export class CustomersService extends ObservableStore<StoreState> {
 
     constructor() { 
         super({ });
+
     }
 
     private async fetchCustomers() {
@@ -41,9 +42,9 @@ export class CustomersService extends ObservableStore<StoreState> {
                 .pipe(
                     // map added to better handle extern http call
                 map(customers => {
-                    this.setState({ customers }, CustomersStoreActions.GetCustomers);
+                    // this.setState({ customers }, CustomersStoreActions.GetCustomers);
                     return customers;
-                }),
+                }), 
             catchError(this.handleError)
                 );
         }

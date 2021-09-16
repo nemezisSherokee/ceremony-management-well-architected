@@ -30,10 +30,7 @@ export class AppComponent implements OnInit {
     onAuthUIStateChange((authState, authData) => {
       this.authState = authState;
       this.user = authData as CognitoUserInterface;
-      this.ref.detectChanges();
-
-      // alert("auth")
-      
+ 
     this.userSettings$ = merge(
       this.userSettingsService.getUserSettings(),     // Get initial data
       this.userSettingsService.userSettingsChanged()  // Handle any changes
@@ -52,6 +49,7 @@ export class AppComponent implements OnInit {
             return 0;
           })
         );
+        this.ref.detectChanges();
 
 
     })

@@ -5,7 +5,7 @@ import { Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CustomersService } from './customers.service';
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
-import { Storage } from 'aws-amplify';
+import { Auth, Storage } from 'aws-amplify';
 
 
 @Component({
@@ -23,13 +23,35 @@ export class CustomersComponent implements OnInit {
         ) {}
 
         async ngOnInit() {
-          
+          // Could do this to get initial customers plus 
+          // listen for any changes
+
+          const token = await Auth.currentAuthenticatedUser();
+          this.customers$ = merge(
+              // Get initial
+              await this.customersService.getAll(),
+              // Capture any changes to the store
+              this.customersService.stateChanged.pipe(
+                  map(state => {
+                      if (state) {
+                          return state.customers;
+                      }else{
+                          return []
+                      }
+                  })
+              ));
+      }
+  
+        async sngOnInit() {
+
              onAuthUIStateChange(    async (authState, authData) => {
                 this.authState = authState;
                 this.user = authData as CognitoUserInterface;
 
                 if(authState !== 'signedin')
+                   {
                    return 
+                   }
 
                 this.customers$ = 
                 merge(
@@ -37,12 +59,14 @@ export class CustomersComponent implements OnInit {
                     await (await this.customersService.getAll())
                     .pipe(           
                          map(customers => {
+                          this.ref.detectChanges();
                           return customers;
                       })),
                    // Capture any changes to the store
                    this.customersService.stateChanged.pipe(
                        map(state => {
-                           if (state) {
+                        this.ref.detectChanges();
+                        if (state) {
                                return state.customers;
                            }else{
                                return []
