@@ -28,6 +28,9 @@ export class CustomersComponent implements OnInit {
                 this.authState = authState;
                 this.user = authData as CognitoUserInterface;
 
+                if(authState !== 'signedin')
+                   return 
+
                 this.customers$ = 
                 merge(
                    // Get initial
