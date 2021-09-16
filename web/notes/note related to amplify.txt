@@ -54,3 +54,13 @@ create a new env to test the function remote
 - amplify add env test_function_remote
 - amplify push 
 
+----------------------------------------------
+Add Local DynamoDB facility to our Amplify Project
+
+
+
+adding storage to an amplify project required auth facility to be added and pushed to the cloud.
+
+adding Auth facility is as simple as adding the reading the following page
+https://www.unimedia.tech/2020/12/12/aws-amplify-authentication-with-angular/
+

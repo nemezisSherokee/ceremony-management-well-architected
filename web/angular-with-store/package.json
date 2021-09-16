@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~12.1.1",
     "@angular/router": "~12.1.1",
     "@aws-amplify/api-graphql": "^2.2.0",
+    "@aws-amplify/ui-angular": "^1.0.24",
     "@codewithdan/observable-store": "^2.2.12",
     "@codewithdan/observable-store-extensions": "^2.2.9",
     "angular-in-memory-web-api": "^0.11.0",
