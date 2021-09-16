@@ -9,8 +9,13 @@ import { ObservableStore } from '@codewithdan/observable-store';
 import { ReduxDevToolsExtension } from '@codewithdan/observable-store-extensions';
 
 import Amplify from 'aws-amplify';
+import { Auth } from '@aws-amplify/auth';
+import { Storage } from '@aws-amplify/storage';
+
 import aws_exports from "./aws-exports";
 Amplify.configure(aws_exports);
+Auth.configure(aws_exports);
+Storage.configure(aws_exports);
 
 if (environment.production) {
   enableProdMode();

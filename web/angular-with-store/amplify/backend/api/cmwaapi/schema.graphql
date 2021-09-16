@@ -1,4 +1,4 @@
-type Customer @model {
+type Customer @model @auth(rules: [{ allow: public }]) {
   id: ID!
   name: String!
   city: String!  
@@ -6,7 +6,7 @@ type Customer @model {
   ceremonys: [Ceremony] @connection(keyName: "byCustomer", fields: ["id"])
 }
  
-type Ceremony @model @key(name: "byCustomer", fields: ["customerID"]) {
+type Ceremony @model @auth(rules: [{ allow: public }]) @key(name: "byCustomer", fields: ["customerID"]) {
   id: ID!
   title: String!
   customerID: ID!
@@ -15,10 +15,15 @@ type Ceremony @model @key(name: "byCustomer", fields: ["customerID"]) {
   guests: [Guest] @connection(keyName: "byCeremony", fields: ["id"])
 }
 
-type Guest @model @key(name: "byCeremony", fields: ["ceremonyID", "content"]) {
+type Guest @model  @auth(rules: [{ allow: public }]) @key(name: "byCeremony", fields: ["ceremonyID", "content"]) {
   id: ID!
   ceremonyID: ID!
   contact: String!  
   ceremony: Ceremony @connection(fields: ["ceremonyID"])
   content: String!
+}
+
+type Query {
+  getGuestcount: String @function(name: "getGuestCount-${env}")
+  echo(msg: String): String
 }

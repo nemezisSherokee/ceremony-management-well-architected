@@ -10,6 +10,16 @@
       "StackName": "amplify-angularwithstore-dev-190207",
       "StackId": "arn:aws:cloudformation:eu-central-1:467546108131:stack/amplify-angularwithstore-dev-190207/83a90e20-0c0f-11ec-bad4-06453a1f0218",
       "AmplifyAppId": "dyl7ydt9ikt70"
+    },
+    "categories": {
+      "function": {
+        "getGuestCount": {
+          "larySherokee": "85"
+        }
+      },
+      "auth": {
+        "angularwithstore8f2cd59e": {}
+      }
     }
   },
   "apiupdate": {
@@ -23,6 +33,44 @@
       "StackName": "amplify-angularwithstore-apiupdate-145428",
       "StackId": "arn:aws:cloudformation:eu-central-1:467546108131:stack/amplify-angularwithstore-apiupdate-145428/3c6d1b00-1236-11ec-a6e5-020d8ca88a26",
       "AmplifyAppId": "dmyvb5u113309"
+    },
+    "categories": {
+      "auth": {
+        "angularwithstorea8b8e015": {}
+      },
+      "function": {
+        "getGuestCount": {},
+        "javatestfunction": {}
+      }
+    }
+  },
+  "remoteauth": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-angularwithstore-remoteauth-203953-authRole",
+      "UnauthRoleArn": "arn:aws:iam::467546108131:role/amplify-angularwithstore-remoteauth-203953-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::467546108131:role/amplify-angularwithstore-remoteauth-203953-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-angularwithstore-remoteauth-203953-deployment",
+      "UnauthRoleName": "amplify-angularwithstore-remoteauth-203953-unauthRole",
+      "StackName": "amplify-angularwithstore-remoteauth-203953",
+      "StackId": "arn:aws:cloudformation:eu-central-1:467546108131:stack/amplify-angularwithstore-remoteauth-203953/27b9d3d0-158b-11ec-b724-0ad1fb9d7ee6",
+      "AmplifyAppId": "dmyvb5u113309"
+    },
+    "categories": {
+      "function": {
+        "getGuestCount": {
+          "larySherokee": "85",
+          "deploymentBucketName": "amplify-angularwithstore-remoteauth-203953-deployment",
+          "s3Key": "amplify-builds/getGuestCount-4a4e536f645250784659-build.zip"
+        },
+        "javatestfunction": {
+          "deploymentBucketName": "amplify-angularwithstore-remoteauth-203953-deployment",
+          "s3Key": "amplify-builds/javatestfunction-44634633506f53705039-build.zip"
+        }
+      },
+      "auth": {
+        "angularwithstorea8b8e015": {}
+      }
     }
   }
 }
