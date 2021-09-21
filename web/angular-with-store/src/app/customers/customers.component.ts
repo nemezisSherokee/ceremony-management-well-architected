@@ -27,6 +27,7 @@ export class CustomersComponent implements OnInit {
           // listen for any changes
 
           const token = await Auth.currentAuthenticatedUser();
+          // alert( await (await Auth.currentSession()).getAccessToken().getJwtToken())
           this.customers$ = merge(
               // Get initial
               await this.customersService.getAll(),

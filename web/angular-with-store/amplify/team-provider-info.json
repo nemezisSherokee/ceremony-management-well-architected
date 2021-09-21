@@ -15,6 +15,23 @@
       "function": {
         "getGuestCount": {
           "larySherokee": "85"
+        },
+        "angularwithstorea8b8e015DefineAuthChallenge": {},
+        "angularwithstorea8b8e015CreateAuthChallenge": {},
+        "angularwithstorea8b8e015VerifyAuthChallengeResponse": {
+          "RECAPTCHASECRET": "ngadjuiA84+g"
+        },
+        "angularwithstorea8b8e015CustomMessage": {
+          "REDIRECTURL": "",
+          "EMAILSUBJECT": "",
+          "EMAILMESSAGE": ""
+        },
+        "angularwithstorea8b8e015PostConfirmation": {
+          "GROUP": "Guests"
+        },
+        "angularwithstorea8b8e015PreSignup": {
+          "DOMAINALLOWLIST": "",
+          "DOMAINDENYLIST": ""
         }
       },
       "auth": {
@@ -66,10 +83,18 @@
         "javatestfunction": {
           "deploymentBucketName": "amplify-angularwithstore-remoteauth-203953-deployment",
           "s3Key": "amplify-builds/javatestfunction-44634633506f53705039-build.zip"
-        }
+        },
+        "AdminQueries70e988e1": {},
+        "angularwithstorea8b8e015DefineAuthChallenge": {},
+        "angularwithstorea8b8e015CreateAuthChallenge": {},
+        "angularwithstorea8b8e015VerifyAuthChallengeResponse": {},
+        "angularwithstorea8b8e015CustomMessage": {},
+        "angularwithstorea8b8e015PostConfirmation": {},
+        "angularwithstorea8b8e015PreSignup": {}
       },
       "auth": {
-        "angularwithstorea8b8e015": {}
+        "angularwithstorea8b8e015": {},
+        "userPoolGroups": {}
       }
     }
   }
