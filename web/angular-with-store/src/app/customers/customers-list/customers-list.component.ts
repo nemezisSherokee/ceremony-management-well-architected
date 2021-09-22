@@ -5,15 +5,21 @@ import { Customer } from '../../core/model/customer';
  
 @Component({
     selector: 'app-customers-list',
-    templateUrl: './customers-list.component.html'
+    templateUrl: './customers-list.component.html',
+    styleUrls: ["../../shared-styles/App.scss"]
 })
 export class CustomersListComponent implements OnInit {
     private _customers: Customer[] = [];
+
     @Input() get customers(): Customer[] {
         return this._customers;
     }
     
+    @Input() selectedCustomer: String = ""
+
+    
     @Output() onDeleteCustomer: EventEmitter<any> = new EventEmitter();
+    @Output() onSelectCustomer: EventEmitter<any> = new EventEmitter();
 
     set customers(value: Customer[]) {
         if (value) {
@@ -37,6 +43,12 @@ export class CustomersListComponent implements OnInit {
         }
       }
 
+      selectCustomer(id: String) {
+        if (id) {
+            this.onSelectCustomer.emit([id]);
+        }
+      }
+ 
     calculateOrders() {
         this.customersOrderTotal = 0;
         this.filteredCustomers.forEach((cust: Customer) => {

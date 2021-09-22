@@ -12,7 +12,10 @@ import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-ampli
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss',
+    //  "shared-styles/App.scss"
+    ]
+
 })
 export class AppComponent implements OnInit {
   customersLength$: Observable<number> = new Observable<number>();
