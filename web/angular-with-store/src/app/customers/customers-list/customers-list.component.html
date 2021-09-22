@@ -1,3 +1,23 @@
+<ul class="list-group  tilesWrap  ">
+    <li  *ngFor="let cust of filteredCustomers"
+         classs=" list-group-items "
+         [ngClass]="{'actual':selectedCustomer == cust.id, 
+             'list-group-items ':true}"
+         >
+         <a [routerLink]="['/customers', cust.id]" 
+            (click)="selectCustomer(cust.id)" 
+            >
+
+            <label class="custom-checkbox text-capitalize">
+
+                {{ cust.name  }}
+
+            </label>
+        
+        </a>
+    </li>
+</ul>
+<!-- 
 <app-filter-textbox (changed)="filter($event)"></app-filter-textbox>
 <br />
 <br />
@@ -32,4 +52,4 @@
     </tr>
 </table>
 Number of Customers: {{ filteredCustomers.length }}
-<br />
+<br /> -->

@@ -88,7 +88,7 @@ export class CustomersService extends ObservableStore<StoreState> {
         return this.fetchCustomers()
     }
 
-    private deleteLocalCustomer(id: number) {
+    private deleteLocalCustomer(id: String) {
         let customers = this.getState().customers;
         for(let i = customers.length -1; i--;){ 
             if(customers[i].id === id){ 

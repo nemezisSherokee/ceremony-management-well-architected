@@ -1,0 +1,190 @@
+$anchor-color: #FF6F61;
+$text-color: #34568B;
+$radio-text-color: #f6f8fc;
+
+$content-margin-top:20px;
+
+
+.tilesWrap {
+	margin-top:  10px;
+	list-style: none;
+
+li {
+	width: 100%;
+	padding: 5px;
+	margin: 5px 0;
+    text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    cursor: pointer;
+
+}
+
+li label {
+	color: $text-color;
+    font: 17px/20px 'Open Sans', Arial, sans-serif;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    width: 100%;
+    // padding: 5px;
+    // background: #34568B;
+    // z-index: 5;
+}
+
+li:not(.not-selectable):hover{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+    background: #f2709c;
+	background: -webkit-linear-gradient(to right, #ff9472, #f2709c);
+    background: linear-gradient(to right, #ff9472, #f2709c);
+    
+
+}
+
+li:not(.not-selectable).actual   {
+	background: #f2709c;
+	background: -webkit-linear-gradient(to right, #ff9472, #f2709c);
+    background: linear-gradient(to right, #ff9472, #f2709c);
+}  
+
+li.actual label {
+	color: white;
+    font: 17px/20px 'Open Sans', Arial, sans-serif;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+li:not(.not-selectable):hover label {
+	color: white;
+    cursor: pointer;
+}
+
+li h6, li h5{
+    color: $text-color;
+    text-align: right;
+    margin: 1px 10px;
+    opacity: 0.5;
+    font: 10px/10px 'Open Sans', Arial, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+li:hover h6, li:hover h5{
+    color: white;
+    opacity: 1;
+    text-decoration: none !important;
+}
+
+}
+
+
+.normalboxes {
+    margin-top: 25px;
+    margin-left: 0px;
+    padding: 05px;
+    text-align: left;
+  
+/*Checkboxes styles*/
+input[type="checkbox"],
+input[type="radio"] { display: none; }
+
+label, select {
+    position: relative;
+    padding-right: 5px;
+    margin-bottom: 20px;
+    max-width: 500px;
+    font: 13px/20px 'Open Sans', Arial, sans-serif;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  max-width: 500px;
+  font: 13px/20px 'Open Sans', Arial, sans-serif;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input[type="checkbox"] + label:last-child, 
+input[type="radio"] + label:last-child 
+{ margin-bottom: 0; }
+
+input[type="checkbox"] + label:before, 
+input[type="radio"] + label:before{
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #6cc0e5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+input[type="radio"] + label:before{
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #6cc0e5;
+    position: absolute;
+    border-radius:50%;
+    left: 0;
+    top: 0;
+    -webkit-transition: all .12s, border-color .08s;
+    transition: all .12s, border-color .08s;
+  }
+  
+//https://codepen.io/valerypatorius/pen/oXGMGL
+
+input[type="checkbox"]:checked + label:before,
+input[type="radio"]:checked + label:before {
+  animation: checkedmovenomal 0.1s forwards;
+  animation-delay: 0 ;
+}
+
+
+@keyframes checkedmovenomal {
+    from {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #6cc0e5;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: .6;
+        -webkit-transition: all .12s, border-color .08s;
+        transition: all .12s, border-color .08s;
+      
+    }
+    to {
+        width: 10px;
+        top: -5px;
+        left: 5px;
+        border-radius: 0;
+        opacity: 1;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      
+    }
+  }
+  
+ 
+
+}
+  

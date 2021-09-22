@@ -1,3 +1,19 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+  
+/*   
 html {
     overflow-y: scroll;
     overflow-x: hidden;
@@ -8,7 +24,7 @@ main {
     padding-top: 70px;
 }
 
-/* Ensure display:flex and others don't override a [hidden] */
+/* Ensure display:flex and others don't override a [hidden] 
 [hidden] { display: none !important; }
 
 footer {
@@ -50,4 +66,4 @@ td {
 
 .white {
     color: white;
-}
+} */

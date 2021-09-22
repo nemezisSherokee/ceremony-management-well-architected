@@ -1,0 +1,243 @@
+EPIC : Blue prints for our Angular UI
+
+US - Description: Create a angular Components that list contents a list on the left
+
+As a UI Developer 
+
+I want to have an angular component that has a list of item on the left side
+
+So That I can select every Item 
+------------------------------------------------
+
+Pre-Condition
+
+
+----------------- 
+
+Post Condition:
+
+	-	The Component must have a list
+		
+		Given an Landing page
+		I should a components that contents a list on the left side
+
+SCOPE:
+	- 	A  Angular project  is created
+	
+Attachements
+
+===========================================================================
+
+
+US - Description: Create a angular Components that displays the content of a selected list item
+
+As a UI Developer 
+
+I want to have an angular component that displays the contents of a selected list item
+
+So That I can see details 
+------------------------------------------------
+
+Pre-Condition
+
+A List of Items if displayed on the left
+
+----------------- 
+
+Post Condition:
+
+	-	The Component must display the content of the selected item
+		
+		Given a list of item s
+		When I Click on an Item 
+		Then I can se the details of the selected item 
+
+SCOPE:
+	- 	A  Angular project  is created
+	-   at least 2 components are created
+	
+Attachements
+
+===========================================================================
+
+
+US - Description: Create a angular Components that displays some opetarions that I can do on ITem
+
+As a UI Developer 
+
+I want to have an angular component that displays a list of operations that can be done on some components
+
+So That I can see start some usecases 
+------------------------------------------------
+
+Pre-Condition
+
+A List of Items if displayed on the left
+
+----------------- 
+
+Post Condition:
+
+	-	The Component must display a list of operations that can be done on some components
+		
+		Given a container component
+		I can see native opetation on component (eg.g adding new item)  
+		
+	-	The Component must display a list of operations that can be applied on a selected component
+		
+		Given a list of item 
+		When I select a item
+		Then some operation of this item should be activated (eg.g editing, deleting...)  
+
+
+SCOPE:
+	- 	A  Angular project  is created
+	-   at least 3 components are created
+	-   Operations must actived depending on selected components
+	
+Attachements
+
+
+===========================================================================
+
+
+US - Description: Create a angular Pagination component that helps chose which page to display in a list
+
+As a UI Developer 
+
+I want to have an Pagination component 
+
+So That I can navitage through pages of a list 
+------------------------------------------------
+
+Pre-Condition
+
+A List of Items if displayed
+
+----------------- 
+
+Post Condition:
+
+	-	The Pagination Component must display a fix number of item in a select page
+		
+		Given a List of items
+		When I Click on a page
+		I can see the elements of this page  
+		
+	-	The Pagination Page size can be changed
+		
+		Given a List of items
+		When I change the page size of the item list
+		I must see the first page with the new item count displayed 
+
+
+SCOPE:
+	
+Attachements
+
+===========================================================================
+
+
+US - Description: Create a angular ADD component that helps create a new item
+
+As a UI Developer 
+
+I want to have an ADD component 
+
+So That I can ADD a new Item
+------------------------------------------------
+
+Pre-Condition
+
+A List of Items if displayed
+
+----------------- 
+
+Post Condition:
+
+	-	The Component must display usercontrol to add some value
+		
+		Given a UI Component
+		When I add value to the user control add click save
+		I can see the new elements added to actuall item list
+		
+
+SCOPE:
+	
+Attachements
+
+
+===========================================================================
+
+
+US - Description: Create a angular Edit component that helps edit a existing item
+
+As a UI Developer 
+
+I want to have an EDIT component 
+
+So That I can EDIT an existing Item
+------------------------------------------------
+
+Pre-Condition
+
+A List of Items if displayed
+
+----------------- 
+
+Post Condition:
+
+	-	The Component must display usercontrol to add some value
+		
+		Given a selected Element
+		When I click on EDIT button
+		I can see the selected element displayed in a editable fashion
+		
+
+	-	The Edited  element must change its value
+		
+		Given a selected Element
+		When I click on SAVE button
+		I can see the modified element displayed the item list
+SCOPE:
+	
+Attachements
+
+
+
+===========================================================================
+
+
+US - Description: Create a angular CONFIRM Deleted component that confirming the deletion of an item
+
+As a UI Developer 
+
+I want to have a delete confirmation component 
+
+So That I confirm if a need to delete an item or not
+------------------------------------------------
+
+Pre-Condition
+
+- A List of Items if displayed
+- A Selected Element must be displayed
+----------------- 
+
+Post Condition:
+
+	-	The Component must be displed
+		
+		Given a selected Element
+		When I click on Delete button
+		I can see the Confirmation Dialog that asks if a want to deleted an item or not
+		
+
+	-	The deleted item must disapear
+		
+		Given an item to be deleted
+		When I confirm the deletion
+		I The item must be deleted and should disapear from the view list
+SCOPE:
+	
+Attachements
+
