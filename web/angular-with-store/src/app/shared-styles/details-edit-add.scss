@@ -1,0 +1,287 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:wght@300;400;500;600;700&display=swap');
+
+$anchor-color: #FF6F61;
+$text-color: #34568B;
+$button-text-color: #f6f8fc;
+
+$content-margin-top:20px;
+
+:root {
+    --headlinesFont-Detail: 'Jost', sans-serif;
+    --bodyFont-Detail: 'Work Sans', sans-serif;
+    // --wildWatermelon-Detail: #ff4f87;
+    --wildWatermelon-Detail: #d6d6d6;
+    --fuelYellow-Detail: #f0a035;
+    --textColor-Detail: #323232;
+    --bodyBg-Detail: #d6d6d6;
+    --white-Detail: #fff;
+    --white-Detail: transparent;
+    --black-Detail: #000;
+}
+
+@mixin poCentering {
+    // top: 50%;
+    // right: 50%;
+    // bottom: 50%;
+    // left: 0%;
+    // position: absolute;
+    // -webkit-transform: translate(-50%, -50%);
+    // transform: translate(-50%, -50%);
+}
+ 
+.verticalSpace{
+    margin-top: 5rem;
+}
+
+.verticalSpaceMedium{
+    margin-top: 2rem;
+}
+
+
+.no-wrap{
+white-space: nowrap;
+}
+   
+a {
+    color: $text-color;
+    text-decoration: none;
+}
+
+.ft-recipe {
+    // width: 0%;
+    height: 50%;
+    background: var(--white-Detail);
+    display: flex;
+    flex-direction: column;
+    // box-shadow: 0 0 88px 0 rgba(0, 0, 0, 0.1607843137254902);
+    overflow: visible;
+    color: $text-color;
+    @include poCentering;
+    .ft-recipe__thumb {
+        position: relative;
+        height: 281px;
+        box-shadow: 0px 0px 130px 0 rgba(0, 0, 0, 0.38);
+    }
+    .ft-recipe__content {
+        flex: 1;
+        // padding: 0 2em 1em;
+        .content__header {
+            .row-wrapper {
+                display: flex;
+                // padding: .55em 0 .3em;
+                border-bottom: 1px solid #d8d8d8;
+                .recipe-title {
+                    // font-family: var(--headlinesFont-Detail);
+                    font: 15px/25px 'Open Sans', Arial, sans-serif;
+                    // font-weight: 600;
+                    letter-spacing: 0.5px;
+
+                }
+             }
+            .recipe-details {
+                display: flex;
+                list-style: none;
+                // padding-top: .4em ;
+                // padding-bottom: .4em ;
+                justify-content: space-evenly;
+                // background: #f0a035;
+                padding-left: 0px;
+                .recipe-details-item {
+                    // background: #BEBEBE;
+                    margin-left: 10px;
+                    // flex: 1;
+                    i {
+                        font-size: 30px;
+                    }
+                    text-align: center;
+                    .value {
+                        color: $anchor-color;//#ff4f87;
+                        // margin: auto;
+                         vertical-align: bottom;
+                        text-align: center;
+                        font: {
+                            size: 24px;
+                            weight: 500;
+                        }
+                    }
+                    .title {
+                        display: block;
+                        // margin-top: 4px;
+                        // text-align: left;
+                        font: 15px/20px 'Open Sans', Arial, sans-serif;
+                        letter-spacing: 0.5px;
+                            // font: {
+                        //     // family: var(--headlinesFont-Detail);
+                        //     // size: 21px;
+                        //     weight: 300;
+                        // }
+                    }
+                }
+            }
+
+        }
+        .description {
+            margin: .3em 0 .8em;
+            font-size: 17px;
+        }
+        .content__footer {
+            // text-align: justify;
+            // // margin: 0 0 rem;
+            // display: inline;
+            // margin-right: 1rem;
+            white-space: nowrap;
+
+            a{
+
+                background: #FF6F61;
+                display: block;
+                color: $button-text-color;
+                border: 0.1px solid $text-color;
+                letter-spacing: 0.1px;
+                text-align: center;
+                padding: 5px 5px;
+                left: 0;
+                cursor: pointer;
+                text-decoration: none;
+                font: 15px/25px 'Open Sans', Arial, sans-serif;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+                border-radius: 5px;
+                transition: transform 250ms ease, 
+                            box-shadow 250ms ease;
+                &:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 10px 34px 0 d6d6d6;
+                    text-decoration: none !important;
+              
+                }
+
+            }
+
+            input[type=submit],  input[type=button] {
+
+                background: #FF6F61;
+                display: block;
+                color: $button-text-color;
+                border: 0.1px solid $text-color;
+                letter-spacing: 0.1px;
+                text-align: center;
+                padding: 5px 5px;
+                left: 0;
+                cursor: pointer;
+                text-decoration: none;
+                font: 15px/25px 'Open Sans', Arial, sans-serif;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+                border-radius: 5px;
+                transition: transform 250ms ease, 
+                            box-shadow 250ms ease;
+                &:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 10px 34px 0 d6d6d6;
+                    text-decoration: none !important;
+              
+                }
+
+                 
+            }
+        }
+    }
+
+}
+
+.form-style-1 {
+	margin: auto;
+	smax-width: 400px;
+	padding: 0px 0px 0px 0px;
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    /* border: 1px rgb(172, 160, 160) solid; */
+}
+.form-style-1 li {
+	padding: 0;
+	display: block;
+	list-style: none;
+    margin: 10px 0 0 0;
+
+}
+.form-style-1 label{
+	margin:0 0 3px 0;
+	padding:0px;
+	display:block;
+	font-weight: bold;
+}
+.form-style-1 input[type=text], 
+.form-style-1 input[type=date],
+.form-style-1 input[type=datetime],
+.form-style-1 input[type=number],
+.form-style-1 input[type=search],
+.form-style-1 input[type=time],
+.form-style-1 input[type=url],
+.form-style-1 input[type=email],
+.form-style-1 input[type=password],
+textarea, 
+select{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border:1px solid #BEBEBE;
+	padding: 7px;
+	margin:0px;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;	
+}
+.form-style-1 input[type=text]:focus, 
+.form-style-1 input[type=date]:focus,
+.form-style-1 input[type=datetime]:focus,
+.form-style-1 input[type=number]:focus,
+.form-style-1 input[type=search]:focus,
+.form-style-1 input[type=time]:focus,
+.form-style-1 input[type=url]:focus,
+.form-style-1 input[type=email]:focus,
+.form-style-1 input[type=password]:focus,
+.form-style-1 textarea:focus, 
+.form-style-1 select:focus{
+	-moz-box-shadow: 0 0 8px #88D5E9;
+	-webkit-box-shadow: 0 0 8px #88D5E9;
+	box-shadow: 0 0 8px #88D5E9;
+	border: 1px solid #88D5E9;
+}
+.form-style-1 .field-divided{
+	width: 49%;
+}
+
+.form-style-1 .field-long{
+	width: 100%;
+}
+.form-style-1 .field-select{
+	width: 100%;
+}
+.form-style-1 .field-textarea{
+	height: 100px;
+}
+/* .form-style-1 input[type=submit], .form-style-1 input[type=button]{
+	background: #c8cecf;
+	padding: 8px 15px 8px 15px;
+	border: none;
+    color: #fff;
+    width: 50%;
+}
+.form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+	background: #757879;
+	box-shadow:none;
+	-moz-box-shadow:none;
+	-webkit-box-shadow:none;
+} */
+.form-style-1 .required{
+	color:red;
+}
+
+ .required{
+	color:red;
+}
+
+//////END DETAILS-ADD-EDIT CSS

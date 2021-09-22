@@ -1,0 +1,456 @@
+$body-bg: #fff;
+$anchor-color: #FF6F61;
+$text-color: #34568B;
+$button-text-color: #f6f8fc;
+
+$content-margin-top:20px;
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+html{ height:100%; }
+body{ min-height:100%; padding:0; margin:0; position:relative; 
+  // background: rgb(75, 62, 62);
+  overflow-x: hidden;
+ }
+
+footer{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:100px;
+}
+
+$body-bg: #000;
+
+.div-content{
+  height: 90%;
+  width: 100%;
+  background: transparent;
+  position: relative;
+  top: 10%;
+}
+
+#main1{
+  height: 95vh;
+  margin-left: 0px;
+}
+
+.topBottomMargin{
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+.topButtomSpacing{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.setAtBottom{
+  position: absolute;
+  bottom: 0px;
+}
+
+.setAtTop{
+  position: absolute;
+  top: 0px;
+}
+
+.fullHeight{
+  //height: 100%;
+}
+
+.fullWidth{
+  width: 100%;
+}
+
+.fullBorder{
+    // border: 1px solid rgb(243, 239, 239);
+    border-radius: 1px;
+}
+
+.noPadding{
+  padding: 0 !important;
+}
+
+.noMarginLeft{
+  margin-left: 0 !important;
+}
+.noPaddingTop{
+  padding-top: 0;
+}
+.paddingContent{
+  padding: 0px;
+}
+
+.paddingContentRight{
+  padding-right: 10px;
+}
+
+.paddingContentLeft{
+  padding-left: 10px;
+}
+
+.center {
+  margin-left: auto;
+  align-content: space-between;
+  text-align: center;
+}
+
+.page-container{
+  background: red;
+  padding: 0px;
+  width: 100%;
+}
+.secondHeader{
+  height: 15%;
+  margin: 0px 0px;
+}
+
+.pageContent{
+  height: 75%;
+  margin: 0px 0px;
+}
+
+.verticalLineEnd{
+  border-right: 1px solid rgb(70, 55, 55);
+}
+
+.padding15{
+  padding: 15px;
+}
+
+.marginTop15{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.gradient-box-vertical {
+  border-width: 1px;
+  border-style: groove;
+  min-height: 120%;
+  border-image: 
+    linear-gradient(
+      to bottom, 
+    #FF6F61, 
+      rgb(243, 239, 239)
+    ) 1 100%;
+}
+ 
+
+// GRADIENT HEADER LINE
+
+.gradient-line {
+  height: auto;
+  position: relative;
+  width: 100%;
+  background: radial-gradient(ellipse farthest-side at top center, rgba(0,0,0,0.08), transparent);
+}
+.gradient-line:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(0,0,0,0.02)), color-stop(rgba(0,0,0,0.02)), to(transparent));
+  background: linear-gradient(left, transparent, rgba(0,0,0,0.02), rgba(0,0,0,0.02), transparent);
+}
+
+// GRADIENT DESCRIPTION LINE
+
+.divider {								/* minor cosmetics */
+  // font-size: 24px; 
+  text-align: left; 
+  // width: 75%; 						/* divider width */
+  margin-left: 10px ;					/* spacing above/below */
+  font: 18px/25px 'Open Sans', Arial, sans-serif;
+  color: $text-color;
+  letter-spacing: 1px;
+  font-weight: 500;
+
+}
+
+@import './toolbar';
+
+
+/////DETAILS-ADD-EDIT CSS
+@import './details-edit-add';
+
+@import './breadcrumbs';
+ 
+@import './progressbar.css';
+@import './playpause.scss';
+@import './welcome.scss';
+@import './text.scss';
+
+@import './filter.scss';
+@import './pagination.scss';
+@import './buttonoverlay.scss';
+
+///////RADIO
+ 
+.list-group label, .explains p, .explanations p{
+  font-size: 20px;
+  font-weight: 400;
+  margin: 15px;
+  text-decoration: none !important;;
+
+}
+
+.explains p, .explanations p{
+  max-width: 90%;
+  margin-left: 0px;
+  text-decoration: none;
+
+}
+
+.custom-checkbox__span{
+  height: 20px;
+  width: 20px;
+  margin-left: -10px;
+  text-decoration: none;
+
+}
+
+ul NavLink{
+  height: 0px;
+  text-decoration: none;
+
+}
+
+ul .list-group-item-question-list{
+  // width: 98%;
+  margin-left: 10px;
+  // margin-top: 10px;
+  // text-decoration: none;
+
+
+  margin:0px 1px !important;
+  width: 98% !important;
+  border: none !important;
+  border-top:1px solid #e3e8eb !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-radius: 1px;
+
+}
+
+ul .list-group-item{
+  width: 98%;
+  margin-left: 10px;
+  margin-top: 10px;
+  text-decoration: none;
+
+}
+
+ul .list-group-item-content{
+  margin-left: 10px !important;
+  margin-top: 10px !important;
+  text-decoration: none !important;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+  border:1px solid #e3e8eb !important;
+  text-decoration: none !important;
+
+}
+ul .list-group-item-content .custom-checkbox:hover {
+  text-decoration: none !important;
+ 
+}
+
+
+.elipsislabel{
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 0;
+  padding-left: 0;
+  text-decoration: none;
+  cursor: pointer;
+  text-decoration: none !important;
+
+}
+
+
+.quizzCounter{
+  padding-top: 10px;
+  border: 1px $anchor-color solid;
+  border: 1px dashed $text-color;
+
+}
+
+.displayresult{
+  margin-left: 2px;
+  // box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  margin-top: -30px;
+}
+ 
+.result:nth-of-type(2n+0) {
+  background-color: rgb(226, 222, 222)   
+}
+
+.result:nth-of-type(2n+1) {
+  background-color: rgba(255, 255, 255, 0.603);   
+  // border: 3px solid  rgba(231, 229, 229, 0.603);   
+  padding: 30px 0;
+  text-decoration: none;
+
+}
+  
+.not-selectable-li{
+  //background: #666;
+  width: 100%;
+}
+
+ 
+
+.custom-ui {
+  text-align: center;
+  width: 500px;
+  padding: 40px;
+  background: #28bae6;
+  background: $anchor-color;
+  box-shadow: 0 20px 75px rgba(0, 0, 0, 0.23);
+  color: #fff;
+  opacity: 0.8;
+}
+
+.custom-ui > h1 {
+  margin-top: 0;
+}
+
+
+.custom-ui > button {
+  width: 160px;
+  padding: 10px;
+  border: 1px solid #fff;
+  margin: 10px;
+  cursor: pointer;
+  background: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+
+
+// confirm alert
+
+body.react-confirm-alert-body-element {
+  //overflow: hidden;
+}
+
+.react-confirm-alert-blur {
+  filter: url(#gaussian-blur);
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+}
+ 
+.react-confirm-alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background: rgba(255, 255, 255, 0.9);
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: center;
+  -ms-align-items: center;
+  align-items: center;
+  opacity: 0;
+  -webkit-animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
+  -moz-animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
+  -o-animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
+  animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
+}
+
+.react-confirm-alert-body {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 400px;
+  padding: 30px;
+  text-align: left;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 20px 75px rgba(0, 0, 0, 0.13);
+  color: #666;
+}
+
+.react-confirm-alert-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.react-confirm-alert-body > h1 {
+  margin-top: 0;
+}
+
+.react-confirm-alert-body > h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.react-confirm-alert-button-group {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.react-confirm-alert-button-group > button {
+  outline: none;
+  background: #333;
+  border: none;
+  display: inline-block;
+  padding: 6px 18px;
+  color: #eee;
+  margin-right: 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+@-webkit-keyframes react-confirm-alert-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes react-confirm-alert-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes react-confirm-alert-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes react-confirm-alert-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

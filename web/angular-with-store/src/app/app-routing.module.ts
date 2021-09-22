@@ -5,6 +5,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'settings' },
   { path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) },
+  { path: 'customers/:id', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) },
   { path: 'orders/:id', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) },
   { path: 'settings', component: UserSettingsComponent }
 ];

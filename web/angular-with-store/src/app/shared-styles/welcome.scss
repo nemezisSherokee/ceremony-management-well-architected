@@ -1,0 +1,517 @@
+$default-width: 100vw;
+$default-height: 100vh;
+$default-height-left-message-part:100vh;
+$default-height-left-message-part-115:120vh;
+$default-height-message-part: 68vh;
+$default-padding-message-part: 0vh;
+$default-margin-message-part: 0vh;
+$default-bgcolor-message-part: yellow;
+$default-bgcolor-message-div-part: white;
+$default-padding: 75px;
+$header-height: 10%;
+$header-height-inverse: -$header-height;
+
+$margin-default:0px;
+$border-color: transparent;
+$border-width: 1px;
+$bg-color: transparent;
+
+$time-to-display: 3s;
+$slideTotalDuration: 20s;
+$content-margin-left:25px;
+
+$text-color: #f5f5f5;
+$emphasis-color: #ccc;
+$link-color: #D6D600;
+ 
+.header{
+	position: fixed;
+	top:0px;
+	width:99%;
+	height: $header-height;
+	background: $bg-color;
+	z-index:10;
+    border: $border-width $border-color solid;
+}
+
+.logo{
+    position: fixed;
+    display: inline;
+    padding-top: $content-margin-left;
+    padding-left: 30px;
+
+    .logo-img{
+        width: 150px;
+    }
+
+}
+
+.carousel .slide{ background-color: none; background: none; }
+
+.menu{
+    right: 30px;
+    margin-top: 20px;
+    position: fixed;
+    font: 20px/45px 'Open Sans', Arial, sans-serif;
+    z-index: 10;
+}
+
+
+.fixtitle{
+    color:white;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    padding: 10px;
+    padding-left: $content-margin-left;    
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font: 18px/20px 'Open Sans', Arial, sans-serif;
+
+    >label{
+        font-weight: lighter;
+        font-size: 0.7em;
+        text-transform: none;
+
+    }
+}
+.fixtitle-example-question{
+    color:white;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+    padding: 10px;
+    font: 18px/20px 'Open Sans', Arial, sans-serif;
+    >label{
+        font-weight: lighter;
+        font-size: 0.4em;
+        text-transform: none;
+
+    }
+}
+
+.message-to-display{
+	position:absolute;
+	left:10%;
+	// height:$default-height-left-message-part;
+	width:75%;
+	top: 11%;
+	border: $border-width $border-color solid;
+    font: 18px/20px 'Open Sans', Arial, sans-serif;
+    // background-color: $default-bgcolor-message-part;
+
+}
+.first-slide{
+    background-color: #294f63;
+    // background: wheat;
+}
+
+.first-slide-left, .second-slide-left, .third-slide-left {
+    //background-color: #294f63;
+    //  background:transparent;
+}
+
+.first-slide-right{
+    background-color: #0f4256;
+}
+
+.second-slide{
+    background-color: #88B04B;
+
+}
+
+.second-slide-right{
+    background-color:#6B5B95;
+}
+
+.third-slide{
+    background-color: #F7CAC9;
+
+}
+
+.third-slide-right{
+    background-color: #FF6F61;
+}
+
+.welcome{
+    margin: 0;
+    
+    > div{
+        padding: 0px;
+        background-color: transparent;
+    }
+
+    .my-slide {
+		//display: flex;
+		align-items: flex-start;
+	  	justify-content: center;
+	  	text-align: center;
+        height: $default-height-message-part;
+        padding: $default-padding-message-part;
+        line-heigsht: 1.5;
+        padding: 0px;
+		font-size: 1.5em;
+        color: $text-color;
+        border:$border-width $border-color solid;
+        margin: $margin-default;
+        margin-top: 0px;
+        width: 100%;
+        // background: $default-bgcolor-message-div-part;
+		 h2, h3, h4, h5, h6, p, ul, ol {
+			border: 0;
+			margin: 10px auto;
+			padding: 0;
+			display: inline-block;
+			width: 100%;
+        }
+
+        
+
+        h1{
+            font-weight: bolder;
+            font-size: 1.2em;
+            text-align: left;
+            margin-left: $content-margin-left;
+            margin-top: 110px;
+            color: $text-color;
+            font-family: sans-serif;
+
+            letter-spacing: 2px;
+            transition: all .5s;
+            font: 45px/55px 'Open Sans', Arial, sans-serif;
+        }
+        .question-content{
+            position: absolute;
+            left: 80px;
+            top: 80px;
+            line-height: 22px;
+            font-size: 18px;
+            letter-spacing: 0px;
+            font: 25px/25px 'Open Sans', Arial, sans-serif;
+            margin-left: 0px;
+            text-align: left;
+            
+            .question1{
+                animation: mymove 5s forwards;
+                animation-delay: $time-to-display;
+                display: block;
+                opacity: 0;     
+            }
+            .question2{
+                animation: mymove 5s forwards;
+                animation-delay: 2*$time-to-display;
+                display: block;
+                opacity: 0;     
+            }
+            .question3{
+                animation: mymove 5s forwards;
+                animation-delay: 3*$time-to-display;
+                display: block;
+                opacity: 0;     
+            }
+            .question4{
+                animation: mymove 5s forwards;
+                animation-delay: 4*$time-to-display;
+                display: block;
+                opacity: 0;     
+            }
+        
+        }
+
+    }
+
+    .my-slide-left {
+		display: blocks;
+		align-items: sflex-start;
+	  	justify-content: center;
+	  	text-align: center;
+        max-height: $default-height-message-part;
+        height: 100%;
+        padding: $default-padding-message-part;
+        padding-bottom: 50px;
+		font-size: 1.5em;
+        color: $text-color;
+        border:$border-width $border-color solid;
+        margin: $margin-default;
+        margin-top: 0px;
+        width: 100%;
+        //background: transparent;
+        // border: 1px red solid;
+		 h2, h3, h4, h5, h6, p, ul, ol {
+			border: 0;
+			margin: 10px auto;
+			padding: 0;
+			display: inline-block;
+			width: 100%;
+        }
+ 
+        h1{
+            font-weight: bolder;
+            font-size: 1.2em;
+            text-align: left;
+            margin-left: $content-margin-left;
+            margin-top: 110px;
+            color: $text-color;
+            font-family: sans-serif;
+
+            letter-spacing: 2px;
+            transition: all .5s;
+            font: 45px/55px 'Open Sans', Arial, sans-serif;
+        }
+        .question-content{
+            position: absolute;
+            left: 80px;
+            top: 80px;
+            line-height: 22px;
+            font-size: 18px;
+            letter-spacing: 0px;
+            font: 25px/25px 'Open Sans', Arial, sans-serif;
+            margin-left: 0px;
+            text-align: left;
+            
+            .question1{
+                animation: mymove 5s forwards;
+                animation-delay: $time-to-display;
+                display: block;
+                opacity: 0;     
+            }
+            .question2{
+                animation: mymove 5s forwards;
+                animation-delay: 2*$time-to-display;
+                display: block;
+                opacity: 0;     
+            }
+            .question3{
+                animation: mymove 5s forwards;
+                animation-delay: 3*$time-to-display;
+                display: block;
+                opacity: 0;     
+            }
+            .question4{
+                animation: mymove 5s forwards;
+                animation-delay: 4*$time-to-display;
+                display: block;
+                opacity: 0;     
+            }
+        
+        }
+
+    }
+
+    .leftdivcontainer {
+         margin-top: -15%;
+        //margin-top: 0%;
+    }
+    
+    .leftdivcontainer .my-slide {
+        height: $default-height-left-message-part-115;
+        margin: $margin-default;
+    }
+}
+
+.checkboxgroup{
+    width: 20em;
+    overflow: auto;
+}
+.checkboxgroup p{
+    width: 7em;
+    text-align: right;
+}
+.checkboxgroup label{
+    width: 12em;
+    float: right;
+}
+
+
+@keyframes mymove {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+
+
+
+
+.button{
+    display: block;
+    line-height: 22px;
+    font-size: 18px;
+    font-family: sans-serif;
+    color: $text-color;
+    border: 2px solid $text-color;
+    letter-spacing: 3px;
+    text-align: center;
+    transition: all .35s;
+    padding: 15px 45px;
+    position: relative;
+    z-index: 200;
+    bottom: 10px;
+    // margin: auto;
+    margin-top: 80px;
+    margin-bottom: 0px;
+     left: $content-margin-left;
+     left:0;
+    cursor: pointer;
+    text-decoration: none;
+    font: 12px/25px 'Open Sans', Arial, sans-serif;
+    max-width: 80%;
+  }
+ 
+  .sbutton:after{
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition: all .5s;
+  
+  }
+  
+  .button:hover{
+    color: $text-color;
+      border-right: 5px solid $text-color;
+      border-bottom: 5px solid $text-color;
+        text-decoration: none !important;
+  }
+  
+.boxes {
+    margin-top: 25px;
+    margin-left: 0px;
+    padding: 05px;
+    text-align: left;
+  
+/*Checkboxes styles*/
+input[type="checkbox"] { display: none; }
+
+input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 30px;
+  max-width: 500px;
+  font: 16px/20px 'Open Sans', Arial, sans-serif;
+  color: #ddd;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+
+input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #6cc0e5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+//https://codepen.io/valerypatorius/pen/oXGMGL
+
+input[type="checkbox"]:checked + label:before,
+input[type="radio"]:checked + label:before {
+  animation: checkedmove 0.1s forwards;
+  animation-delay: 4*$time-to-display ;
+}
+
+@keyframes checkedmove {
+    from {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #6cc0e5;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: .6;
+        -webkit-transition: all .12s, border-color .08s;
+        transition: all .12s, border-color .08s;
+      
+    }
+    to {
+        width: 10px;
+        top: -5px;
+        left: 5px;
+        border-radius: 0;
+        opacity: 1;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      
+    }
+  }
+  
+
+
+
+}
+  
+
+.fixtitle-counter{
+    color:white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    padding: 30px;
+    padding-left: $content-margin-left;    
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font: 18px/20px 'Open Sans', Arial, sans-serif;
+
+
+
+
+#countdown {
+    position: relative;
+    margin: auto;
+    margin-top: 100px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+  }
+  
+  #countdown-number {
+    color: white;
+    display: inline-block;
+    line-height: 40px;
+  }
+  
+  svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    transform: rotateY(-180deg) rotateZ(-90deg);
+  }
+  
+  svg circle {
+    stroke-dasharray: 113px;
+    stroke-dashoffset: 0px;
+    stroke-linecap: round;
+    stroke-width: 2px;
+    stroke: white;
+    fill: none;
+    animation: countdown $slideTotalDuration linear infinite forwards;
+  }
+  
+  @keyframes countdown {
+    from {
+      stroke-dashoffset: 0px;
+    }
+    to {
+      stroke-dashoffset: 113px;
+    }
+  }
+}

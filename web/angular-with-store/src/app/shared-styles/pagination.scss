@@ -1,0 +1,60 @@
+$primary: #fff;
+$anchor-color: #FF6F61;
+$text-color: #34568B;
+$button-text-color: #f6f8fc;
+
+$content-margin-top:20px;
+
+
+.toggle {
+    display: flex;
+    margin-left: auto;
+    @media screen and (max-width: 70px) { 
+          flex-direction: column;
+      }
+
+      input{
+        display: none;
+      }
+      
+      input[type=radio]:checked + label {
+        background: $anchor-color;
+        font-style: normal;
+      } 
+
+
+    
+    // input {
+    //   display: none;
+    //   @for $i from 1 through 5 {
+    //     &#toggle-#{$i}:schecked ~ .label-#{$i} {
+    //               width: 80px;
+    //       @media screen and (max-width: 70px) { 
+    //             height: 120px;
+    //         }
+    //           }
+    //       }
+    // }
+
+    label {
+      min-width: 40px;
+      height: 25px;
+      margin: 0 10px;
+      background: $primary;
+      cursor: pointer;
+      opacity: 0.8;
+      border-radius: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $text-color;
+      padding: 10px;
+      border: 1px $text-color solid;
+      box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+      @media screen and (max-width: 70px) { 
+        width: 25px;
+        height: 60px;
+        margin: 20px 0;
+      }
+    }
+  }

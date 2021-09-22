@@ -6,27 +6,41 @@ import { map } from 'rxjs/operators';
 import { CustomersService } from './customers.service';
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
 import { Auth, Storage } from 'aws-amplify';
+import { of } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
     selector: 'app-customers',
-    templateUrl: './customers.component.html'
+    templateUrl: './customers.component.html',
+    styleUrls: ["../shared-styles/App.scss"]
+
 })
 export class CustomersComponent implements OnInit {
     title = 'Customers';
     customers$: Observable<Customer[] | undefined> = new Observable<Customer[]>();
+    selectedCustomer: String = '';
     user: CognitoUserInterface | undefined;
     authState!: AuthState;
  
     constructor(private customersService: CustomersService,
-         private ref: ChangeDetectorRef
+         private ref: ChangeDetectorRef,
+         private route: ActivatedRoute
         ) {}
 
         async ngOnInit() {
           // Could do this to get initial customers plus 
           // listen for any changes
-
+          
+        this.route.params.subscribe( params =>
+            {
+                this.selectedCustomer = params.id
+            }
+          );
+    
+    
           const token = await Auth.currentAuthenticatedUser();
+        //   this.addCustomer()
           // alert( await (await Auth.currentSession()).getAccessToken().getJwtToken())
           this.customers$ = merge(
               // Get initial
@@ -90,6 +104,14 @@ export class CustomersComponent implements OnInit {
         }
       }
 
+       selectCustomer(id: String) {
+        if (id) {
+            this.selectedCustomer = id
+        }
+      }
+
+
+      
       async addCustomer() {
          
         //  Storage.put('test-private-mocked.txt', 'Private Content', {

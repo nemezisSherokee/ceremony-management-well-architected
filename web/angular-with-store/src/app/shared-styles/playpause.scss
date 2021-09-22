@@ -1,0 +1,260 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800);
+
+$background:#f9f9f9;
+$foreground:#2c3e50;
+
+$foreground-light:#34495e;
+
+
+$size:10px;
+$ratio:1.2;
+
+$transition-time:0.3s;
+
+ 
+.play {
+  display:block;
+  width: 0; 
+	height: 0; 
+	border-top: $size solid transparent;
+	border-bottom: $size solid transparent;
+	border-left: ($size*$ratio) solid $foreground;
+  margin: ($size * 0) auto $size auto;
+  position:relative;
+//   z-index:1;
+  transition: all $transition-time;
+  -webkit-transition: all $transition-time;
+  -moz-transition: all $transition-time;
+  left:($size*0.2);
+  
+  &:before {
+    content:'';
+    position:absolute;
+    top:($size*-1.5);
+    left:($size*-2.3);
+    bottom:($size*-1.5);
+    right:($size*-0.7);
+    border-radius:50%;
+    border: ($size*0.2) solid $foreground;
+    // z-index:2;
+    transition: all $transition-time;
+    -webkit-transition: all $transition-time;
+    -moz-transition: all $transition-time;
+  }
+  &:after {
+    content:'';
+    opacity:0;
+    transition: opacity ($transition-time * 2);
+    -webkit-transition: opacity ($transition-time * 2);
+    -moz-transition: opacity ($transition-time * 2);
+  }
+  
+  &:hover, &:focus {
+    &:before {
+       transform: scale(1.1);
+       -webkit-transform: scale(1.1);
+       -moz-transform: scale(1.1);
+    }
+  }
+  
+  &.active {
+	  border-color:transparent;
+    &:after {
+      content:'';
+      opacity:1;
+      width:($size);
+      height:($size*1.6);
+      background:$foreground;
+      position:absolute;
+      right: ($size*0.2);
+      top: ($size*-0.8);
+      border-left:($size*0.27) solid  $foreground;
+      box-shadow:inset ($size*0.6) 0 0 0 $background;
+    }
+  }
+}
+
+// h1 {
+//    text-transform:uppercase;
+//   color:$foreground-light;
+//   letter-spacing:2px;
+//   font-size:2em;
+//   margin-bottom:0;
+// }
+
+// .headline {
+//    display:block;
+//   color:$foreground;
+//   font-size:1.5em;
+//   margin-bottom:1.5em;
+// }
+
+// .social {
+//   text-decoration:none;
+//   color:$foreground-light;
+//   margin: 0.5em 1.5em;
+//   display:inline-block;
+//   &:hover, &:focus {
+//     color:$foreground;
+//   }
+// }
+
+
+  .Countdown{
+    margin:  auto;
+    padding-bottom: 20px;
+    backgrsound: #34495e;
+  }
+  
+  .Countdown-col{
+    display: inline;
+  }
+  
+  .Countdown-col-element{
+    display: inline;
+    margin: 0 02px;
+    flex-direction: column;
+  }
+  
+  .Countdown-col-element strong{
+    font-size: 18px;
+  }
+
+  .btn-group{
+    width:100%;
+    // padding-left: 12%;
+  }
+ 
+  .btn-group button, .btn-group .confirmation {
+    background-color: #4CAF50; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+
+    background: #FF6F61;
+    display: block;
+    color: $button-text-color;
+    border: 0.1px solid $text-color;
+    letter-spacing: 0.1px;
+    text-align: center;
+    padding: 5px 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font: 15px/25px 'Open Sans', Arial, sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    border-radius: 5px;
+    transition: transform 250ms ease, 
+                box-shadow 250ms ease;
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 34px 0 d6d6d6;
+        text-decoration: none !important;
+  
+    }
+
+  }
+  
+  .filter-mask{
+    width: 100%;
+    float: left; /* Float the buttons side by side */
+
+  }
+  .filter-mask-input{
+    width: 40%;
+    margin: 0px !important;;
+    box-shadow: 0 10px 34px 0 d6d6d6;
+    text-decoration: none !important;
+    font: 15px/25px 'Open Sans', Arial, sans-serif;
+
+  }
+
+  .filter-mask-button{
+    width: 20%;
+    margin: 0 10px !important;;
+    box-shadow: 0 10px 34px 0 d6d6d6;
+    text-decoration: none !important;
+    background-color: #4CAF50; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+
+    cursor: pointer;
+    text-decoration: none;
+    font: 15px/25px 'Open Sans', Arial, sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    border-radius: 5px;
+    transition: transform 250ms ease, 
+                box-shadow 250ms ease;
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 34px 0 d6d6d6;
+        text-decoration: none !important;
+  
+    }
+
+
+  }
+  .buttonsearch input{
+    width: 50%;
+    margin: 0 10px !important;;
+    box-shadow: 0 10px 34px 0 d6d6d6;
+    text-decoration: none !important;
+
+  }
+  .btn-group .confirm, {
+    background-color: #4CAF50; /* Green background */
+  }
+
+    
+  .btn-group .unconfirm{
+    background-color: #FF6F61; /* Green background */
+  }
+
+  
+  
+  .btn-group .next{
+    width:25%;
+    position: absolute;
+     right: 0;
+    background-color: #4CAF50; /* Green background */
+  }
+
+  .btn-group .prev{
+    width:25%;
+    position: absolute;
+     left: 0;
+    background-color: #828382; /* Green background */
+  }
+
+  .btn-group .skip, .btn-group .star{
+    width:40%;
+    margin: 0 5%;
+  }
+
+  .skip-start{
+    width: 40%;
+    margin: auto;
+    margin: 0 10px;
+    position: absolute;
+    left: 29%;
+
+  }
+
+  /* Clear floats (clearfix hack) */
+  .btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+  }
+  
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #3e8e41;
+  }

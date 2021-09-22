@@ -1,0 +1,163 @@
+
+
+//////TOOBAR CSS
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:wght@300;400;500;600;700&display=swap');
+$anchor-color: #FF6F61;
+$text-color: #34568B;
+$button-text-color: #f6f8fc;
+
+$content-margin-top:20px;
+
+:root {
+    --headlinesFont-Toolbar: 'Jost', sans-serif;
+    --bodyFont-Toolbar: 'Work Sans', sans-serif;
+    // --wildWatermelon-Toolbar: #ff4f87;
+    --wildWatermelon-Toolbar: #d6d6d6;
+    --fuelYellow-Toolbar: #f0a035;
+    --textColor-Toolbar: #323232;
+    --bodyBg-Toolbar: #d6d6d6;
+    --white-Toolbar-old: #fff;
+    --white-Toolbar: transparent;
+    --black-Toolbar: #000;
+}
+
+@mixin poCentering {
+    // top: 50%;
+    // right: 50%;
+    // bottom: 50%;
+    // left: 0%;
+    // position: absolute;
+    // -webkit-transform: translate(-50%, -50%);
+    // transform: translate(-50%, -50%);
+}
+ 
+.stickToolbar{
+    position: sticky;
+    position: -webkit-sticky;
+    background-color:white;
+    top:10px;
+    z-index: 1;
+}
+
+.stickFilter{
+    z-index: 1000;
+
+    .stickHeader{
+        position: sticky;
+        position: -webkit-sticky;
+        top:11%;
+    }
+
+    .stickBody{
+        position: sticky;
+        position: -webkit-sticky;
+        top:23%;
+    }
+
+}
+
+
+  
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.toolbar-ft-recipe {
+    width: 100%;
+    height: 50%;
+    background: var(--white-Toolbar);
+    display: flex;
+    flex-direction: column;
+    // box-shadow: 0 0 88px 0 rgba(0, 0, 0, 0.1607843137254902);
+    // overflow: hidden;
+    @include poCentering;
+    .ft-recipe__thumb {
+        position: relative;
+        height: 281px;
+        box-shadow: 0px 0px 130px 0 rgba(0, 0, 0, 0.38);
+    }
+    .ft-recipe__content {
+        flex: 1;
+        // padding: 0 2em 1em;
+        .content__header {
+            .row-wrapper-old {
+                display: flex;
+                // padding: .55em 0 .3em;
+                border-bottom: 1px solid #d8d8d8;
+                .recipe-title {
+                    font-family: var(--headlinesFont-Toolbar);
+                    font-weight: 600;
+                }
+             }
+            .recipe-details-old {
+                display: flex;
+                list-style: none;
+                // padding: 1.4em 0 1em;
+                margin: 0;
+                justify-content: space-between;
+                .recipe-details-item {
+                    flex: 1;
+                    i {
+                        font-size: 30px;
+                    }
+                    .value {
+                        color: #ff4f87;
+                        margin-left: .35em;
+                        vertical-align: bottom;
+                        font: {
+                            size: 24px;
+                            weight: 600;
+                        }
+                    }
+                    .title {
+                        display: block;
+                        margin-top: -4px;
+                        font: {
+                            family: var(--headlinesFont-Toolbar);
+                            size: 21px;
+                            weight: 300;
+                        }
+                    }
+                }
+            }
+
+        }
+        .description-old {
+            margin: .3em 0 .8em;
+            font-size: 17px;
+        }
+        .content__footer {
+
+            a {
+                background: #FF6F61;
+                display: block;
+                color: $button-text-color;
+                border: 0.1px solid $text-color;
+                letter-spacing: 0.1px;
+                text-align: center;
+                padding: 5px 5px;
+                left: 0;
+                cursor: pointer;
+                text-decoration: none;
+                font: 15px/25px 'Open Sans', Arial, sans-serif;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+                border-radius: 5px;
+                transition: transform 250ms ease, 
+                            box-shadow 250ms ease;
+                &:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 10px 34px 0 d6d6d6;
+                    text-decoration: none !important;
+              
+                }
+            }
+        }
+    }
+
+}
+
+
+//////END TOOLBAR CSS

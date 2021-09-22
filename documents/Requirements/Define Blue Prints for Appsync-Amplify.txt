@@ -1,0 +1,173 @@
+EPIC : Blue prints for our AppSync Api and Amplify
+
+US - Description: Create a complete Amplify Project
+
+As a AWS Developper 
+
+I want to have ready to use Amplify Project
+
+So That I can directly start adding a feature to project
+------------------------------------------------
+
+Pre-Condition
+
+
+----------------- 
+
+Post Condition:
+
+	-	The Amplify project must habe simple UI
+		
+		Given an VS Code IDE
+		When I open my Amplify project 
+		Then I should see a well defined project that can be extended
+
+SCOPE:
+	- 	A Amplify Angular project  is created
+	- 	Unit Test must be passed
+	
+Attachements
+		
+=================================================================
+
+US - Description: Add Local Appsync facility to our Amplify Project 
+
+As a AWS Developper 
+
+I want to make some GraphQL API call to a Appysnc 
+
+So That I can save or retrieve some Data 
+------------------------------------------------
+
+Pre-Condition
+
+	-	Have a Ready to use Amplify Project
+
+----------------- 
+
+Post Condition:
+
+	- 	The Amplify Project has a local Backend API  enabled
+		
+		Given a Amplify blue Print
+		When I make some API Requests
+		Then The local API schould be triggered
+		
+		
+SCOPE:
+	- 	A Amplify project 
+	- 	An Local AppSync API is enabled
+	
+Attachements
+
+
+=================================================================
+
+US - Description: Add Local DynamoDB facility to our Amplify Project 
+
+As a AWS Developper 
+
+I want to make some GraphQL API call to a Appysnc and add/retrieve some Data in Local dynamoDB
+
+So That I can save or retrieve some Data 
+------------------------------------------------
+
+Pre-Condition
+
+	-	Have a Ready to use Amplify Project
+	-	Have a Ready to use AppSync API 
+
+----------------- 
+
+Post Condition:
+
+	- 	The Amplify Project has a local DynamoDB enabled
+		
+		Given a Amplify blue Print
+		When I make some API Requests
+		Then The local API schould be triggered and the data should be written / read from local DynamoDB
+		
+		
+SCOPE:
+	- 	A Amplify project 
+	- 	An Local AppSync API is enabled
+	- 	An Local DynamoDB is enabled
+	
+Attachements
+
+
+
+=================================================================
+
+US - Description: Add Local function to our Amplify Project 
+
+As a AWS Developper 
+
+I want to make some GraphQL API call to a Appysnc and add/retrieve some Data in Local dynamoDB by using an existing Lambda function
+
+So That I can save or retrieve some Data by using a custom login defined in a Lambda function
+------------------------------------------------
+
+Pre-Condition
+
+	-	Have a Ready to use Amplify Project
+	-	Have a Ready to use AppSync API 
+	-	Have a Ready to use DynamoDB API 
+	-	Have a Ready to use Lambda function 
+
+----------------- 
+
+Post Condition:
+
+	- 	The Amplify Project can use a Lambda function
+		
+		Given a Amplify blue Print
+		When I make some API Requests
+		Then The local API schould be triggered and the data should be written / read from local DynamoDB after having passed some logic defined in a lambda function
+		
+		
+SCOPE:
+	- 	A Amplify project 
+	- 	An Local AppSync API is enabled
+	- 	An Local DynamoDB is enabled
+	- 	An Local Lambda function is used 
+	
+Attachements
+
+=================================================================
+
+US - Description: Add BDD UI Test 
+
+As a AWS Developper 
+
+I want to start CUCUMBER Test
+
+So That I check if I have developped a right functionality
+------------------------------------------------
+
+Pre-Condition
+
+	-	Have a Ready to use Amplify Project
+	-	Have a Ready to use AppSync API 
+	-	Have a Ready to use DynamoDB API 
+	-	Have a Ready to use Lambda function 
+
+----------------- 
+
+Post Condition:
+
+	- 	The Amplify Project can be tested using Cucumber
+		
+		Given a Amplify blue Print
+		When I Start my cucumber test
+		Then I can test that some data are written or read 
+		
+		
+SCOPE:
+	- 	A Amplify project 
+	- 	An Local AppSync API is enabled
+	- 	An Local DynamoDB is enabled
+	- 	An Local Lambda function is used 
+	- 	An CUCUMBER test 
+	
+Attachements
