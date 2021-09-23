@@ -1,0 +1,24 @@
+<div class="content-containers">
+    <div class="content-title-group not-found">
+      <h2 class="title">{{customer.name}}
+    </h2>
+      <p>
+    </p>
+      <br />
+      <h2 class="title">City of {{customer.city}}</h2>
+      <p>
+      </p>
+      <br />
+      <h2 class="title">Created on {{customer.createdAt | date:'medium' }}</h2>
+      <p>
+    </p>
+
+      <br />
+      <h2 class="title">Last modification on {{customer.updatedAt | date:'medium' }}</h2>
+      <p>
+    </p>
+
+      <br />
+      <button type="button" class="btn btn-danger" (click)="delete(customer.id)"  >Delete</button>
+    </div>
+  </div>
