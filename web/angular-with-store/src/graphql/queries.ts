@@ -16,6 +16,7 @@ export const getCustomer = /* GraphQL */ `
     }
   }
 `;
+
 export const listCustomers = /* GraphQL */ `
   query ListCustomers(
     $filter: ModelCustomerFilterInput
@@ -29,6 +30,21 @@ export const listCustomers = /* GraphQL */ `
         city
         createdAt
         updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const headCustomers = /* GraphQL */ `
+  query ListCustomers(
+    $filter: ModelCustomerFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCustomers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
       }
       nextToken
     }

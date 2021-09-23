@@ -1,6 +1,6 @@
+import { Customer } from 'src/app/core/model';
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 
-import { Customer } from '../core/model/customer';
 import { Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CustomersService } from './customers.service';
@@ -19,30 +19,35 @@ import { ActivatedRoute } from '@angular/router';
 export class CustomersComponent implements OnInit {
     title = 'Customers';
     customers$: Observable<Customer[] | undefined> = new Observable<Customer[]>();
-    selectedCustomer: String = '';
+    selectedCustomerId: String = '';
+    selectedCustomer: Observable<any> = new Observable<any>();
+    showCustomerDetail: boolean = true;
     user: CognitoUserInterface | undefined;
     authState!: AuthState;
  
     constructor(private customersService: CustomersService,
          private ref: ChangeDetectorRef,
          private route: ActivatedRoute
-        ) {}
+        ) {
+        }
 
         async ngOnInit() {
           // Could do this to get initial customers plus 
           // listen for any changes
           
+          
+                
         this.route.params.subscribe( params =>
             {
-                this.selectedCustomer = params.id
+                this.selectedCustomerId = params.id
             }
           );
     
     
           const token = await Auth.currentAuthenticatedUser();
-        //   this.addCustomer()
+        //   this.addCustomer();  
           // alert( await (await Auth.currentSession()).getAccessToken().getJwtToken())
-          this.customers$ = merge(
+          (this.customers$ = merge(
               // Get initial
               await this.customersService.getAll(),
               // Capture any changes to the store
@@ -54,45 +59,48 @@ export class CustomersComponent implements OnInit {
                           return []
                       }
                   })
-              ));
-      }
+              )));
+            //   .subscribe( async customers => {
+            //       if(this.selectedCustomerId){
+            //           var obj = customers.filter((node: any) => {
+            //             return node.id===this.selectedCustomerId;
+            //         });
+
+            //         if(obj !== undefined && obj.length > 0)
+            //         {
+            //             this.selectedCustomer = obj[0]
+            //         }
+                
+            //       }
+            // });
+
+            ( await this.customersService.get(this.selectedCustomerId as string))
+                    .subscribe(
+                        ( customer: any) => {
+                             this.selectedCustomer = ((customer as any).data.getCustomer)
+                        }
+                    )
+            
+         
+
+            // this.customers$.subscribe(customers => {
+            //         if(this.selectedCustomerId && customers){
+            //           var obj = customers.filter((node: { id: String; }) => {
+            //             return node.id===this.selectedCustomerId;
+            //         });
+
+            //         if(obj)
+            //         {
+            //             // alert(JSON.stringify(obj))
+            //             this.selectedCustomer = (obj[0] as Customer)
+            //         }
+                
+            //       }                
+            //   });
+              
   
-        async sngOnInit() {
-
-             onAuthUIStateChange(    async (authState, authData) => {
-                this.authState = authState;
-                this.user = authData as CognitoUserInterface;
-
-                if(authState !== 'signedin')
-                   {
-                   return 
-                   }
-
-                this.customers$ = 
-                merge(
-                   // Get initial
-                    await (await this.customersService.getAll())
-                    .pipe(           
-                         map(customers => {
-                          this.ref.detectChanges();
-                          return customers;
-                      })),
-                   // Capture any changes to the store
-                   this.customersService.stateChanged.pipe(
-                       map(state => {
-                        this.ref.detectChanges();
-                        if (state) {
-                               return state.customers;
-                           }else{
-                               return []
-                           }
-                       })
-                   )) ;
-                this.ref.detectChanges();
-            })
-          
-    }
-
+      }
+   
     ngOnDestroy() {
         return onAuthUIStateChange;
       }
@@ -104,9 +112,16 @@ export class CustomersComponent implements OnInit {
         }
       }
 
-       selectCustomer(id: String) {
-        if (id) {
-            this.selectedCustomer = id
+        async selectCustomer(customer: any) {
+        if (customer) {
+            this.selectedCustomerId = (customer as Customer).id;
+            // this.selectedCustomer = customer
+            (await this.customersService.get((customer as Customer).id))
+            .subscribe(
+                customer => {
+                     this.selectedCustomer = ((customer as any).data.getCustomer)
+                }
+            )
         }
       }
 
@@ -120,11 +135,21 @@ export class CustomersComponent implements OnInit {
         //  })
         // .then (result => alert(JSON.stringify(result)))
         // .catch(err => alert(err));
+        var groceries = [
+            'Douala',
+            'Maroua',
+            'Touboro',
+            'Paderborn',
+            'Stuttgart',
+            'Nuremberg',
+            'Yaoundé'
+            ]
+            let mygroceries = groceries[Math.floor(Math.random() * groceries.length)]
 
         const customer: any = {
             id: Date.now(),
             name: 'John' +Date.now(),
-            city: 'City of '+ Date.now()
+            city: mygroceries
         };
 
          (await  this.customersService.add(customer)).subscribe((t) => {

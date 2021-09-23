@@ -1,7 +1,7 @@
 
 
   <div id="main1">    
-    <div class="  fullHeight"  >
+    <div class=" container fullHeight"  >
         <div class="row fullHeight ">
             <div class="col-xs-12  col-lg-3 col-sm-3   gradient-line">
 
@@ -13,14 +13,13 @@
                     <div  class=" topButtomSpacing     " >
                         <div class="divider">
                             
-
                         <div *ngIf="(customers$| async) as list; else loading">
 
                             <span>Number of Customers: {{ (customers$ | async)?.length }} </span>
                             <div *ngIf="customers$ | async as customers" >
                                 <app-customers-list 
                                 [customers]="customers" 
-                                [selectedCustomer]="selectedCustomer" 
+                                [selectedCustomer]="selectedCustomerId" 
                                 (onDeleteCustomer)="deleteCustomer($event[0])"
                                 (onSelectCustomer)="selectCustomer($event[0])"
                                 
@@ -69,7 +68,13 @@
                     <div class=" row fullHeight " >
                         <div class=" col-lg-12 fullHeight topButtomSpacing ">
                             <div class=" padding15 noPaddingTop fullHeight     -old fullBorder-old "  >
-                                DETAILS
+                                
+                                <customer-detail
+                                    *ngIf="showCustomerDetail" 
+                                    [customer]="selectedCustomer" 
+                                    (onDeleteCustomer)="deleteCustomer($event[0])"
+
+                                ></customer-detail>
                             </div>
                         </div>
                     </div>

@@ -43,9 +43,9 @@ export class CustomersListComponent implements OnInit {
         }
       }
 
-      selectCustomer(id: String) {
-        if (id) {
-            this.onSelectCustomer.emit([id]);
+      selectCustomer(customer: any) {
+        if (customer) {
+            this.onSelectCustomer.emit([customer]);
         }
       }
  

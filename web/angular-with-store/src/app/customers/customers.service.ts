@@ -1,4 +1,4 @@
-import { getCustomer, listCustomers } from './../../graphql/queries';
+import { getCustomer, listCustomers, headCustomers } from './../../graphql/queries';
 import {  createCustomer, deleteCustomer, updateCustomer } from './../../graphql/mutations';
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
@@ -18,7 +18,7 @@ export class CustomersService extends ObservableStore<StoreState> {
     }
 
     private async fetchCustomers() {
-        var response = await API.graphql(graphqlOperation(listCustomers))
+        var response = await API.graphql(graphqlOperation(headCustomers))
         var customers = (response as any).data.listCustomers.items;
         return of(customers)       
              .pipe(
@@ -49,7 +49,7 @@ export class CustomersService extends ObservableStore<StoreState> {
                 );
         }
     }
-
+ 
     async get(id: string) {
         let customerIdObject: any = {"id": id}
         let customer = await  API.graphql(graphqlOperation(getCustomer, customerIdObject))
