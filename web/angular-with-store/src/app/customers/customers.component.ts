@@ -22,6 +22,10 @@ export class CustomersComponent implements OnInit {
     selectedCustomerId: String = '';
     selectedCustomer: Observable<any> = new Observable<any>();
     showCustomerDetail: boolean = true;
+    showAddingCustomer: boolean = false;
+    showEditingCustomer: boolean = false;
+    showDeletingCustomer: boolean = false;
+    
     user: CognitoUserInterface | undefined;
     authState!: AuthState;
  
@@ -34,12 +38,45 @@ export class CustomersComponent implements OnInit {
         async ngOnInit() {
           // Could do this to get initial customers plus 
           // listen for any changes
-          
-          
+           
                 
-        this.route.params.subscribe( params =>
+          let editOrAdd = false;
+          (await this.route).url.subscribe(
+            t => { 
+              if(t.length > 0)
+              {
+                let path = (t[0] as any).path 
+                if(path === 'add'){
+                  this.showCustomerDetail = false;
+                  this.showDeletingCustomer = false;
+                  this.showEditingCustomer = false
+                  this.showAddingCustomer = true;
+                  editOrAdd = true
+                            }else if(path === 'edit'){
+                              this.showCustomerDetail = false;
+                              this.showDeletingCustomer = false;
+                              this.showEditingCustomer = true
+                              this.showAddingCustomer = false;
+                              editOrAdd = true
+                              // alert(JSON.stringify(t))
+                            }
+
+              }
+            }
+          )
+
+          this.route.params.subscribe( params =>
             {
-                this.selectedCustomerId = params.id
+              
+              this.showCustomerDetail = false
+              // alert(JSON.stringify(params))
+
+              if(params.id ){
+                this.selectedCustomerId = params.id;
+                (editOrAdd == false) && ( this.showCustomerDetail = true);
+                // alert(this.selectedCustomerId)
+
+              }
             }
           );
     
@@ -105,6 +142,26 @@ export class CustomersComponent implements OnInit {
         return onAuthUIStateChange;
       }
     
+      
+    async addingCustomer() {
+
+      this.showCustomerDetail = false;
+      this.showDeletingCustomer = false;
+      this.showEditingCustomer = false
+      this.showAddingCustomer = true;
+    }
+
+    async editingCustomer(customer: any) {
+
+      this.selectedCustomer = customer
+      this.showCustomerDetail = false;
+      this.showAddingCustomer = false;
+      this.showDeletingCustomer = false;
+      this.showEditingCustomer = true
+    }
+    
+
+      
     async deleteCustomer(id: number) {
         if (id) {
           (await this.customersService.delete(id)).subscribe(() => {
@@ -113,6 +170,12 @@ export class CustomersComponent implements OnInit {
       }
 
         async selectCustomer(customer: any) {
+
+          this.showCustomerDetail = true;
+          this.showAddingCustomer = false;
+          this.showDeletingCustomer = false;
+          this.showEditingCustomer = false
+         
         if (customer) {
             this.selectedCustomerId = (customer as Customer).id;
             // this.selectedCustomer = customer

@@ -4,7 +4,7 @@
          [ngClass]="{'actual':selectedCustomer == cust.id, 
              'list-group-items ':true}"
          >
-         <a [routerLink]="['/customers', cust.id]" 
+         <a [routerLink]="['/customers/id', cust.id]" 
             (click)="selectCustomer(cust)" 
             >
 
