@@ -12,14 +12,37 @@ import { API, graphqlOperation } from 'aws-amplify';
 })
 export class CustomersService extends ObservableStore<StoreState> {
 
+    nextNextToken: any = undefined
+    previousTokens: any = undefined
     constructor() { 
         super({ });
 
     }
 
+    private setNextNextToken(token: any){
+        if(this.nextNextToken !== undefined)
+          this.previousTokens = this.nextNextToken
+
+        this.nextNextToken = token
+    }
     private async fetchCustomers() {
-        var response = await API.graphql(graphqlOperation(headCustomers))
+
+        let owner = "";
+        let nextToken = this.nextNextToken;
+        let limit = 2;
+        let sortDirection = "ASC";
+
+        const variables = {
+            nextToken,
+            owner,
+            limit,
+            sortDirection,
+          }
+      
+        var response = await API.graphql(graphqlOperation(headCustomers, variables))
         var customers = (response as any).data.listCustomers.items;
+        this.setNextNextToken((response as any).data.listCustomers.nextToken)
+        // alert((response as any).data.listCustomers.nextToken)
         return of(customers)       
              .pipe(
                     map(customers => {

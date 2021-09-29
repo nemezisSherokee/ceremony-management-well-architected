@@ -8,6 +8,7 @@ import { CustomersRoutingModule } from './customers-routing.module';
 import { CustomersEditComponent } from './customers-edit/customers-edit.component';
 import { CustomersDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomersToolbarComponent } from './customer-toolbar/customer-toolbar.component';
+import { PaginationComponent } from './pagination/pagination.component';
 import { CustomersListComponent } from './customers-list/customers-list.component';
 import { FilterTextboxComponent } from './customers-list/filter-textbox.component';
 
@@ -19,6 +20,7 @@ import { FilterTextboxComponent } from './customers-list/filter-textbox.componen
         CustomersComponent, 
         CustomersEditComponent,
         CustomersDetailComponent,
-        CustomersToolbarComponent
+        CustomersToolbarComponent,
+        PaginationComponent
     ]})
 export class CustomersModule { }

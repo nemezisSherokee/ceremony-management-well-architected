@@ -1,3 +1,26 @@
+
+
+<div class="setAstTop fullWidth fullBorder paddingContent center" >
+    <pagination
+    [items]="customers"
+    (changePage)="onChangePage($event)" 
+    [pageSize]="1"
+        >
+    </pagination>
+<!-- {questionResult&&<Pagination
+    totalItemsCount={currentPage.totalElements}
+    currentPage={currentPage.number}
+    perPage={currentPage.size}
+    pagesToShow={pagesToShow}
+    onGoPage={this.goPage}
+    onPrevPage={this.onPrev}
+    onNextPage={this.onNext}
+    parentId={this.props.subjectId||0+this.props.subjectId||0||Math.random()*54741}
+    {...this.props} 
+/>} -->
+
+</div>
+
 <ul class="list-group  tilesWrap  ">
     <li  *ngFor="let cust of filteredCustomers"
          classs=" list-group-items "

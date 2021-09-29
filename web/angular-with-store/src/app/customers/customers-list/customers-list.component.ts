@@ -10,6 +10,7 @@ import { Customer } from '../../core/model/customer';
 })
 export class CustomersListComponent implements OnInit {
     private _customers: Customer[] = [];
+    pageOfItems!: Array<any>;
 
     @Input() get customers(): Customer[] {
         return this._customers;
@@ -36,6 +37,13 @@ export class CustomersListComponent implements OnInit {
     ngOnInit() {
 
     }
+
+    onChangePage(pageOfItems: Array<any>) {
+        // update current page of items
+        this.pageOfItems = pageOfItems;
+        // call customerComponent to retrive new page
+    }
+
 
     delete(id: number) {
         if (id) {

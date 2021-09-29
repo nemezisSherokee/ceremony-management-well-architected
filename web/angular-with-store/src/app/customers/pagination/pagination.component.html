@@ -1,0 +1,79 @@
+<ul *ngIf="pager.pages && pager.pages.length" class="pagination toggle">
+   <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item first-item">
+       <a (click)="setPage(1)" class="page-link">First</a>
+   </li>
+   <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item previous-item">
+       <a (click)="setPage(pager.currentPage - 1)" class="page-link">Previous</a>
+   </li>
+   <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item number-item">
+       <a (click)="setPage(page)" class="page-link">{{page}}</a>
+   </li>
+   <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item next-item">
+       <a (click)="setPage(pager.currentPage + 1)" class="page-link">Next</a>
+   </li>
+   <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item last-item">
+       <a (click)="setPage(pager.totalPages)" class="page-link">Last</a>
+   </li>
+ </ul>
+
+<!-- <div className="row">
+   <div className="col-lg-12">
+   <div className=" toggle">
+      <div>
+         <input name="toggle-prev"  (click)="onPrev()"/>
+         <label class="label-prev">Prev</label>
+         </div>
+
+         <div>
+            <input name="toggle-prev"  (click)="onPrev()"/>
+            <label class="label-prev" htmlFor={"toggle-prev"+this.props.parentId}>Prev</label>
+            </div>
+
+            <div>
+               <input name="toggle-prev"  (click)="onNext()"/>
+               <label class="label-prev">Next</label>
+               </div>
+
+               <div>
+                  <input name="toggle-prev"  (click)="onNext()"/>
+                  <label class="label-prev">Next</label>
+                  </div>
+ 
+       </div>
+
+   </div>
+</div> -->
+<!-- 
+            <div   class=" col-lg-12"   >
+              <div class="toolbar-ft-recipe">
+                <div class="ft-recipe__content text-uppercase text-capitalize">
+                   <div class="row">
+                      <div *ngIf="addingItem==false"  class="col-lg-4 col-sm-12 topBottomMargin   paddingContentRight paddingContentLeft" >
+                         <div class="content__footer fullWidth"  >
+                          <a [routerLink]="['/customers/add']" 
+                          (click)="addCustomer()" 
+                          >Add a customer</a>
+                         </div>
+                      </div>
+
+                      <div *ngIf="editingItem==false && customer.id !== undefined"  class="col-lg-4 col-sm-12 topBottomMargin   paddingContentRight paddingContentLeft" >
+                        <div class="content__footer fullWidth"  >
+                         <a [routerLink]="['/customers/edit/', customer.id]" 
+                         (click)="editCustomer(customer)" 
+                         >Edit {{customer.name}}</a>
+                        </div>
+                     </div>
+
+                     <div *ngIf="deletingItem==false && customer.id !== undefined"  class="col-lg-4 col-sm-12 topBottomMargin   paddingContentRight paddingContentLeft" >
+                      <div class="content__footer fullWidth"  >
+                       <a [routerLink]="['/customers/add']" 
+                       (click)="delete(customer.id)" 
+                       >Delete {{customer.name}}</a>
+                      </div>
+                   </div>
+                       
+                   </div>
+                </div>
+             </div>
+             
+          </div> -->

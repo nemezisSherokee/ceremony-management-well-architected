@@ -17,7 +17,7 @@ $content-margin-top:20px;
         display: none;
       }
       
-      input[type=radio]:checked + label {
+      input[type=radio]:checked + label, li.active a  {
         background: $anchor-color;
         font-style: normal;
       } 
@@ -36,14 +36,14 @@ $content-margin-top:20px;
     //       }
     // }
 
-    label {
+    li a, label {
       min-width: 40px;
       height: 25px;
-      margin: 0 10px;
+      margin: 0 2px;
       background: $primary;
       cursor: pointer;
       opacity: 0.8;
-      border-radius: 1px;
+      border-radius: 3px;
       display: flex;
       align-items: center;
       justify-content: center;
